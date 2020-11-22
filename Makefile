@@ -91,7 +91,9 @@ install-base-packages:
 				-S --needed --noconfirm {}'
 
 install-yay:
+	# Install the AUR pacman manager Yay
 	@$(PACMAN) --noconfirm -S --needed git base-devel
+	@$(RM) -rf /tmp/yay
 	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
 	@$(CHMOD) ugo+rwx -R /tmp/yay
 	@$(CD) /tmp/yay && $(SUDO) -u $(USER) $(MAKEPKG) -si
