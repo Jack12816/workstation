@@ -97,12 +97,12 @@ configure-sysctl:
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
-	@$(PACMAN) -S util-linux
+	@$(PACMAN) --noconfirm -S util-linux
 	@$(SYSTEMCTL) enable fstrim.timer
 
 configure-package-compilation:
 	# Configure package compilation optimizations
-	@$(PACMAN) -S pigz xz pbzip2 zstd expac pacman-contrib
+	@$(PACMAN) --noconfirm -S pigz xz pbzip2 zstd expac pacman-contrib
 	@$(CP) etc/makepkg.conf /etc/makepkg.conf
 
 configure-watchdogs:
