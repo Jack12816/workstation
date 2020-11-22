@@ -80,11 +80,12 @@ update-readme-toc:
 	@$(RM) README.md.toc
 
 install-packages: \
-	install-base-packages
-
+	install-base-packages \
+	install-yay \
+	install-extra-packages
 
 install-base-packages:
-	# Install all base packages (pacman)
+	# Install all base packages
 	@$(CAT) packages/base.pacman \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) $(PACMAN) \
@@ -92,12 +93,21 @@ install-base-packages:
 
 install-yay: configure-sudoers
 	# Install the AUR pacman manager Yay
+ifeq ($(shell which yay),)
 	@$(PACMAN) --noconfirm -S --needed git base-devel
 	@$(RM) -rf /tmp/yay /tmp/makepkg
 	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
 	@$(CHMOD) ugo+rwx -R /tmp/yay
 	@$(CD) /tmp/yay && $(SUDO) -u $(UNPRIVILEGED_USER) \
 		$(MAKEPKG) --noconfirm -si
+endif
+
+install-extra-packages:
+	# Install all extra packages
+	@$(CAT) packages/extra \
+		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
+			$(SHELL) -c '$(YAY) \
+				-S --needed --noconfirm {}'
 
 
 
