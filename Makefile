@@ -152,8 +152,8 @@ configure-watchdogs:
 configure-sudoers: configure-user
 	# Configure sudoers
 	@$(ECHO) '$(UNPRIVILEGED_USER) ALL=(ALL) NOPASSWD: ALL' \
-		> /etc/sudoers.d/$(UNPRIVILEGED_USER).conf
-	@$(CHMOD) 0440 /etc/sudoers.d/$(UNPRIVILEGED_USER).conf
+		> /etc/sudoers.d/$(UNPRIVILEGED_USER)
+	@$(CHMOD) 0440 /etc/sudoers.d/$(UNPRIVILEGED_USER)
 
 
 
