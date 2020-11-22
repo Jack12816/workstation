@@ -48,7 +48,6 @@ bluez-utils
 bonnie++
 breeze-kde4
 browserpass
-brscan4-network
 btrfs-progs
 bzip2
 calf
@@ -57,14 +56,12 @@ ccze
 ceph
 chemical-mime-data
 chromium
-chromium-pepper-flash-stable
 cinelerra-cv
 clipit
 cloc
 collectd
 colorpicker
 coreutils
-cower
 cpuburn
 croc
 cronie
@@ -196,18 +193,17 @@ jre7-openjdk
 jre7-openjdk-headless
 kalzium
 kazam
-kde-l10n-de
 kmix
 krename
 krusader
 kubectl-bin
-kubernetes-helm-bin
+helm
+helmfile
 less
 lftp
 lib32-alsa-lib
 lib32-alsa-plugins
 lib32-fakeroot
-lib32-flashplugin
 lib32-libao
 lib32-libcups
 lib32-libidn
@@ -231,7 +227,6 @@ libgoom2
 libmnl
 libmtp
 libnetfilter_acct
-libnss-mysql
 libpurple
 libreoffice-fresh
 libreoffice-fresh-de
@@ -314,7 +309,6 @@ pacman
 pacman-contrib
 pacserve
 pacutils
-pam_mysql
 pandoc
 parallel
 parole
@@ -326,8 +320,7 @@ patch
 pavucontrol
 pavumeter
 pciutils
-pcmciautils
-pdftk-bin
+pdftk
 perf
 perl
 perl-devel-stacktrace
@@ -369,7 +362,6 @@ python-pip
 python-rsa
 python2-boto
 python2-dateutil
-python2-eyed3
 python2-gnomekeyring
 python2-lxml
 python2-pip
@@ -385,7 +377,7 @@ reiserfsprogs
 remmina
 rhythmbox
 ripgrep
-robomongo
+robo3t-bin
 rofi
 rofi-dmenu
 rsync
@@ -422,7 +414,6 @@ sqlfmt-bin
 sqliteman
 sshfs
 stalonetray
-statsd-tg
 steam
 strace
 stunnel
@@ -450,7 +441,6 @@ texlive-fontsextra
 texlive-formatsextra
 texlive-games
 texlive-humanities
-texlive-langcjk
 texlive-langcyrillic
 texlive-langextra
 texlive-langgreek
