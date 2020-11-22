@@ -163,6 +163,7 @@ configure-pacman:
 	@$(CP) etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
 	@$(SUDO) $(PACMAN) --noconfirm -S aria2
 	@$(CP) etc/pacman.conf /etc/pacman.conf
+	@$(SUDO) $(PACMAN) -Syu
 
 
 
