@@ -130,6 +130,7 @@ install-groups-packages:
 
 install-extra-packages:
 	# Install all extra packages
+	@$(PACMAN) -R vim
 	@$(CAT) packages/extra \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
