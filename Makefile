@@ -38,7 +38,10 @@ SUDO ?= sudo
 SYSTEMCTL ?= systemctl
 TAIL ?= tail
 TEE ?= tee
+CP ?= cp
+PACMAN ?= pacman
 TEST ?= test
+BOOTCTL ?= bootctl
 ENTR ?= entr
 XARGS ?= xargs
 LS ?= ls
@@ -82,7 +85,7 @@ configure-bootloader: \
 
 update-bootloader:
 	# Update the bootloader
-	@bootctl update
+	@$(BOOTCTL) update
 
 install-bootloader-config:
 	# Update the bootloader settings
@@ -94,12 +97,12 @@ configure-sysctl:
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
-	@pacman -S util-linux
-	@systemctl enable fstrim.timer
+	@$(PACMAN) -S util-linux
+	@$(SYSTEMCTL) enable fstrim.timer
 
 configure-package-compilation:
 	# Configure package compilation optimizations
-	@pacman -S pigz xz pbzip2 zstd expac pacman-contrib
+	@$(PACMAN) -S pigz xz pbzip2 zstd expac pacman-contrib
 	@$(CP) etc/makepkg.conf /etc/makepkg.conf
 
 configure-watchdogs:

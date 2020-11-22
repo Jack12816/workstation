@@ -406,7 +406,7 @@ EOF
 
 # Install essential packages
 $ pacstrap /mnt base linux linux-firmware \
-    vim htop sudo git \
+    vim htop sudo git make \
     dosfstools xfsprogs mdadm \
     iputils iproute2 net-tools inetutils openssh \
     intel-ucode iucode-tool
