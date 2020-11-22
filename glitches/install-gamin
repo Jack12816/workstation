@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /tmp
+rm -rf gamin
+yay -G gamin
+cd gamin
+
