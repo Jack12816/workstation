@@ -8,6 +8,8 @@ SHELL := bash
 
 # Environment Variables
 WATCH_FILES ?= README.md
+USER ?= jack
+GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker,adbusers,printadmin
 
 # Host binaries
 AWK ?= awk
@@ -47,6 +49,9 @@ ENTR ?= entr
 XARGS ?= xargs
 LS ?= ls
 TOC ?= toc
+GETENT ?= getent
+USERADD ?= useradd
+PASSWD ?= passwd
 
 all:
 	# Workstation
@@ -93,6 +98,13 @@ install-bootloader-config:
 	@$(CP) boot/loader/loader.conf /boot/loader/loader.conf
 	@$(CP) boot/loader/entries/arch.conf /boot/loader/entries/arch.conf
 
+configure-user:
+	# Configure the dropped priviledge user
+	@$(GETENT) passwd $(USER) >/dev/null || ( \
+		$(USERADD) -m -G $(GROUPS) -s bash $(USER); \
+		$(PASSWD) $(USER); \
+	)
+
 configure-sysctl:
 	# Update system controls
 
@@ -116,4 +128,5 @@ configure-watchdogs:
 install-yay:
 	@$(PACMAN) --noconfirm -S --needed git base-devel
 	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
-	@$(CD) /tmp/yay && $(MAKEPKG) -si
+	@$(CHMOD) ugo+rwx -R /tmp/yay
+	@$(CD) /tmp/yay && $(SUDO) -u $(USER) $(MAKEPKG) -si
