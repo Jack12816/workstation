@@ -1,4 +1,5 @@
 sudo
+vi
 docker
 virtualbox
 virtualbox-host-modules-arch
