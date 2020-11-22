@@ -16,6 +16,7 @@ AWK ?= awk
 BASH ?= bash
 BUNDLE ?= bundle
 CAT ?= cat
+TR ?= tr
 CD ?= cd
 CHMOD ?= chmod
 CURL ?= curl
@@ -77,6 +78,21 @@ update-readme-toc:
 		-e 'd' README.md > README.md.new
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
+
+install-packages: \
+	install-base-packages
+
+
+install-base-packages:
+	# Install all base packages (pacman)
+	@$(CAT) packages.pacman \
+		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
+			$(SHELL) -c '$(SUDO) $(PACMAN) \
+				-S --needed --noconfirm {}'
+
+
+
+
 
 configure: \
 	configure-bootloader \
