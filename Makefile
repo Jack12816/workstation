@@ -107,7 +107,7 @@ install-extra-packages:
 	# Install all extra packages
 	@$(CAT) packages/extra \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
-			$(SHELL) -c '$(YAY) \
+			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
 				-S --needed --noconfirm {}'
 
 
