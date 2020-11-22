@@ -8,7 +8,7 @@ SHELL := bash
 
 # Environment Variables
 WATCH_FILES ?= README.md
-USER ?= jack
+UNPRIVILEGED_USER ?= jack
 GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker,adbusers,printadmin
 
 # Host binaries
@@ -100,9 +100,9 @@ install-bootloader-config:
 
 configure-user:
 	# Configure the dropped priviledge user
-	@$(GETENT) passwd $(USER) >/dev/null || ( \
-		$(USERADD) -m -G $(GROUPS) -s bash $(USER); \
-		$(PASSWD) $(USER); \
+	@$(GETENT) passwd $(UNPRIVILEGED_USER) >/dev/null || ( \
+		$(USERADD) -m -G $(GROUPS) -s bash $(UNPRIVILEGED_USER); \
+		$(PASSWD) $(UNPRIVILEGED_USER); \
 	)
 
 configure-sysctl:
