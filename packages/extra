@@ -298,8 +298,8 @@ openshot
 openssh
 opera
 optipng
-oxygen-gtk2
-oxygen-gtk3
+# oxygen-gtk2
+# oxygen-gtk3
 p7zip
 package-query
 packer
