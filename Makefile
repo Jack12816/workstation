@@ -96,7 +96,8 @@ install-yay: configure-sudoers
 	@$(RM) -rf /tmp/yay /tmp/makepkg
 	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
 	@$(CHMOD) ugo+rwx -R /tmp/yay
-	@$(CD) /tmp/yay && $(SUDO) -u $(UNPRIVILEGED_USER) $(MAKEPKG) -si
+	@$(CD) /tmp/yay && $(SUDO) -u $(UNPRIVILEGED_USER) \
+		$(MAKEPKG) --noconfirm -si
 
 
 
