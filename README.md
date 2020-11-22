@@ -36,6 +36,7 @@
   - [UPS Configuration](#ups-configuration)
   - [Backups](#backups)
 - [Benchmarking](#benchmarking)
+- [TODO](#todo)
 <!-- TOC-END -->
 
 # Hardware Setup
@@ -618,3 +619,34 @@ TODO: Research, perform, document this.
 * https://aur.archlinux.org/packages/phoronix-test-suite/
 * https://wiki.archlinux.org/index.php/benchmarking#S
 * http://www.phoronix-test-suite.com/?k=features
+
+
+
+
+
+
+
+
+
+
+
+
+# TODO
+
+Clean the current /etc
+
+* https://wiki.archlinux.org/index.php/PulseAudio
+* https://wiki.archlinux.org/index.php/Power_management
+* https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate
+* https://wiki.archlinux.org/index.php/General_recommendations#Networking
+* https://wiki.archlinux.org/index.php/System_time#Time_synchronization
+* https://wiki.archlinux.org/index.php/Improving_performance#Input/output_schedulers
+* https://wiki.archlinux.org/index.php/Mail_server
+* https://www.archlinux.org/packages/?name=mlocate        updatedb
+* https://wiki.archlinux.org/index.php/Clipboard#Managers
+*
+*
+*
+*
+
+
