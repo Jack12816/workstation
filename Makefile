@@ -109,7 +109,7 @@ install-base-packages:
 			$(SHELL) -c '$(SUDO) $(PACMAN) \
 				-S --needed --noconfirm {}'
 
-install-yay: configure-sudoers
+install-yay: configure-sudoers configure-gpg
 	# Install the AUR pacman manager Yay
 ifeq ($(shell which yay),)
 	@$(PACMAN) --noconfirm -S --needed git base-devel
@@ -144,6 +144,7 @@ configure: \
 	configure-bootloader \
 	configure-pacman \
 	configure-user \
+	configure-gpg \
 	configure-sysctl \
 	configure-package-compilation \
 	configure-periodic-trim \
@@ -171,7 +172,14 @@ configure-pacman:
 	@$(CP) etc/pacman.conf /etc/pacman.conf
 	@$(SUDO) $(PACMAN) -Sy
 
-
+configure-gpg: configure-user
+	# Configure a GPG keyserver
+	@$(MKDIR) -p /root/.gnupg
+	@$(MKDIR) -p /home/$(UNPRIVILEGED_USER)/.gnupg
+	@$(CP) home/.gnupg/dirmngr.conf \
+		/root/.gnupg/dirmngr.conf
+	@$(CP) home/.gnupg/dirmngr.conf \
+		/home/$(UNPRIVILEGED_USER)/.gnupg/dirmngr.conf
 
 
 
