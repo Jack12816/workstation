@@ -47,7 +47,7 @@ bluez-plugins
 bluez-tools
 bluez-utils
 bonnie++
-breeze-kde4
+# breeze-kde4
 browserpass
 btrfs-progs
 bzip2
