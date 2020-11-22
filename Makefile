@@ -90,7 +90,7 @@ install-base-packages:
 			$(SHELL) -c '$(SUDO) $(PACMAN) \
 				-S --needed --noconfirm {}'
 
-install-yay:
+install-yay: configure-sudoers
 	# Install the AUR pacman manager Yay
 	@$(PACMAN) --noconfirm -S --needed git base-devel
 	@$(RM) -rf /tmp/yay /tmp/makepkg
@@ -106,7 +106,8 @@ configure: \
 	configure-sysctl \
 	configure-package-compilation \
 	configure-periodic-trim \
-	configure-watchdogs
+	configure-watchdogs \
+	configure-sudoers
 
 configure-bootloader: \
 	update-bootloader \
@@ -147,3 +148,11 @@ configure-watchdogs:
 		/etc/sysctl.d/disable_watchdog.conf
 	@$(CP) etc/modprobe.d/disable_watchdog.conf \
 		/etc/modprobe.d/disable_watchdog.conf
+
+configure-sudoers: configure-user
+	# Configure sudoers
+	@$(ECHO) '$(UNPRIVILEGED_USER) ALL=(ALL) NOPASSWD: ALL' \
+		> /etc/sudoers.d/$(UNPRIVILEGED_USER).conf
+
+
+
