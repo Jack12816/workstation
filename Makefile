@@ -90,6 +90,11 @@ install-base-packages:
 			$(SHELL) -c '$(SUDO) $(PACMAN) \
 				-S --needed --noconfirm {}'
 
+install-yay:
+	@$(PACMAN) --noconfirm -S --needed git base-devel
+	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
+	@$(CHMOD) ugo+rwx -R /tmp/yay
+	@$(CD) /tmp/yay && $(SUDO) -u $(USER) $(MAKEPKG) -si
 
 
 
@@ -117,7 +122,7 @@ install-bootloader-config:
 configure-user:
 	# Configure the dropped priviledge user
 	@$(GETENT) passwd $(UNPRIVILEGED_USER) >/dev/null || ( \
-		$(USERADD) -m -G $(GROUPS) -s bash $(UNPRIVILEGED_USER); \
+		$(USERADD) -m -G $(GROUPS) -s /bin/bbash $(UNPRIVILEGED_USER); \
 		$(PASSWD) $(UNPRIVILEGED_USER); \
 	)
 
@@ -140,9 +145,3 @@ configure-watchdogs:
 		/etc/sysctl.d/disable_watchdog.conf
 	@$(CP) etc/modprobe.d/disable_watchdog.conf \
 		/etc/modprobe.d/disable_watchdog.conf
-
-install-yay:
-	@$(PACMAN) --noconfirm -S --needed git base-devel
-	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
-	@$(CHMOD) ugo+rwx -R /tmp/yay
-	@$(CD) /tmp/yay && $(SUDO) -u $(USER) $(MAKEPKG) -si
