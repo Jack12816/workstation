@@ -425,7 +425,7 @@ systemd-sysvcompat
 tar
 tcpdump
 teamviewer
-teensy-loader-cli-git
+# teensy-loader-cli-git
 teiler-git
 tensorflow
 tesseract
