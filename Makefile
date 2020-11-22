@@ -41,6 +41,8 @@ TEE ?= tee
 TEST ?= test
 ENTR ?= entr
 XARGS ?= xargs
+LS ?= ls
+TOC ?= toc
 
 all:
 	# Workstation
@@ -48,10 +50,21 @@ all:
 	# build                   Build the application requirements
 	# watch                   Watch for changes and rebuild
 
-build:
-	# Build the application requirements
-	@
+build: \
+	update-readme-toc
 
 watch:
 	# Watch for changes and rebuild
-	@$(LS) $(WATCH_FILES) | $(ENTR) -r $(MAKE) start
+	@$(LS) $(WATCH_FILES) | $(ENTR) $(MAKE) build
+
+update-readme-toc:
+	# Update the README.md table of contents
+	@$(ECHO) '<!-- TOC-START -->' > README.md.toc
+	@$(TOC) README.md | $(SED) '/^$$/d' >> README.md.toc
+	@$(ECHO) '<!-- TOC-END -->' >> README.md.toc
+	@$(SED) \
+		-e '/<!-- TOC-START -->/,/<!-- TOC-END -->/!b' \
+		-e '/<!-- TOC-END -->/!d;r README.md.toc' \
+		-e 'd' README.md > README.md.new
+	@$(MV) -f README.md.new README.md
+	@$(RM) README.md.toc
