@@ -13,21 +13,20 @@
     - [Firmware Updates](#firmware-updates)
     - [Benchmark](#benchmark)
   - [RAID](#raid)
-    - [Partion the drives](#partion-the-drives)
+    - [Partition the drives](#partition-the-drives)
     - [Clean any old RAID configuration](#clean-any-old-raid-configuration)
     - [Root partition (RAID0)](#root-partition-raid0)
   - [Filesystem](#filesystem)
     - [ESP / EFI system partion (/boot)](#esp--efi-system-partion-boot)
     - [Root partition (/)](#root-partition-)
-- [Benchmarking](#benchmarking)
 - [Software Installation](#software-installation)
   - [ArchLinux](#archlinux)
   - [Bootloader](#bootloader)
   - [First Reboot](#first-reboot)
 - [Configuration](#configuration)
   - [Periodic TRIM](#periodic-trim)
-  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
   - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
+  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
   - [Disable Watchdogs](#disable-watchdogs)
   - [Tune System Controls](#tune-system-controls)
   - [Tune Kernel Parameters](#tune-kernel-parameters)
@@ -35,6 +34,7 @@
   - [General Performance Tuning](#general-performance-tuning)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
+- [Benchmarking](#benchmarking)
 <!-- TOC-END -->
 
 # Hardware Setup
@@ -204,7 +204,7 @@ $ hdparm -Tt --direct /dev/nvme1n1
 
 ## RAID
 
-### Partion the drives
+### Partition the drives
 
 We use a simple partitioning scheme with two partions. The first is the EFI
 system partition (containing also /boot), and the second is the root partition,
@@ -322,6 +322,12 @@ $ mdadm --detail /dev/md/root
 
 ### ESP / EFI system partion (/boot)
 
+We setup a ESP for direct booting. This partition will also hold all /boot
+files, including the kernel and the initramfs. Unfortunately, it is problematic
+for an ESP to reside on a RAID1 volume, so we create a sparse (empty) partition
+on the other NVMe drive. When one NVMe drive fails, we are in "bigger trouble"
+with the system RAID0 volume. UPS and hourly backups will help here.
+
 ```shell
 $ mkfs.fat -F32 -s2 /dev/nvme0n1p1
 $ mkfs.fat -F32 -s2 /dev/nvme1n1p1 # will be empty (sparse)
@@ -332,6 +338,12 @@ $ mkfs.fat -F32 -s2 /dev/nvme1n1p1 # will be empty (sparse)
 * https://wiki.archlinux.org/index.php/EFI_system_partition#Format_the_partition
 
 ### Root partition (/)
+
+We spare the separation of system and data partitions, in favor of performance
+and less overhead of on-disk-format space waste. With XFS we have the best in
+class enterprise filesystem (EXT4/XFS are RedHat Enterprise supported) which
+works great (even better than F2FS) on high-end NVMe drives for many (massive
+amount) small files.
 
 Correct stripe width and stride:
 
@@ -374,21 +386,12 @@ $ mount /dev/nvme0n1p1 /mnt/boot
 * https://wiki.archlinux.org/index.php/F2FS
 * https://github.com/torvalds/linux/blob/master/Documentation/filesystems/f2fs.rst#mount-options
 
-# Benchmarking
-
-TODO: Research, perform, document this.
-
-**References:**
-* https://openbenchmarking.org/suite/pts/disk
-* https://openbenchmarking.org/suite/pts/workstation
-* https://wiki.archlinux.org/index.php/benchmarking#Phoronix_Test_Suite
-* https://aur.archlinux.org/packages/phoronix-test-suite/
-* https://wiki.archlinux.org/index.php/benchmarking#S
-* http://www.phoronix-test-suite.com/?k=features
-
 # Software Installation
 
 ## ArchLinux
+
+Now as the hardware setup is done, we can install the basic ArchLinux system to
+RAID0 array/volume.
 
 ```shell
 # Select the pacman mirrors
@@ -405,7 +408,7 @@ EOF
 $ pacstrap /mnt base linux linux-firmware \
     vim htop \
     dosfstools xfsprogs mdadm \
-    iputils iproute2 net-tools \
+    iputils iproute2 net-tools inetutils openssh \
     intel-ucode iucode-tool
 
 # Generate the new system fstab
@@ -450,13 +453,23 @@ $ locale-gen
 
 # Set the root password
 $ passwd
+
+# Enable the SSH daemon on the new system
+$ systemctl enable sshd
+$ echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 ```
 
 **References:**
 * https://wiki.archlinux.org/index.php/Installation_guide
 * https://wiki.archlinux.org/index.php/Microcode
+* https://wiki.archlinux.org/index.php/OpenSSH
 
 ## Bootloader
+
+We make use of systemd-boot (former Gummiboot) for booting the system as a
+direct UEFI client application. This bootloader is very simple, lightweight,
+has no interface which let the user wait per boot and comes bundled with
+systemd.
 
 ```shell
 # Install the bootloader
@@ -484,18 +497,43 @@ EOF
 The installation of the basic ArchLinux system is done. Just exit the chroot
 and reboot the machine with `$ reboot`.
 
-
-
-
-
 # Configuration
 
 ## Periodic TRIM
 
-TODO: Research, perform, document this.
+The service executes fstrim(8) on all mounted filesystems on devices that
+support the discard operation.
+
+```shell
+$ pacman -S util-linux
+$ systemctl enable fstrim.timer
+```
 
 **References:**
 * https://wiki.archlinux.org/index.php/Solid_state_drive#Periodic_TRIM
+
+## Package Compilation in tmpfs
+
+The default parallel jobs where set to **24**, the build directory was
+relocated to shared memory, the compression tool settings now feature parallel
+optimizations and the default package extension disables compression
+completely. This should speed up AUR builds a lot.
+
+```
+$ pacman -S pigz xz pbzip2 zstd expac pacman-contrib
+$ cp workstation/etc/makepkg.conf /etc/makepkg.conf
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/Makepkg#Improving_compile_times
+* https://wiki.archlinux.org/index.php/Makepkg#Utilizing_multiple_cores_on_compression
+
+
+
+
+---
+
+
 
 ## Docker Repository in tmpfs
 
@@ -505,17 +543,10 @@ TODO: Research, perform, document this.
 * https://wiki.archlinux.org/index.php/Anything-sync-daemon
 * https://github.com/graysky2/anything-sync-daemon
 
-## Package Compilation in tmpfs
 
-TODO: Research, perform, document this.
-```
-BUILDDIR=/tmp/makepkg
-/etc/makepkg.conf
-```
 
-**References:**
-* https://wiki.archlinux.org/index.php/Makepkg#Improving_compile_times
-* https://wiki.archlinux.org/index.php/Makepkg#Utilizing_multiple_cores_on_compression
+
+
 
 ## Disable Watchdogs
 
@@ -540,9 +571,9 @@ TODO: Research, perform, document this.
 
 ### Disable CPU exploit mitigations
 
-```
-mitigations=off
-```
+Check the `/boot/loader/entries/arch.conf` and add `mitigations=off` to the
+kernel options. This will disable all CPU exploit mitigations, to maximize
+performance.
 
 **References:**
 * https://wiki.archlinux.org/index.php/improving_performance#Turn_off_CPU_exploit_mitigations
@@ -586,3 +617,14 @@ TODO: Research, perform, document this.
 
 
 
+# Benchmarking
+
+TODO: Research, perform, document this.
+
+**References:**
+* https://openbenchmarking.org/suite/pts/disk
+* https://openbenchmarking.org/suite/pts/workstation
+* https://wiki.archlinux.org/index.php/benchmarking#Phoronix_Test_Suite
+* https://aur.archlinux.org/packages/phoronix-test-suite/
+* https://wiki.archlinux.org/index.php/benchmarking#S
+* http://www.phoronix-test-suite.com/?k=features
