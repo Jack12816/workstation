@@ -40,6 +40,7 @@ LS ?= ls
 MAKEPKG ?= makepkg
 MKDIR ?= mkdir
 MV ?= mv
+NPM ?= npm
 NPROC ?= nproc
 PACMAN ?= pacman
 PASSWD ?= passwd
@@ -57,13 +58,15 @@ TEE ?= tee
 TEST ?= test
 TOC ?= toc
 TR ?= tr
-NPM ?= npm
 USERADD ?= useradd
 XARGS ?= xargs
 YAY ?= yay
 
 all:
 	# Workstation
+	#
+	# install-packages        Install all software packages
+	# configure               Configure the workstation system
 	#
 	# build                   Build the application requirements
 	# watch                   Watch for changes and rebuild
@@ -111,6 +114,10 @@ update-gem-packages-list:
 	@$(SUDO) $(GEM) list \
 		| $(GREP) -vF '(default:' \
 		| $(TR) -d '(' | $(TR) -d ')' | $(TR) -d ',' > packages/gem
+
+workstation: \
+	install-packages \
+	configure
 
 install-packages: \
 	install-base-packages \
@@ -206,19 +213,6 @@ configure-gpg: configure-user
 	@$(CP) home/.gnupg/dirmngr.conf \
 		/home/$(UNPRIVILEGED_USER)/.gnupg/dirmngr.conf
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 configure-user:
 	# Configure the dropped priviledge user
 	@$(GETENT) passwd $(UNPRIVILEGED_USER) >/dev/null || ( \
@@ -228,6 +222,7 @@ configure-user:
 
 configure-sysctl:
 	# Update system controls
+	# TODO: Implement this.
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems

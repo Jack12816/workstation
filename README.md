@@ -545,7 +545,10 @@ $ make configure-package-compilation
 
 
 
----
+
+--- --- --- --- --- --- ---
+
+
 
 
 ## Tune System Controls
@@ -560,12 +563,6 @@ TODO: Research, perform, document this.
 * https://documentation.suse.com/sbp/all/html/SBP-performance-tuning/index.html#sec-bios-setup
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index
 
-
-
-
-
-
-
 ## Docker Repository in tmpfs
 
 TODO: Research, perform, document this.
@@ -573,14 +570,6 @@ TODO: Research, perform, document this.
 **References:**
 * https://wiki.archlinux.org/index.php/Anything-sync-daemon
 * https://github.com/graysky2/anything-sync-daemon
-
-
-
-
-
-
-
-
 
 ## General Performance Tuning
 
@@ -611,15 +600,12 @@ TODO: Research, perform, document this.
 **References:**
 * https://wiki.archlinux.org/index.php/APC_UPS
 
-
-
 ## Backups
 
 TODO: Research, perform, document this.
 
 **References:**
 * https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages
-
 
 # Benchmarking
 
