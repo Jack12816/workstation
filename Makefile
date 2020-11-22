@@ -132,6 +132,9 @@ install-extra-packages:
 ifeq ($(shell $(PACMAN) -Q vim 2>/dev/null; $(PRINTF) $$?),1)
 	@$(PACMAN) -R --noconfirm vim
 endif
+ifeq ($(shell $(PACMAN) -Q rxvt-unicode 2>/dev/null; $(PRINTF) $$?),1)
+	@$(PACMAN) -R --noconfirm rxvt-unicode
+endif
 	@$(CAT) packages/extra \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
