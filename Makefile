@@ -29,6 +29,7 @@ DOCKER ?= docker
 ECHO ?= echo
 ENTR ?= entr
 FIND ?= find
+GEM ?= gem
 GETENT ?= getent
 GIT ?= git
 GREP ?= grep
@@ -56,6 +57,7 @@ TEE ?= tee
 TEST ?= test
 TOC ?= toc
 TR ?= tr
+NPM ?= npm
 USERADD ?= useradd
 XARGS ?= xargs
 YAY ?= yay
@@ -98,21 +100,26 @@ update-extra-packages-list:
 	@$(PACMAN) -Qqe > packages/extra
 
 update-npm-packages-list:
-	#
+	# Update the npm packages list from the current system
+	@$(NPM) list -g --depth=0 2>/dev/null \
+		| $(GREP) '@' \
+		| $(CUT) -d' ' -f2 \
+		| $(SED) -e 's/@/ /g' > packages/npm || true
 
 update-gem-packages-list:
-	#
-
-
-
-
+	# Update the gem packages list from the current system
+	@$(SUDO) $(GEM) list \
+		| $(GREP) -vF '(default:' \
+		| $(TR) -d '(' | $(TR) -d ')' | $(TR) -d ',' > packages/gem
 
 install-packages: \
 	install-base-packages \
 	install-yay \
 	configure-pacman \
 	install-groups-packages \
-	install-extra-packages
+	install-extra-packages \
+	install-gem-packages \
+	install-npm-packages
 
 install-base-packages:
 	# Install all base packages
@@ -149,6 +156,14 @@ install-extra-packages:
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
 				-S --needed --noconfirm {}'
+
+install-gem-packages:
+	# Install all Ruby Gem packages
+	# TODO: Implement this.
+
+install-npm-packages:
+	# Install all NPM packages
+	# TODO: Implement this.
 
 configure: \
 	configure-bootloader \
