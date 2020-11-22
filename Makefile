@@ -160,8 +160,8 @@ install-bootloader-config:
 
 configure-pacman:
 	# Configure pacman
-	@$(SUDO) $(PACMAN) --noconfirm -S aria2
 	@$(CP) etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
+	@$(SUDO) $(PACMAN) --noconfirm -S aria2
 	@$(CP) etc/pacman.conf /etc/pacman.conf
 
 
