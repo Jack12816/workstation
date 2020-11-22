@@ -29,8 +29,8 @@
     - [Disable Watchdogs](#disable-watchdogs)
   - [Periodic TRIM](#periodic-trim)
   - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
-  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
   - [Tune System Controls](#tune-system-controls)
+  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
   - [General Performance Tuning](#general-performance-tuning)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
@@ -547,19 +547,6 @@ $ make configure-package-compilation
 ---
 
 
-
-## Docker Repository in tmpfs
-
-TODO: Research, perform, document this.
-
-**References:**
-* https://wiki.archlinux.org/index.php/Anything-sync-daemon
-* https://github.com/graysky2/anything-sync-daemon
-
-
-
-
-
 ## Tune System Controls
 
 TODO: Research, perform, document this.
@@ -571,6 +558,21 @@ TODO: Research, perform, document this.
 * https://aur.archlinux.org/packages/tuned/
 * https://documentation.suse.com/sbp/all/html/SBP-performance-tuning/index.html#sec-bios-setup
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index
+
+
+
+
+
+
+
+## Docker Repository in tmpfs
+
+TODO: Research, perform, document this.
+
+**References:**
+* https://wiki.archlinux.org/index.php/Anything-sync-daemon
+* https://github.com/graysky2/anything-sync-daemon
+
 
 
 

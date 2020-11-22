@@ -21,6 +21,7 @@ CUT ?= cut
 DOCKER ?= docker
 ECHO ?= echo
 FIND ?= find
+MAKEPKG ?= makepkg
 GIT ?= git
 GREP ?= grep
 GVIM ?= gvim
@@ -111,3 +112,8 @@ configure-watchdogs:
 		/etc/sysctl.d/disable_watchdog.conf
 	@$(CP) etc/modprobe.d/disable_watchdog.conf \
 		/etc/modprobe.d/disable_watchdog.conf
+
+install-yay:
+	@$(PACMAN) --noconfirm -S --needed git base-devel
+	@$(GIT) clone https://aur.archlinux.org/yay.git /tmp/yay
+	@$(CD) /tmp/yay && $(MAKEPKG) -si
