@@ -86,7 +86,7 @@ install-packages: \
 
 install-base-packages:
 	# Install all base packages
-	@$(CAT) packages/base.pacman \
+	@$(CAT) packages/base \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) $(PACMAN) \
 				-S --needed --noconfirm {}'
