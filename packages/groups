@@ -1,0 +1,17 @@
+alsa
+base-devel
+multilib-devel
+linux-tools
+vulkan-devel
+texlive-most
+texlive-lang
+qtcurve
+qt
+qt5
+qt6
+plasma
+kf5
+xorg
+xorg-apps
+xorg-drivers
+xorg-fonts

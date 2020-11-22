@@ -34,6 +34,7 @@
   - [General Performance Tuning](#general-performance-tuning)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
+  - [Backups](#backups)
 - [Benchmarking](#benchmarking)
 <!-- TOC-END -->
 
@@ -612,6 +613,12 @@ TODO: Research, perform, document this.
 
 
 
+## Backups
+
+TODO: Research, perform, document this.
+
+**References:**
+* https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages
 
 
 # Benchmarking

@@ -10,6 +10,7 @@ SHELL := bash
 WATCH_FILES ?= README.md
 UNPRIVILEGED_USER ?= jack
 GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker
+PACMAN_MIRRORS_URL ?= https://www.archlinux.org/mirrorlist/?country=DE&protocol=https&use_mirror_status=on
 
 # Host binaries
 AWK ?= awk
@@ -54,6 +55,9 @@ GETENT ?= getent
 USERADD ?= useradd
 PASSWD ?= passwd
 YAY ?= yay
+SED ?= sed
+CURL ?= curl
+RANKMIRRORS ?= rankmirrors
 
 all:
 	# Workstation
@@ -80,9 +84,23 @@ update-readme-toc:
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
 
+update-extra-packages-list:
+	# Update the extra packages list from the current system
+	@$(PACMAN) -Qqe > packages/extra
+
+update-pacman-mirror-list:
+	# Update and rank all german pacman mirrors
+	@$(SUDO) $(PACMAN) --noconfirm -S pacman-contrib
+	@$(CURL) -s "$(PACMAN_MIRRORS_URL)" \
+		| $(SED) -e 's/^#Server/Server/' -e '/^#/d' \
+		| $(RANKMIRRORS) -n 5 - \
+		> etc/pacman.d/mirrorlist
+
 install-packages: \
 	install-base-packages \
 	install-yay \
+	configure-pacman \
+	install-groups-packages \
 	install-extra-packages
 
 install-base-packages:
@@ -103,6 +121,13 @@ ifeq ($(shell which yay),)
 		$(MAKEPKG) --noconfirm -si
 endif
 
+install-groups-packages:
+	# Install all base packages
+	@$(CAT) packages/groups \
+		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
+			$(SHELL) -c '$(SUDO) $(PACMAN) \
+				-S --needed --noconfirm {}'
+
 install-extra-packages:
 	# Install all extra packages
 	@$(CAT) packages/extra \
@@ -110,11 +135,10 @@ install-extra-packages:
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
 				-S --needed --noconfirm {}'
 
-
-
-
 configure: \
 	configure-bootloader \
+	configure-pacman \
+	configure-user \
 	configure-sysctl \
 	configure-package-compilation \
 	configure-periodic-trim \
@@ -133,6 +157,27 @@ install-bootloader-config:
 	# Update the bootloader settings
 	@$(CP) boot/loader/loader.conf /boot/loader/loader.conf
 	@$(CP) boot/loader/entries/arch.conf /boot/loader/entries/arch.conf
+
+configure-pacman:
+	# Configure pacman
+	@$(SUDO) $(PACMAN) --noconfirm -S aria2
+	@$(CP) etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
+	@$(CP) etc/pacman.conf /etc/pacman.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 configure-user:
 	# Configure the dropped priviledge user
@@ -166,6 +211,3 @@ configure-sudoers: configure-user
 	@$(ECHO) '$(UNPRIVILEGED_USER) ALL=(ALL) NOPASSWD: ALL' \
 		> /etc/sudoers.d/$(UNPRIVILEGED_USER)
 	@$(CHMOD) 0440 /etc/sudoers.d/$(UNPRIVILEGED_USER)
-
-
-
