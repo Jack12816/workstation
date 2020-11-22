@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# Fixed when https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=gamin#n9
+# is corrected. See: https://aur.archlinux.org/packages/gamin/#comment-776930
+
+pacman -Qq | grep '^gamin$' >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+  exit
+fi
+
 cd /tmp
 rm -rf gamin
 yay -G gamin
 cd gamin
-
+sed -i 's#^url=.*#url="https://people.gnome.org/~veillard/gamin"#g' PKGBUILD
+sudo -u ${UNPRIVILEGED_USER} makepkg --noconfirm -si

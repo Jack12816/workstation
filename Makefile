@@ -12,6 +12,8 @@ UNPRIVILEGED_USER ?= jack
 GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker
 PACMAN_MIRRORS_URL ?= https://www.archlinux.org/mirrorlist/?country=DE&protocol=https&use_mirror_status=on
 
+export UNPRIVILEGED_USER
+
 # Host binaries
 AWK ?= awk
 BASH ?= bash
@@ -128,13 +130,11 @@ install-groups-packages:
 				-S --needed --noconfirm {}'
 
 install-extra-packages:
+	# Take care of all glitches
+	@glitches/uninstall-minimal-vim
+	@glitches/uninstall-rxvt-unicode
+	@glitches/install-gamin
 	# Install all extra packages
-ifneq ($(shell $(PACMAN) -Qq | $(GREP) '^vim$$' 2>/dev/null),)
-	@$(PACMAN) -Rdd --noconfirm vim
-endif
-ifneq ($(shell $(PACMAN) -Qq | $(GREP) '^rxvt-unicode$$' 2>/dev/null),)
-	@$(PACMAN) -Rdd --noconfirm rxvt-unicode
-endif
 	@$(CAT) packages/extra \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \

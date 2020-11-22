@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# We are going to install gvim, instead
+
+pacman -Qq | grep '^rxvt-unicode$' >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  exit
+fi
+
+pacman -Rdd --noconfirm rxvt-unicode
