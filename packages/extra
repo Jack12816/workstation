@@ -233,7 +233,7 @@ libtool
 libva-intel-driver
 libvdpau-va-gl
 licenses
-lilo
+# lilo
 linux
 linux-docs
 linux-headers

@@ -85,10 +85,6 @@ update-readme-toc:
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
 
-update-extra-packages-list:
-	# Update the extra packages list from the current system
-	@$(PACMAN) -Qqe > packages/extra
-
 update-pacman-mirror-list:
 	# Update and rank all german pacman mirrors
 	@$(SUDO) $(PACMAN) --noconfirm -S pacman-contrib
@@ -96,6 +92,20 @@ update-pacman-mirror-list:
 		| $(SED) -e 's/^#Server/Server/' -e '/^#/d' \
 		| $(RANKMIRRORS) -n 5 - \
 		> etc/pacman.d/mirrorlist
+
+update-extra-packages-list:
+	# Update the extra packages list from the current system
+	@$(PACMAN) -Qqe > packages/extra
+
+update-npm-packages-list:
+	#
+
+update-gem-packages-list:
+	#
+
+
+
+
 
 install-packages: \
 	install-base-packages \
