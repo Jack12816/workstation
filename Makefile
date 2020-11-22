@@ -9,7 +9,7 @@ SHELL := bash
 # Environment Variables
 WATCH_FILES ?= README.md
 UNPRIVILEGED_USER ?= jack
-GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker,adbusers,printadmin
+GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker
 
 # Host binaries
 AWK ?= awk
@@ -85,7 +85,7 @@ install-packages: \
 
 install-base-packages:
 	# Install all base packages (pacman)
-	@$(CAT) packages.pacman \
+	@$(CAT) packages/base.pacman \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) $(PACMAN) \
 				-S --needed --noconfirm {}'
