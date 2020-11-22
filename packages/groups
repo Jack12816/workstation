@@ -8,10 +8,21 @@ texlive-lang
 qtcurve
 qt
 qt5
-qt6
+# qt6
 plasma
 kf5
 xorg
 xorg-apps
 xorg-drivers
 xorg-fonts
+kde-accessibility
+kde-applications
+kde-education
+kde-graphics
+kde-multimedia
+kde-network
+kde-pim
+kde-system
+kde-utilities
+kdepim
+kdesdk
