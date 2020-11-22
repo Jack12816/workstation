@@ -25,6 +25,7 @@ CHMOD ?= chmod
 CP ?= cp
 CURL ?= curl
 CUT ?= cut
+DIFF ?= diff
 DOCKER ?= docker
 ECHO ?= echo
 ENTR ?= entr
@@ -158,11 +159,17 @@ install-extra-packages:
 	@glitches/uninstall-minimal-vim
 	@glitches/uninstall-rxvt-unicode
 	@glitches/install-gamin
+	# Check for missing extra packages
+	@$(PACMAN) -Qq | $(SORT) -u > /tmp/pkgs.actual
+	@$(CAT) packages/extra | $(SORT) -u > /tmp/pkgs.expected-extra
+	@$(DIFF) --new-line-format='' --unchanged-line-format='' \
+		/tmp/pkgs.expected-extra /tmp/pkgs.actual \
+		| $(GREP) -vP '^#|^$$$$' > /tmp/pkgs.missing || true
 	# Install all extra packages
-	@$(CAT) packages/extra \
+	@$(CAT) /tmp/pkgs.missing \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
-				-S --needed --noconfirm {}'
+				-S --needed --noconfirm {}' || true
 
 install-gem-packages:
 	# Install all Ruby Gem packages
