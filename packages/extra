@@ -450,7 +450,7 @@ texlive-publishers
 texlive-science
 the_silver_searcher
 thunderbird
-thunderbird-i18n-de
+# thunderbird-i18n-de
 tidy
 time
 tk
