@@ -53,6 +53,7 @@ TOC ?= toc
 GETENT ?= getent
 USERADD ?= useradd
 PASSWD ?= passwd
+YAY ?= yay
 
 all:
 	# Workstation
