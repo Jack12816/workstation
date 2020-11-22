@@ -15,25 +15,33 @@ PACMAN_MIRRORS_URL ?= https://www.archlinux.org/mirrorlist/?country=DE&protocol=
 # Host binaries
 AWK ?= awk
 BASH ?= bash
+BOOTCTL ?= bootctl
 BUNDLE ?= bundle
 CAT ?= cat
-TR ?= tr
 CD ?= cd
 CHMOD ?= chmod
+CP ?= cp
 CURL ?= curl
 CUT ?= cut
 DOCKER ?= docker
 ECHO ?= echo
+ENTR ?= entr
 FIND ?= find
-MAKEPKG ?= makepkg
+GETENT ?= getent
 GIT ?= git
 GREP ?= grep
 GVIM ?= gvim
 I3_MSG ?= i3-msg
 JQ ?= jq
+LS ?= ls
+MAKEPKG ?= makepkg
 MKDIR ?= mkdir
 MV ?= mv
 NPROC ?= nproc
+PACMAN ?= pacman
+PASSWD ?= passwd
+PRINTF ?= printf
+RANKMIRRORS ?= rankmirrors
 READ ?= read
 RM ?= rm
 RUBY ?= ruby
@@ -43,21 +51,12 @@ SUDO ?= sudo
 SYSTEMCTL ?= systemctl
 TAIL ?= tail
 TEE ?= tee
-CP ?= cp
-PACMAN ?= pacman
 TEST ?= test
-BOOTCTL ?= bootctl
-ENTR ?= entr
-XARGS ?= xargs
-LS ?= ls
 TOC ?= toc
-GETENT ?= getent
+TR ?= tr
 USERADD ?= useradd
-PASSWD ?= passwd
+XARGS ?= xargs
 YAY ?= yay
-SED ?= sed
-CURL ?= curl
-RANKMIRRORS ?= rankmirrors
 
 all:
 	# Workstation
@@ -130,7 +129,9 @@ install-groups-packages:
 
 install-extra-packages:
 	# Install all extra packages
-	@$(PACMAN) -R vim
+ifeq ($(shell $(PACMAN) -Q vim 2>/dev/null; $(PRINTF) $$?),1)
+	@$(PACMAN) -R --noconfirm vim
+endif
 	@$(CAT) packages/extra \
 		| $(GREP) -vP '^#|^$$$$' | $(TR) '\n' ' ' | $(XARGS) -r -I{} \
 			$(SHELL) -c '$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) \
