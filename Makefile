@@ -125,7 +125,7 @@ install-bootloader-config:
 configure-user:
 	# Configure the dropped priviledge user
 	@$(GETENT) passwd $(UNPRIVILEGED_USER) >/dev/null || ( \
-		$(USERADD) -m -G $(GROUPS) -s /bin/bbash $(UNPRIVILEGED_USER); \
+		$(USERADD) -m -G $(GROUPS) -s /bin/bash $(UNPRIVILEGED_USER); \
 		$(PASSWD) $(UNPRIVILEGED_USER); \
 	)
 
