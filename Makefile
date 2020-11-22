@@ -129,10 +129,10 @@ install-groups-packages:
 
 install-extra-packages:
 	# Install all extra packages
-ifeq ($(shell $(PACMAN) -Q vim 2>/dev/null; $(PRINTF) $$?),1)
+ifneq ($(shell $(PACMAN) -Qq | $(GREP) '^vim$$' 2>/dev/null),)
 	@$(PACMAN) -R --noconfirm vim
 endif
-ifeq ($(shell $(PACMAN) -Q rxvt-unicode 2>/dev/null; $(PRINTF) $$?),1)
+ifneq ($(shell $(PACMAN) -Qq | $(GREP) '^rxvt-unicode$$' 2>/dev/null),)
 	@$(PACMAN) -R --noconfirm rxvt-unicode
 endif
 	@$(CAT) packages/extra \
