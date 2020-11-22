@@ -68,3 +68,43 @@ update-readme-toc:
 		-e 'd' README.md > README.md.new
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
+
+configure: \
+	configure-bootloader \
+	configure-sysctl \
+	configure-package-compilation \
+	configure-periodic-trim \
+	configure-watchdogs
+
+configure-bootloader: \
+	update-bootloader \
+	install-bootloader-config
+
+update-bootloader:
+	# Update the bootloader
+	@bootctl update
+
+install-bootloader-config:
+	# Update the bootloader settings
+	@$(CP) boot/loader/loader.conf /boot/loader/loader.conf
+	@$(CP) boot/loader/entries/arch.conf /boot/loader/entries/arch.conf
+
+configure-sysctl:
+	# Update system controls
+
+configure-periodic-trim:
+	# Configure periodic TRIM for all discardable filesystems
+	@pacman -S util-linux
+	@systemctl enable fstrim.timer
+
+configure-package-compilation:
+	# Configure package compilation optimizations
+	@pacman -S pigz xz pbzip2 zstd expac pacman-contrib
+	@$(CP) etc/makepkg.conf /etc/makepkg.conf
+
+configure-watchdogs:
+	# Configure the disabiling of watchdogs
+	@$(CP) etc/sysctl.d/disable_watchdog.conf \
+		/etc/sysctl.d/disable_watchdog.conf
+	@$(CP) etc/modprobe.d/disable_watchdog.conf \
+		/etc/modprobe.d/disable_watchdog.conf

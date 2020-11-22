@@ -24,13 +24,13 @@
   - [Bootloader](#bootloader)
   - [First Reboot](#first-reboot)
 - [Configuration](#configuration)
+  - [Tune Kernel Parameters](#tune-kernel-parameters)
+    - [Disable CPU exploit mitigations](#disable-cpu-exploit-mitigations)
+    - [Disable Watchdogs](#disable-watchdogs)
   - [Periodic TRIM](#periodic-trim)
   - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
   - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
-  - [Disable Watchdogs](#disable-watchdogs)
   - [Tune System Controls](#tune-system-controls)
-  - [Tune Kernel Parameters](#tune-kernel-parameters)
-    - [Disable CPU exploit mitigations](#disable-cpu-exploit-mitigations)
   - [General Performance Tuning](#general-performance-tuning)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
@@ -406,7 +406,7 @@ EOF
 
 # Install essential packages
 $ pacstrap /mnt base linux linux-firmware \
-    vim htop \
+    vim htop sudo git \
     dosfstools xfsprogs mdadm \
     iputils iproute2 net-tools inetutils openssh \
     intel-ucode iucode-tool
@@ -476,14 +476,7 @@ systemd.
 $ bootctl install
 
 # Configure the default loader
-echo 'default arch' > /boot/loader/loader.conf
-cat <<'EOF' >/boot/loader/entries/arch.conf
-title    Arch Linux
-linux    /vmlinuz-linux
-initrd   /intel-ucode.img
-initrd   /initramfs-linux.img
-options  root=/dev/md/root rw raid0.default_layout=2 mitigations=off
-EOF
+$ make configure-bootloader
 ```
 
 **References:**
@@ -499,14 +492,35 @@ and reboot the machine with `$ reboot`.
 
 # Configuration
 
+## Tune Kernel Parameters
+
+### Disable CPU exploit mitigations
+
+Add `mitigations=off` to the kernel options. This will disable all CPU exploit
+mitigations, to maximize performance.
+
+**References:**
+* https://wiki.archlinux.org/index.php/improving_performance#Turn_off_CPU_exploit_mitigations
+
+### Disable Watchdogs
+
+Add `nowatchdog` and `nmi_watchdog=0` to the kernel options. Additionaly
+blacklist the watchdog kernel modules like this:
+
+```shell
+$ make configure-watchdogs
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/improving_performance#Watchdogs
+
 ## Periodic TRIM
 
 The service executes fstrim(8) on all mounted filesystems on devices that
 support the discard operation.
 
 ```shell
-$ pacman -S util-linux
-$ systemctl enable fstrim.timer
+$ make configure-periodic-trim
 ```
 
 **References:**
@@ -520,8 +534,7 @@ optimizations and the default package extension disables compression
 completely. This should speed up AUR builds a lot.
 
 ```
-$ pacman -S pigz xz pbzip2 zstd expac pacman-contrib
-$ cp workstation/etc/makepkg.conf /etc/makepkg.conf
+$ make configure-package-compilation
 ```
 
 **References:**
@@ -547,14 +560,6 @@ TODO: Research, perform, document this.
 
 
 
-
-## Disable Watchdogs
-
-TODO: Research, perform, document this.
-
-**References:**
-* https://wiki.archlinux.org/index.php/improving_performance#Watchdogs
-
 ## Tune System Controls
 
 TODO: Research, perform, document this.
@@ -567,16 +572,6 @@ TODO: Research, perform, document this.
 * https://documentation.suse.com/sbp/all/html/SBP-performance-tuning/index.html#sec-bios-setup
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index
 
-## Tune Kernel Parameters
-
-### Disable CPU exploit mitigations
-
-Check the `/boot/loader/entries/arch.conf` and add `mitigations=off` to the
-kernel options. This will disable all CPU exploit mitigations, to maximize
-performance.
-
-**References:**
-* https://wiki.archlinux.org/index.php/improving_performance#Turn_off_CPU_exploit_mitigations
 
 
 
