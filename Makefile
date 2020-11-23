@@ -83,21 +83,21 @@ shell: shell-id-authorization
 	@$(SSH) \
 		-o PreferredAuthentications=publickey \
 		-o PubkeyAuthentication=yes \
-		$(IP)
+		$(UNPRIVILEGED_USER)@$(IP)
 
 shell-id-authorization:
 	# Probe SSH connection
 	@($(SSH) \
 		-o PreferredAuthentications=publickey \
 		-o PubkeyAuthentication=yes \
-		$(IP) \
+		$(UNPRIVILEGED_USER)@$(IP) \
 		exit) \
 		|| ( \
 			$(ECHO) '# Install the current SSH id to the new system'; \
 			$(SSH_COPY_ID) \
 				-o PreferredAuthentications=password \
 				-o PubkeyAuthentication=no \
-				$(IP); \
+				$(UNPRIVILEGED_USER)@$(IP); \
 		)
 
 build: \
