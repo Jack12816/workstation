@@ -7,9 +7,12 @@ SHELL := bash
 .PHONY:
 
 # Environment Variables
-WATCH_FILES ?= README.md
 UNPRIVILEGED_USER ?= jack
 GROUPS ?= lp,wheel,uucp,lock,video,audio,vboxusers,docker
+IP ?= 10.0.0.99
+
+# Less volatile settings
+WATCH_FILES ?= README.md
 PACMAN_MIRRORS_URL ?= https://www.archlinux.org/mirrorlist/?country=DE&protocol=https&use_mirror_status=on
 
 export UNPRIVILEGED_USER
@@ -52,6 +55,8 @@ RM ?= rm
 RUBY ?= ruby
 SED ?= sed
 SORT ?= sort
+SSH ?= ssh
+SSH_COPY_ID ?= ssh-copy-id
 SUDO ?= sudo
 SYSTEMCTL ?= systemctl
 TAIL ?= tail
@@ -66,11 +71,34 @@ YAY ?= yay
 all:
 	# Workstation
 	#
+	# shell                   Open an interactive remote connection
 	# install-packages        Install all software packages
 	# configure               Configure the workstation system
 	#
 	# build                   Build the application requirements
 	# watch                   Watch for changes and rebuild
+
+shell: shell-id-authorization
+	# Connect to the remote machine
+	@$(SSH) \
+		-o PreferredAuthentications=publickey \
+		-o PubkeyAuthentication=yes \
+		$(IP)
+
+shell-id-authorization:
+	# Probe SSH connection
+	@($(SSH) \
+		-o PreferredAuthentications=publickey \
+		-o PubkeyAuthentication=yes \
+		$(IP) \
+		exit) \
+		|| ( \
+			$(ECHO) '# Install the current SSH id to the new system'; \
+			$(SSH_COPY_ID) \
+				-o PreferredAuthentications=password \
+				-o PubkeyAuthentication=no \
+				$(IP); \
+		)
 
 build: \
 	update-readme-toc
