@@ -224,7 +224,12 @@ configure: \
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
-	@$(TEST) -d /etc/.git || ($(CD) /etc && $(GIT) init)
+	@$(TEST) -d /etc/.git || ( \
+		$(CD) /etc; \
+		$(GIT) init; \
+		$(GIT) config user.email 'etc@localhost'; \
+		$(GIT) config user.name 'Workstation'; \
+	)
 	@$(CD) /etc && $(GIT) add -A . \
 		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
 
