@@ -319,8 +319,8 @@ configure-directories:
 	# @$(MKDIR) -p /mnt/network/e5.lan/media
 	# @$(MKDIR) -p /mnt/network/e5.lan/sync/workstation.lan/{Music,Backup}
 	@$(LN) -sf /mnt/network/e5.lan/media /data/media
-	# @$(LN) -sf /data/music /mnt/network/e5.lan/sync/workstation.lan/Music
-	# @$(LN) -sf /data/backup /mnt/network/e5.lan/sync/workstation.lan/Backup
+	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Music /data/music
+	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Backup /data/backup
 
 configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
