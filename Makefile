@@ -312,14 +312,15 @@ configure-sudoers: configure-user
 
 configure-directories:
 	# Configure system directories
-	@$(MKDIR) -p /mnt/network/e5.lan
 	@$(MKDIR) -p /data/pictures
 	@$(MKDIR) -p /data/projects
 	@$(MKDIR) -p /data/docs
 	@$(MKDIR) -p /data/other
-	@$(LN) -sfn /data/media /mnt/network/e5.lan/media
-	@$(LN) -sfn /data/music /mnt/network/e5.lan/sync/workstation.lan/Music
-	@$(LN) -sfn /data/backup /mnt/network/e5.lan/sync/workstation.lan/Backup
+	@$(MKDIR) -p /mnt/network/e5.lan/media
+	@$(MKDIR) -p /mnt/network/e5.lan/sync/workstation.lan/{Music,Backup}
+	@$(LN) -sf /data/media /mnt/network/e5.lan/media
+	@$(LN) -sf /data/music /mnt/network/e5.lan/sync/workstation.lan/Music
+	@$(LN) -sf /data/backup /mnt/network/e5.lan/sync/workstation.lan/Backup
 
 configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
