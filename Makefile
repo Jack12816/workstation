@@ -40,6 +40,7 @@ GREP ?= grep
 GVIM ?= gvim
 I3_MSG ?= i3-msg
 JQ ?= jq
+LN ?= ln
 LS ?= ls
 MAKEPKG ?= makepkg
 MKDIR ?= mkdir
