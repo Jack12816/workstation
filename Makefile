@@ -267,10 +267,19 @@ configure-user:
 
 configure-sysctl:
 	# Update system controls
+	@$(MKDIR) -p /etc/modules-load.d
+	@$(MKDIR) -p /etc/udev/rules.d
+	@$(MKDIR) -p /etc/sysctl.d/
+	@$(CP) etc/modules-load.d/network.conf \
+		/etc/modules-load.d/network.conf
 	@$(CP) etc/udev/rules.d/60-ioschedulers.rules \
 		/etc/udev/rules.d/60-ioschedulers.rules
 	@$(CP) etc/sysctl.d/network.conf \
 		/etc/sysctl.d/network.conf
+	@$(CP) etc/sysctl.d/virtual-memory.conf \
+		/etc/sysctl.d/virtual-memory.conf
+	@$(CP) etc/sysctl.d/files.conf \
+		/etc/sysctl.d/files.conf
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
