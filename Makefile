@@ -320,6 +320,7 @@ configure-directories:
 	@$(LN) -sf /mnt/network/e5.lan/media /data/media
 	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Music /data/music
 	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Backup /data/backup
+	@$(CHOWN) $(UNPRIVILEGED_USER):$(UNPRIVILEGED_USER) -R /data
 
 configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
