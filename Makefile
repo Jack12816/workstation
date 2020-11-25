@@ -316,8 +316,7 @@ configure-directories:
 	@$(MKDIR) -p /data/projects
 	@$(MKDIR) -p /data/docs
 	@$(MKDIR) -p /data/other
-	# @$(MKDIR) -p /mnt/network/e5.lan/media
-	# @$(MKDIR) -p /mnt/network/e5.lan/sync/workstation.lan/{Music,Backup}
+	@$(MKDIR) -p /mnt/network/e5.lan
 	@$(LN) -sf /mnt/network/e5.lan/media /data/media
 	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Music /data/music
 	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Backup /data/backup
