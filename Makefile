@@ -25,6 +25,7 @@ BUNDLE ?= bundle
 CAT ?= cat
 CD ?= cd
 CHMOD ?= chmod
+CHOWN ?= chown
 CP ?= cp
 CURL ?= curl
 CUT ?= cut
