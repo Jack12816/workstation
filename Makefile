@@ -57,6 +57,7 @@ SED ?= sed
 SORT ?= sort
 SSH ?= ssh
 SSH_COPY_ID ?= ssh-copy-id
+DATE ?= date
 SUDO ?= sudo
 SYSTEMCTL ?= systemctl
 TAIL ?= tail
@@ -208,15 +209,24 @@ install-npm-packages:
 	# TODO: Implement this.
 
 configure: \
+	configure-versioned-etc \
 	configure-bootloader \
 	configure-pacman \
-	configure-user \
 	configure-gpg \
-	configure-sysctl \
+	configure-directories \
+	configure-user \
+	configure-sudoers \
 	configure-package-compilation \
 	configure-periodic-trim \
+	configure-sysctl \
 	configure-watchdogs \
-	configure-sudoers
+	configure-irqbalance
+
+configure-versioned-etc:
+	# Configure a versioned /etc via git
+	@$(TEST) -d /etc/.git || ($(CD) /etc && $(GIT) init)
+	@$(CD) /etc && $(GIT) add -A . \
+		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
 
 configure-bootloader: \
 	update-bootloader \
@@ -257,7 +267,10 @@ configure-user:
 
 configure-sysctl:
 	# Update system controls
-	# TODO: Implement this.
+	@$(CP) etc/udev/rules.d/60-ioschedulers.rules \
+		/etc/udev/rules.d/60-ioschedulers.rules
+	@$(CP) etc/sysctl.d/network.conf \
+		/etc/sysctl.d/network.conf
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
@@ -281,3 +294,19 @@ configure-sudoers: configure-user
 	@$(ECHO) '$(UNPRIVILEGED_USER) ALL=(ALL) NOPASSWD: ALL' \
 		> /etc/sudoers.d/$(UNPRIVILEGED_USER)
 	@$(CHMOD) 0440 /etc/sudoers.d/$(UNPRIVILEGED_USER)
+
+configure-directories:
+	# Configure system directories
+	@$(MKDIR) -p /mnt/network/e5.lan
+	@$(MKDIR) -p /data/pictures
+	@$(MKDIR) -p /data/projects
+	@$(MKDIR) -p /data/docs
+	@$(MKDIR) -p /data/other
+	@$(LN) -s /data/media /mnt/network/e5.lan/media
+	@$(LN) -s /data/music /mnt/network/e5.lan/sync/workstation.lan/Music
+	@$(LN) -s /data/backup /mnt/network/e5.lan/sync/workstation.lan/Backup
+
+configure-irqbalance:
+	# Configure automatic IRQ/CPU balancing
+	@$(PACMAN) --noconfirm -S irqbalance
+	@$(SYSTEMCTL) enable irqbalance.service

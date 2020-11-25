@@ -549,35 +549,122 @@ $ make configure-package-compilation
 
 --- --- --- --- --- --- ---
 
+## Performance Tuning
 
+### Automatic IRQ/CPU balancing
 
+Reconfigure the associated CPU to IRQs based on the system load to increase
+throughput/decrease latency.
 
-## Tune System Controls
-
-TODO: Research, perform, document this.
+```
+$ make configure-irqbalance
+```
 
 **References:**
+* https://wiki.archlinux.org/index.php/improving_performance#irqbalance
+
+
+
+
+
+
+
+
+
+
+yay -S pcp
+systemctl enable pmcd.service
+systemctl enable pmlogger.service
+
+-> ?
+echo always > /sys/kernel/mm/transparent_hugepage/enabled
+echo madvise > /sys/kernel/mm/transparent_hugepage/defrag
+https://github.com/torvalds/linux/blob/master/Documentation/vm/transhuge.rst
+
+-> ?
+vm.overcommit_memory=1
+
+vm.dirty_ratio
+vm.dirty_background_ratio
+vm.overcommit_memory
+
+
+By default, the kernel performs heuristic memory overcommit handling by
+estimating the amount of memory available and failing requests that are too
+large. However, since memory is allocated using a heuristic rather than a
+precise algorithm, overloading memory is possible with this setting.
+vm.overcommit_memory = 1
+
+
+
+
+-> ?
+kernel.sched_autogroup_enabled=1
+
+[modules]
+cpufreq_conservative=+r
+
+[cpu]
+priority=10
+governor=conservative|powersave
+energy_perf_bias=normal
+
+[audio]
+timeout=10
+
+[video]
+radeon_powersave=dpm-balanced, auto
+
+
+
+
+Highly recommended for file systems greater than 1 TB in size. The inode64
+parameter configures XFS to allocate inodes and data across the entire file
+system. This ensures that inodes are not allocated largely at the beginning of
+the file system, and data is not largely allocated at the end of the file
+system, improving performance on large file systems.
+xfs inode64
+
+https://wiki.archlinux.org/index.php/sysctl
+
+
+
+
+
+
+
+* https://stackoverflow.com/questions/40777684/create-huge-page-shared-memory-for-ipc-in-linux
+* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuring_transparent_huge_pages
+
+
+**References:**
+* https://wiki.archlinux.org/index.php/improving_performance
+* https://wiki.archlinux.org/index.php/improving_performance#irqbalance
 * https://wiki.archlinux.org/index.php/Sysctl#Virtual_memory
 * https://tuned-project.org/
 * https://github.com/redhat-performance/tuned/tree/master/profiles
 * https://aur.archlinux.org/packages/tuned/
-* https://documentation.suse.com/sbp/all/html/SBP-performance-tuning/index.html#sec-bios-setup
+* https://documentation.suse.com/sbp/all/html/SBP-performance-tuning/index.html
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index
 
-## Docker Repository in tmpfs
+
+
+
+
+
+
+
+
+## UPS Configuration
 
 TODO: Research, perform, document this.
 
 **References:**
-* https://wiki.archlinux.org/index.php/Anything-sync-daemon
-* https://github.com/graysky2/anything-sync-daemon
+* https://wiki.archlinux.org/index.php/APC_UPS
 
-## General Performance Tuning
 
-TODO: Research, perform, document this.
 
-**References:**
-* https://wiki.archlinux.org/index.php/improving_performance
+
 
 ## GPU Configuration
 
@@ -594,12 +681,21 @@ AUR Packages: radeontop
 * https://wiki.archlinux.org/index.php/Hardware_video_acceleration
 * chrome://gpu/
 
-## UPS Configuration
+
+
+
+
+
+## Docker Repository in tmpfs
 
 TODO: Research, perform, document this.
 
 **References:**
-* https://wiki.archlinux.org/index.php/APC_UPS
+* https://wiki.archlinux.org/index.php/Anything-sync-daemon
+* https://github.com/graysky2/anything-sync-daemon
+
+
+
 
 ## Backups
 
