@@ -317,9 +317,9 @@ configure-directories:
 	@$(MKDIR) -p /data/projects
 	@$(MKDIR) -p /data/docs
 	@$(MKDIR) -p /data/other
-	@$(LN) -s /data/media /mnt/network/e5.lan/media
-	@$(LN) -s /data/music /mnt/network/e5.lan/sync/workstation.lan/Music
-	@$(LN) -s /data/backup /mnt/network/e5.lan/sync/workstation.lan/Backup
+	@$(LN) -sfn /data/media /mnt/network/e5.lan/media
+	@$(LN) -sfn /data/music /mnt/network/e5.lan/sync/workstation.lan/Music
+	@$(LN) -sfn /data/backup /mnt/network/e5.lan/sync/workstation.lan/Backup
 
 configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
