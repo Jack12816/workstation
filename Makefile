@@ -222,7 +222,8 @@ configure: \
 	configure-periodic-trim \
 	configure-sysctl \
 	configure-watchdogs \
-	configure-irqbalance
+	configure-irqbalance \
+	configure-amdgpu
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -327,3 +328,12 @@ configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
 	@$(PACMAN) --noconfirm -S irqbalance
 	@$(SYSTEMCTL) enable irqbalance.service
+
+configure-amdgpu:
+	# Configure the AMD GPU/X11
+	@$(PACMAN) --noconfirm -S \
+		xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver \
+		mesa-vdpau libvdpau-va-gl libva-vdpau-driver gstreamer-vaapi \
+		gst-plugins-bad
+	$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) -S --needed --noconfirm \
+		radeontop
