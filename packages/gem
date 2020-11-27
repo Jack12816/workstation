@@ -370,7 +370,6 @@ dry-monitor 0.3.2 0.3.1
 dry-schema 1.5.6 1.5.5 1.5.4 1.5.2 1.5.1 1.5.0 1.4.3 1.4.1
 dry-types 1.4.0 1.2.1
 dry-validation 1.5.6 1.5.3 1.5.1 1.5.0 1.4.2 1.3.1
-e2e-test-suite 1.1.0 1.0.2 1.0.1
 ecma-re-validator 0.2.1
 elasticsearch 5.0.5
 elasticsearch-api 5.0.5
@@ -401,7 +400,6 @@ facter 3.14.14
 factory_bot 6.1.0 5.2.0 5.1.2 5.1.1 5.0.2 4.11.1
 factory_bot_instrumentation 0.6.0 0.5.1 0.5.0 0.3.0
 factory_bot_rails 5.2.0 5.1.1 5.0.2 4.11.1
-fake-data 1.2.0 1.1.9 1.1.8 1.0.0
 faraday 1.1.0 1.0.1 0.17.3 0.17.1 0.15.4
 faraday-http-cache 2.2.0 2.0.0 1.3.1
 faraday_middleware 0.14.0 0.13.1
@@ -461,7 +459,7 @@ google-api-client 0.37.2
 googleauth 0.13.1 0.12.0 0.11.0
 grape 1.5.0 1.4.0 1.3.3 1.3.2 1.2.5
 grape-entity 0.8.2 0.8.1 0.8.0 0.7.1
-grape-jwt-authentication 2.0.2 2.0.1 2.0.0 1.4.0 1.3.0 1.2.0
+grape-jwt-authentication 2.0.2 2.0.1 2.0.0 1.3.0 1.2.0
 grape-route-helpers 2.1.0
 grape-swagger 1.3.1 1.3.0 1.2.1 1.1.0 0.34.2
 grape-swagger-entity 0.5.1 0.4.0 0.3.4 0.3.3
@@ -480,7 +478,6 @@ hana 1.3.6
 hashdiff 1.0.1 1.0.0 0.4.0 0.3.9
 hashery 2.1.2
 hashie 4.1.0 3.6.0 3.5.7
-hausgold-sdk 1.5.0 1.4.0 1.3.0 1.2.0 1.1.0 1.0.0 0.26.0 0.25.0 0.24.0 0.22.0 0.21.0 0.19.0 0.18.0 0.15.1 0.15.0
 hike 1.2.3
 hirb 0.7.3
 hiredis 0.6.3
@@ -521,7 +518,7 @@ jekyll-sitemap 1.2.0
 jekyll-watch 2.0.0
 jmespath 1.4.0
 jquery-rails 4.4.0 4.3.5
-json 2.3.1 default: 2.3.0 2.2.0 1.8.6
+json 2.3.1 2.3.0 2.2.0 1.8.6
 json-schema 2.8.1
 json_schemer 0.2.11
 json_spec 1.1.5
@@ -539,7 +536,7 @@ king_konf 0.3.7
 kramdown 1.17.0 1.9.0
 kwalify 0.7.2
 launchy 2.5.0 2.4.3
-libv8 3.16.14.19 x86_64-linux
+libv8 3.16.14.19
 liquid 4.0.3 4.0.0 3.0.6
 liquid-tag-parser 1.9.0
 listen 3.2.1 3.1.5
@@ -593,7 +590,6 @@ open4 1.3.4
 optimist 3.0.1
 os 1.1.1 1.1.0 1.0.1
 ovirt-engine-sdk 4.4.0
-painless 2.4.0 2.3.0 2.2.1 2.2.0 2.1.1 2.1.0 2.0.1 2.0.0 1.2.0 1.1.1 1.1.0
 paper_trail 10.3.1
 parallel 1.19.2 1.19.1 1.17.0 1.13.0 1.12.1
 parallel_tests 2.32.0 2.28.0
@@ -661,7 +657,7 @@ reek 6.0.1 6.0.0 5.4.0 5.3.1
 ref 2.0.0
 regexp-examples 1.5.1
 regexp_parser 1.8.2 1.7.1 1.7.0 1.6.0 1.5.1
-reline 0.1.8 0.1.7 0.1.6 default: 0.1.5 0.1.3 0.1.2
+reline 0.1.8 0.1.7 0.1.6 0.1.5 0.1.3 0.1.2
 representable 3.0.4
 request_store 1.5.0 1.4.1
 responders 3.0.1 2.4.1
@@ -669,7 +665,7 @@ rest-client 2.1.0 2.0.2
 retriable 3.1.2
 retries 0.0.5
 reverse_markdown 2.0.0
-rexml 3.2.4 default: 3.2.3
+rexml 3.2.4 3.2.3
 rgeo 2.1.1 0.6.0
 rgeo-activerecord 6.2.1 4.0.5
 rimless 1.1.0 1.0.4 1.0.3 1.0.2 0.3.0
@@ -709,10 +705,10 @@ rubyzip 2.3.0 2.2.0 2.0.0 1.2.3
 safe_yaml 1.0.5 1.0.4
 safely_block 0.3.0
 sanitize 5.1.0
-sass 3.7.4 3.5.7
+sass 3.7.4
 sass-listen 4.0.0
 sass-rails 6.0.0 5.1.0 5.0.8 5.0.7
-sassc 2.4.0 2.3.0 2.2.1 2.2.0 2.1.0 x86_64-linux
+sassc 2.4.0
 sassc-rails 2.1.2
 sawyer 0.8.2
 sax-machine 1.3.2
@@ -720,7 +716,6 @@ sdoc 1.1.0
 seed-fu 2.3.9
 selectize-rails 0.12.6
 selenium-webdriver 3.142.7 3.142.6 3.142.3
-selfless 2.2.0 2.1.0 2.0.4 2.0.3 2.0.2 2.0.1 2.0.0 1.2.0 1.0.3
 semantic_puppet 1.0.2
 semantic_range 2.3.0
 sendgrid-ruby 6.3.4 6.2.1
@@ -745,7 +740,6 @@ sixarm_ruby_unaccent 1.2.0
 slop 3.6.0
 sparsify 1.1.0
 specinfra 2.76.2
-speechless 1.0.0 0.7.0 0.3.0
 spinach 0.10.1
 spinach-rails 0.2.1
 spinach-rerun-reporter 1.0.1

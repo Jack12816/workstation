@@ -6,28 +6,28 @@ doctoc 1.4.0
 electron-packager 14.2.1
 emojipacks 0.2.1
 github-wikito-converter 1.2.0
-greppy 0.7.2
-grunt-cli 0.1.11
-istanbul 0.3.2
 jade 1.3.0
 js-beautify 1.4.2
 less 1.6.0
 markdown-toc 1.2.0
 marked 0.3.2
-mocha 2.0.1
-mocha-phantomjs 3.5.3
-node-gyp 7.1.0
-npm 6.14.8
 npm-check-updates 1.2.0
-npm-proxy-cache 0.2.1
-pdfgen 1.0.3
-phantomjs 1.9.16
 plato 1.0.1
 serve 6.4.1
-slack-emoji-import 1.0.3
 st 0.5.5
 svgo 0.7.1
 tldr 3.3.2
 topojson 1.6.19
 vue-cli 2.8.2
 yarn 1.22.4
+# greppy 0.7.2
+# grunt-cli 0.1.11
+# istanbul 0.3.2
+# mocha 2.0.1
+# mocha-phantomjs 3.5.3
+# node-gyp 7.1.0
+# npm 6.14.8
+# npm-proxy-cache 0.2.1
+# pdfgen 1.0.3
+# phantomjs 1.9.16
+# slack-emoji-import 1.0.3

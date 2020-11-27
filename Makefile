@@ -29,6 +29,7 @@ CHOWN ?= chown
 CP ?= cp
 CURL ?= curl
 CUT ?= cut
+DATE ?= date
 DIFF ?= diff
 DOCKER ?= docker
 ECHO ?= echo
@@ -49,6 +50,7 @@ MV ?= mv
 NPM ?= npm
 NPROC ?= nproc
 PACMAN ?= pacman
+PARALLEL ?= parallel
 PASSWD ?= passwd
 PRINTF ?= printf
 RANKMIRRORS ?= rankmirrors
@@ -57,9 +59,8 @@ RM ?= rm
 RUBY ?= ruby
 SED ?= sed
 SORT ?= sort
-SSH ?= ssh
 SSH_COPY_ID ?= ssh-copy-id
-DATE ?= date
+SSH ?= ssh
 SUDO ?= sudo
 SYSTEMCTL ?= systemctl
 TAIL ?= tail
@@ -204,11 +205,30 @@ install-extra-packages:
 
 install-gem-packages:
 	# Install all Ruby Gem packages
-	# TODO: Implement this.
+	@$(PACMAN) --noconfirm -S parallel
+	@$(RM) -rf /tmp/gems
+	@$(CAT) packages/gem | $(GREP) -vP '^#|^$$$$' | while $(READ) line; do \
+			name=$$($(ECHO) "$$line" | $(CUT) -d ' ' -f1); \
+			$(ECHO) "$$line" | $(CUT) -d ' ' -f2- | $(TR) ' ' "\n" \
+				| while $(READ) version; do \
+					$(ECHO) "$${name}|$${version}" >> /tmp/gems; \
+				done; \
+		done
+	@$(PARALLEL) -a /tmp/gems -j30 --bar --colsep '\|' \
+		--retry-failed --retries 5 \
+		'$(SUDO) -u $(UNPRIVILEGED_USER) \
+			$(GEM) install --conservative {1} -v "= {2}"'
+	@$(RM) -rf /tmp/gems
 
 install-npm-packages:
 	# Install all NPM packages
-	# TODO: Implement this.
+	@$(CAT) packages/npm | $(GREP) -vP '^#|^$$$$' | while $(READ) line; do \
+			name=$$($(ECHO) "$$line" | $(CUT) -d ' ' -f1); \
+			$(ECHO) "$$line" | $(CUT) -d ' ' -f2- | $(TR) ' ' "\n" \
+				| while $(READ) version; do \
+					$(NPM) -g install "$${name}@$${version}" || true; \
+				done; \
+		done
 
 configure: \
 	configure-versioned-etc \
@@ -223,7 +243,11 @@ configure: \
 	configure-sysctl \
 	configure-watchdogs \
 	configure-irqbalance \
-	configure-amdgpu
+	configure-amdgpu \
+	configure-ups \
+	configure-printer \
+	configure-cron \
+	configure-beep
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -328,6 +352,7 @@ configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
 	@$(PACMAN) --noconfirm -S irqbalance
 	@$(SYSTEMCTL) enable irqbalance.service
+	@$(SYSTEMCTL) restart irqbalance.service
 
 configure-amdgpu:
 	# Configure the AMD GPU/X11
@@ -335,5 +360,33 @@ configure-amdgpu:
 		xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver \
 		mesa-vdpau libvdpau-va-gl libva-vdpau-driver gstreamer-vaapi \
 		gst-plugins-bad
-	$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) -S --needed --noconfirm \
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) -S --needed --noconfirm \
 		radeontop
+	@$(CP) etc/X11/xorg.conf.d/20-amdgpu.conf \
+		/etc/X11/xorg.conf.d/20-amdgpu.conf
+
+configure-ups:
+	# Configure the APC UPS
+	@$(PACMAN) --noconfirm -S apcupsd
+	@$(CP) etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf
+	@$(SYSTEMCTL) enable apcupsd.service
+	@$(SYSTEMCTL) restart apcupsd.service
+
+configure-printer:
+	# Configure the printer
+	@$(PACMAN) --noconfirm -S cups
+	@$(SYSTEMCTL) enable cups.service
+	@$(SYSTEMCTL) restart cups.service
+
+configure-cron:
+	# Configure the cron service
+	@$(PACMAN) --noconfirm -S cronie
+	@$(MKDIR) -p /etc/cron.minutely
+	@$(CP) etc/cron.d/0minutely /etc/cron.d/0minutely
+	@$(SYSTEMCTL) enable cronie.service
+	@$(SYSTEMCTL) restart cronie.service
+
+configure-beep:
+	# Configure PC speaker (bell/beep)
+	@$(CP) etc/modprobe.d/disable_beep.conf \
+		/etc/modprobe.d/disable_beep.conf

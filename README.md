@@ -29,11 +29,13 @@
     - [Disable Watchdogs](#disable-watchdogs)
   - [Periodic TRIM](#periodic-trim)
   - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
-  - [Tune System Controls](#tune-system-controls)
-  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
-  - [General Performance Tuning](#general-performance-tuning)
+  - [Performance Tuning](#performance-tuning)
+    - [Automatic IRQ/CPU balancing](#automatic-irqcpu-balancing)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
+  - [Printer](#printer)
+  - [PC Speaker (bell/beep)](#pc-speaker-bellbeep)
+  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
   - [Backups](#backups)
 - [Benchmarking](#benchmarking)
 - [TODO](#todo)
@@ -556,7 +558,7 @@ $ make configure-package-compilation
 Reconfigure the associated CPU to IRQs based on the system load to increase
 throughput/decrease latency.
 
-```
+```shell
 $ make configure-irqbalance
 ```
 
@@ -667,23 +669,19 @@ https://wiki.archlinux.org/index.php/sysctl
 
 
 
-## UPS Configuration
 
-TODO: Research, perform, document this.
-
-**References:**
-* https://wiki.archlinux.org/index.php/APC_UPS
-
+--- --- --- --- --- --- ---
 
 
 
 
 ## GPU Configuration
 
-TODO: Research, perform, document this.
+Configure the AMD GPU to work with X11 and enable hardware acceleration.
 
-Packages: xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver mesa-vdpau libvdpau-va-gl libva-vdpau-driver gstreamer-vaapi gst-plugins-bad
-AUR Packages: radeontop
+```shell
+$ make configure-amdgpu
+```
 
 **References:**
 * https://wiki.archlinux.org/index.php/AMDGPU
@@ -693,6 +691,53 @@ AUR Packages: radeontop
 * https://wiki.archlinux.org/index.php/Hardware_video_acceleration
 * chrome://gpu/
 
+## UPS Configuration
+
+Plugin the USB cable of the APC UPS and configure the watching service like this:
+
+```shell
+$ make configure-amdgpu
+```
+
+Everything should be up and running. Test the UPS like this:
+
+1.) Change `TIMEOUT` from `0` to `1` in the `/etc/apcupsd/apcupsd.conf` file.
+2.) Remove wall power from the UPS.
+3.) Observe that your Linux box powers down, in short order.
+4.) Plug the UPS back into the wall.
+5.) Power on your Linux box.
+6.) Change TIMEOUT from `1` back to `0` in the `/etc/apcupsd/apcupsd.conf` file.
+
+**References:**
+* https://wiki.archlinux.org/index.php/APC_UPS
+
+## Printer
+
+Setup the printing service. The service can be accessed afterwards at
+[localhost:631](http://localhost:631/).
+
+```shell
+$ make configure-printer
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/CUPS
+
+## PC Speaker (bell/beep)
+
+Disable the PC speaker, we do not want to get beeps on saving files (etc).
+
+```shell
+$ make configure-beep
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/PC_speaker
+
+
+
+
+--- --- --- --- --- --- ---
 
 
 
@@ -717,6 +762,15 @@ TODO: Research, perform, document this.
 **References:**
 * https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages
 
+
+
+
+
+
+
+
+
+
 # Benchmarking
 
 TODO: Research, perform, document this.
@@ -729,20 +783,7 @@ TODO: Research, perform, document this.
 * https://wiki.archlinux.org/index.php/benchmarking#S
 * http://www.phoronix-test-suite.com/?k=features
 
-
-
-
-
-
-
-
-
-
-
-
 # TODO
-
-Clean the current /etc
 
 * https://wiki.archlinux.org/index.php/PulseAudio
 * https://wiki.archlinux.org/index.php/Power_management
@@ -753,9 +794,3 @@ Clean the current /etc
 * https://wiki.archlinux.org/index.php/Mail_server
 * https://www.archlinux.org/packages/?name=mlocate        updatedb
 * https://wiki.archlinux.org/index.php/Clipboard#Managers
-*
-*
-*
-*
-
-
