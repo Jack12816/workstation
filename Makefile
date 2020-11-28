@@ -228,7 +228,7 @@ install-extra-packages:
 
 install-gem-packages:
 	# Install all Ruby Gem packages
-	@$(PACMAN) --noconfirm -S parallel
+	@$(PACMAN) --needed --noconfirm -S parallel
 	@$(RM) -rf /tmp/gems /tmp/gems.actual
 	@$(SUDO) -u $(UNPRIVILEGED_USER) $(GEM) query > /tmp/gems.actual
 	@$(CAT) packages/gem | $(GREP) -vP '^#|^$$$$' | while $(READ) line; do \
@@ -321,7 +321,7 @@ configure-pacman:
 	# Configure pacman
 	@$(CP) etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
 	@$(SUDO) $(PACMAN) -Sy
-	@$(SUDO) $(PACMAN) --noconfirm -S aria2
+	@$(SUDO) $(PACMAN) --needed --noconfirm -S aria2
 	@$(CP) etc/pacman.conf /etc/pacman.conf
 	@$(SUDO) $(PACMAN) -Sy
 
@@ -359,12 +359,12 @@ configure-sysctl:
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
-	@$(PACMAN) --noconfirm -S util-linux
+	@$(PACMAN) --needed --noconfirm -S util-linux
 	@$(SYSTEMCTL) enable fstrim.timer
 
 configure-package-compilation:
 	# Configure package compilation optimizations
-	@$(PACMAN) --noconfirm -S pigz xz pbzip2 zstd expac pacman-contrib
+	@$(PACMAN) --needed --noconfirm -S pigz xz pbzip2 zstd expac pacman-contrib
 	@$(CP) etc/makepkg.conf /etc/makepkg.conf
 
 configure-watchdogs:
@@ -394,13 +394,13 @@ configure-directories:
 
 configure-irqbalance:
 	# Configure automatic IRQ/CPU balancing
-	@$(PACMAN) --noconfirm -S irqbalance
+	@$(PACMAN) --needed --noconfirm -S irqbalance
 	@$(SYSTEMCTL) enable irqbalance.service
 	@$(SYSTEMCTL) restart irqbalance.service
 
 configure-amdgpu:
 	# Configure the AMD GPU/X11
-	@$(PACMAN) --noconfirm -S \
+	@$(PACMAN) --needed --noconfirm -S \
 		xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver \
 		mesa-vdpau libvdpau-va-gl libva-vdpau-driver gstreamer-vaapi \
 		gst-plugins-bad
@@ -412,7 +412,7 @@ configure-amdgpu:
 test-ups-finish: configure-ups
 configure-ups:
 	# Configure the APC UPS
-	@$(PACMAN) --noconfirm -S apcupsd
+	@$(PACMAN) --needed --noconfirm -S apcupsd
 	@$(CP) etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf
 	@$(SYSTEMCTL) enable apcupsd.service
 	@$(SYSTEMCTL) restart apcupsd.service
@@ -427,13 +427,13 @@ test-ups: configure-ups
 
 configure-printer:
 	# Configure the printer
-	@$(PACMAN) --noconfirm -S cups
+	@$(PACMAN) --needed --noconfirm -S cups
 	@$(SYSTEMCTL) enable cups.service
 	@$(SYSTEMCTL) restart cups.service
 
 configure-cron:
 	# Configure the cron service
-	@$(PACMAN) --noconfirm -S cronie
+	@$(PACMAN) --needed --noconfirm -S cronie
 	@$(MKDIR) -p /etc/cron.minutely
 	@$(CP) etc/cron.d/0minutely /etc/cron.d/0minutely
 	@$(SYSTEMCTL) enable cronie.service
