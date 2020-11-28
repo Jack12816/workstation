@@ -272,7 +272,7 @@ commit:
 		$(GIT) add -A . \
 		&& $(GIT) commit -am "Automated backup. ($(shell $(DATE) +%s))" \
 		&& $(GIT) pull \
-		&& $(GIT) push'
+		&& $(GIT) push --quiet'
 
 configure: \
 	configure-versioned-etc \
