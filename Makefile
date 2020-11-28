@@ -271,7 +271,7 @@ commit:
 	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SHELL) -c '\
 		$(GIT) add -A . \
 		&& $(GIT) commit -am "Automated backup. ($(shell $(DATE) +%s))" \
-		&& $(GIT) pull \
+		&& $(GIT) pull --quiet \
 		&& $(GIT) push --quiet'
 
 configure: \
