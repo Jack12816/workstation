@@ -9,7 +9,7 @@ DEST_WS="${DEST_BASE}/workstation.tar.gz"
 TMP_WS='/dev/shm/ws-backup.tar.gz'
 
 # Run the update and system syncing
-make -C /data/workstation update commit
+make -C /data/workstation update commit >/dev/null
 
 # Create the backup archive
 tar --acls --xattrs -cpf - /data/workstation 2>&1 \
