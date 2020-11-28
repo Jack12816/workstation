@@ -47,7 +47,7 @@ tar --acls --xattrs -cpf - /root \
 
 # -------------------------------
 # (4) Create backup checksums
-DEST_ROOT="${DEST_BASE}/checksums"
+DEST_CHK="${DEST_BASE}/checksums"
 TMP_CHK='/dev/shm/checksums-backup'
 rm -rf "${TMP_CHK}"
 
@@ -60,6 +60,7 @@ sha512sum "${TMP_ROOT}" >> "${TMP_CHK}"
 mv "${TMP_WS}" "${DEST_WS}"
 mv "${TMP_ETC}" "${DEST_ETC}"
 mv "${TMP_ROOT}" "${DEST_ROOT}"
+mv "${TMP_CHK}" "${DEST_CHK}"
 
 
 
