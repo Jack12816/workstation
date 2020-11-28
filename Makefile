@@ -270,8 +270,8 @@ commit:
 	# Commit the current state of the workstation repository
 	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SHELL) -c '\
 		$(GIT) add -A . \
-		&& $(GIT) commit --quiet \
-			-am "Automated backup. ($(shell $(DATE) +%s))" \
+		&& ($(GIT) diff-index --quiet HEAD || $(GIT) commit --quiet \
+			-am "Automated backup. ($(shell $(DATE) +%s))") \
 		&& $(GIT) pull --quiet \
 		&& $(GIT) push --quiet'
 
