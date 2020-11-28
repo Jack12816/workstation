@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DATE=$(date +%Y-%m-%dT%H)
 DEST_BASE="/data/backup/sys-w20/${DATE}"
@@ -12,14 +12,12 @@ TMP_WS='/dev/shm/ws-backup.tar.gz'
 make -C /data/workstation update commit >/dev/null
 
 # Create the backup archive
-tar --acls --xattrs -cpf - /data/workstation 2>&1 \
-  | pigz -p 32 > "${TMP_WS}"
+tar --acls --xattrs -cpf - /data/workstation \
+  2> >(grep -iP 'socket ignored|removing leading') \
+  | pigz -p 32 > "${TMP_WS}" \
 
 # Move the archive to the e5 server
 mv "${TMP_WS}" "${DEST_WS}"
-
-
-
 
 
 
@@ -34,11 +32,16 @@ find /etc -exec stat --printf 'chmod %#a %n\nchown %U:%G %n\n' {} + \
 chmod +x /etc/fix-permissions.sh
 
 # Create the backup archive
-tar --acls --xattrs -cpf - /etc 2>&1 \
+tar --acls --xattrs -cpf - /etc \
+  2> >(grep -iP 'socket ignored|removing leading') \
   | pigz -p 32 > "${TMP_ETC}"
 
 # Move the archive to the e5 server
 mv "${TMP_ETC}" "${DEST_ETC}"
+
+
+
+
 
 # (3) Create the /root backup
 
