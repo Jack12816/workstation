@@ -2,13 +2,14 @@
 
 DATE=$(date +%Y-%m-%dT%H)
 DEST_BASE="/data/backup/sys-w20/archives/${DATE}"
-mkdir -p "${DEST_BASE}"
+TMP_BASE='/dev/shm/backup'
+rm -rf "${TMP_BASE}"
+mkdir -p "${DEST_BASE}" "${TMP_BASE}"
 
 # -------------------------------
 # (1) Update and commit the workstation state (and make a synced backup)
 DEST_WS="${DEST_BASE}/workstation.tar.gz"
-TMP_WS='/dev/shm/ws-backup.tar.gz'
-rm -rf "${TMP_WS}"
+TMP_WS="${TMP_BASE}/workstation.tar.gz"
 
 # Run the update and system syncing
 make -C /data/workstation update commit >/dev/null
@@ -21,8 +22,7 @@ tar --acls --xattrs -cpf - /data/workstation \
 # -------------------------------
 # (2) Create the /etc backup
 DEST_ETC="${DEST_BASE}/etc.tar.gz"
-TMP_ETC='/dev/shm/etc-backup.tar.gz'
-rm -rf "${TMP_ETC}"
+TMP_ETC="${TMP_BASE}/etc.tar.gz"
 
 # Add a permission/ownership fixing script
 find /etc -exec stat --printf 'chmod %#a %n\nchown %U:%G %n\n' {} + \
@@ -37,8 +37,7 @@ tar --acls --xattrs -cpf - /etc \
 # -------------------------------
 # (3) Create the /root backup
 DEST_ROOT="${DEST_BASE}/root.tar.gz"
-TMP_ROOT='/dev/shm/root-backup.tar.gz'
-rm -rf "${TMP_ROOT}"
+TMP_ROOT="${TMP_BASE}/root.tar.gz"
 
 # Create the backup archive
 tar --acls --xattrs -cpf - /root \
@@ -48,13 +47,13 @@ tar --acls --xattrs -cpf - /root \
 # -------------------------------
 # (4) Create backup checksums
 DEST_CHK="${DEST_BASE}/checksums"
-TMP_CHK='/dev/shm/checksums-backup'
-rm -rf "${TMP_CHK}"
+TMP_CHK="${TMP_BASE}/checksums"
 
 # Create a checksum file
 sha512sum "${TMP_WS}" >> "${TMP_CHK}"
 sha512sum "${TMP_ETC}" >> "${TMP_CHK}"
 sha512sum "${TMP_ROOT}" >> "${TMP_CHK}"
+sed -i "s#${TMP_BASE}/##d" "${TMP_CHK}"
 
 # Move the archive to the e5 server
 mv "${TMP_WS}" "${DEST_WS}"
