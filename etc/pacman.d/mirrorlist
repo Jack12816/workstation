@@ -1,5 +1,5 @@
 Server = https://mirror.wtnet.de/arch/$repo/os/$arch
+Server = https://appuals.com/archlinux/$repo/os/$arch
 Server = https://phinau.de/arch/$repo/os/$arch
+Server = https://mirror.bethselamin.de/$repo/os/$arch
 Server = https://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
-Server = https://arch.jensgutermuth.de/$repo/os/$arch
-Server = https://mirror.kumi.systems/archlinux/$repo/os/$arch

@@ -54,6 +54,7 @@ NPROC ?= nproc
 PACMAN ?= pacman
 PARALLEL ?= parallel
 PASSWD ?= passwd
+PKGFILE ?= pkgfile
 PRINTF ?= printf
 RANKMIRRORS ?= rankmirrors
 READ ?= read
@@ -91,6 +92,7 @@ all:
 	#
 	# build                   Build the application requirements
 	# watch                   Watch for changes and rebuild
+	# update                  Update all runtime lists
 
 shell: shell-id-authorization
 	# Connect to the remote machine
@@ -121,6 +123,13 @@ watch:
 	# Watch for changes and rebuild
 	@$(LS) $(WATCH_FILES) | $(ENTR) $(MAKE) build
 
+update: \
+	update-readme-toc \
+	update-extra-packages-list \
+	update-npm-packages-list \
+	update-gem-packages-list \
+	update-pkgfile-database
+
 update-readme-toc:
 	# Update the README.md table of contents
 	@$(ECHO) '<!-- TOC-START -->' > README.md.toc
@@ -133,7 +142,7 @@ update-readme-toc:
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
 
-update-pacman-mirror-list: .check-root
+update-pacman-mirror-list:
 	# Update and rank all german pacman mirrors
 	@$(SUDO) $(PACMAN) --noconfirm -S pacman-contrib
 	@$(CURL) -s "$(PACMAN_MIRRORS_URL)" \
@@ -154,9 +163,13 @@ update-npm-packages-list:
 
 update-gem-packages-list:
 	# Update the gem packages list from the current system
-	@$(SUDO) $(GEM) list \
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(GEM) query \
 		| $(GREP) -vF '(default:' \
 		| $(TR) -d '(' | $(TR) -d ')' | $(TR) -d ',' > packages/gem
+
+update-pkgfile-database:
+	# Update the pkgfile database
+	@$(PKGFILE) --update
 
 workstation: \
 	install-packages \
@@ -248,6 +261,11 @@ install-npm-packages:
 			done; \
 		done
 
+etc-commit:
+	# Commit the current state of /etc
+	@$(CD) /etc && $(GIT) add -A . \
+		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
+
 configure: \
 	configure-versioned-etc \
 	configure-bootloader \
@@ -276,8 +294,7 @@ configure-versioned-etc:
 		$(GIT) config user.email 'etc@localhost'; \
 		$(GIT) config user.name 'Workstation'; \
 	)
-	@$(CD) /etc && $(GIT) add -A . \
-		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
+	$(MAKE) --no-print-directory etc-commit
 
 configure-bootloader: \
 	update-bootloader \
