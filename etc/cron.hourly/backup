@@ -53,7 +53,7 @@ TMP_CHK="${TMP_BASE}/checksums"
 sha512sum "${TMP_WS}" >> "${TMP_CHK}"
 sha512sum "${TMP_ETC}" >> "${TMP_CHK}"
 sha512sum "${TMP_ROOT}" >> "${TMP_CHK}"
-sed -i "s#${TMP_BASE}/##d" "${TMP_CHK}"
+sed -i "s#${TMP_BASE}/##g" "${TMP_CHK}"
 
 # Move the archive to the e5 server
 mv "${TMP_WS}" "${DEST_WS}"
