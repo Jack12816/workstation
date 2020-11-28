@@ -701,12 +701,16 @@ $ make configure-amdgpu
 
 Everything should be up and running. Test the UPS like this:
 
-1.) Change `TIMEOUT` from `0` to `1` in the `/etc/apcupsd/apcupsd.conf` file.
-2.) Remove wall power from the UPS.
-3.) Observe that your Linux box powers down, in short order.
-4.) Plug the UPS back into the wall.
-5.) Power on your Linux box.
-6.) Change TIMEOUT from `1` back to `0` in the `/etc/apcupsd/apcupsd.conf` file.
+```shell
+# (1) Start the UPS test
+$ make test-ups
+
+# (2) Wait for the system to shut down completely.
+# (3) Plug the UPS back into the wall.
+# (4) Power on the machine.
+# (5) Finish the UPS configuration with:
+$ make test-ups-finish
+```
 
 **References:**
 * https://wiki.archlinux.org/index.php/APC_UPS

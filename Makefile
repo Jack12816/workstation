@@ -4,7 +4,7 @@ SHELL := bash
 .DEFAULT_GOAL := all
 .DELETE_ON_ERROR:
 .SUFFIXES:
-.PHONY:
+.PHONY: check-root
 
 # Environment Variables
 UNPRIVILEGED_USER ?= jack
@@ -34,6 +34,7 @@ DIFF ?= diff
 DOCKER ?= docker
 ECHO ?= echo
 ENTR ?= entr
+EXIT ?= exit
 FIND ?= find
 GEM ?= gem
 GETENT ?= getent
@@ -47,6 +48,7 @@ LS ?= ls
 MAKEPKG ?= makepkg
 MKDIR ?= mkdir
 MV ?= mv
+NODE ?= node
 NPM ?= npm
 NPROC ?= nproc
 PACMAN ?= pacman
@@ -71,6 +73,14 @@ TR ?= tr
 USERADD ?= useradd
 XARGS ?= xargs
 YAY ?= yay
+
+check-root:
+ifneq ($(USER),root)
+	# The workstation suite MUST be run as root. (not as $(USER))
+	@$(EXIT) 1
+endif
+
+include check-root
 
 all:
 	# Workstation
@@ -123,7 +133,7 @@ update-readme-toc:
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
 
-update-pacman-mirror-list:
+update-pacman-mirror-list: .check-root
 	# Update and rank all german pacman mirrors
 	@$(SUDO) $(PACMAN) --noconfirm -S pacman-contrib
 	@$(CURL) -s "$(PACMAN_MIRRORS_URL)" \
@@ -206,7 +216,8 @@ install-extra-packages:
 install-gem-packages:
 	# Install all Ruby Gem packages
 	@$(PACMAN) --noconfirm -S parallel
-	@$(RM) -rf /tmp/gems
+	@$(RM) -rf /tmp/gems /tmp/gems.actual
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(GEM) query > /tmp/gems.actual
 	@$(CAT) packages/gem | $(GREP) -vP '^#|^$$$$' | while $(READ) line; do \
 			name=$$($(ECHO) "$$line" | $(CUT) -d ' ' -f1); \
 			$(ECHO) "$$line" | $(CUT) -d ' ' -f2- | $(TR) ' ' "\n" \
@@ -216,18 +227,25 @@ install-gem-packages:
 		done
 	@$(PARALLEL) -a /tmp/gems -j30 --bar --colsep '\|' \
 		--retry-failed --retries 5 \
-		'$(SUDO) -u $(UNPRIVILEGED_USER) \
-			$(GEM) install --conservative {1} -v "= {2}"'
-	@$(RM) -rf /tmp/gems
+		'($(SUDO) -u $(UNPRIVILEGED_USER) \
+			$(GREP) -P "^{1} .*[ (]{2}[ ,)]" /tmp/gems.actual \
+				>/dev/null 2>&1 \
+			|| $(GEM) install --conservative {1} -v "= {2}")'
+	@$(RM) -rf /tmp/gems /tmp/gems.actual
 
 install-npm-packages:
 	# Install all NPM packages
 	@$(CAT) packages/npm | $(GREP) -vP '^#|^$$$$' | while $(READ) line; do \
-			name=$$($(ECHO) "$$line" | $(CUT) -d ' ' -f1); \
-			$(ECHO) "$$line" | $(CUT) -d ' ' -f2- | $(TR) ' ' "\n" \
-				| while $(READ) version; do \
-					$(NPM) -g install "$${name}@$${version}" || true; \
-				done; \
+		name=$$($(ECHO) "$$line" | $(CUT) -d ' ' -f1); \
+		$(ECHO) "$$line" | $(CUT) -d ' ' -f2- | $(TR) ' ' "\n" \
+			| while $(READ) version; do \
+				[ $$(NODE_PATH=/usr/lib/node_modules $(NODE) -p \
+					"require('$${name}/package.json').version" \
+					2>/dev/null) \
+					== "$$version" 2>/dev/null ] \
+					&& $(ECHO) "$$name@$$version installed" \
+					|| $(NPM) -g install "$${name}@$${version}"; \
+			done; \
 		done
 
 configure: \
@@ -247,7 +265,8 @@ configure: \
 	configure-ups \
 	configure-printer \
 	configure-cron \
-	configure-beep
+	configure-beep \
+	configure-sound
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -365,12 +384,21 @@ configure-amdgpu:
 	@$(CP) etc/X11/xorg.conf.d/20-amdgpu.conf \
 		/etc/X11/xorg.conf.d/20-amdgpu.conf
 
+test-ups-finish: configure-ups
 configure-ups:
 	# Configure the APC UPS
 	@$(PACMAN) --noconfirm -S apcupsd
 	@$(CP) etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf
 	@$(SYSTEMCTL) enable apcupsd.service
 	@$(SYSTEMCTL) restart apcupsd.service
+
+test-ups: configure-ups
+	# Test the UPS configuration
+	@$(SED) -i 's/^TIMEOUT .*/TIMEOUT 1/g' /etc/apcupsd/apcupsd.conf
+	@$(SYSTEMCTL) restart apcupsd.service
+	#
+	# Now remove wall power from the UPS.
+	# Observe that the machine powers down, in short order.
 
 configure-printer:
 	# Configure the printer
@@ -390,3 +418,10 @@ configure-beep:
 	# Configure PC speaker (bell/beep)
 	@$(CP) etc/modprobe.d/disable_beep.conf \
 		/etc/modprobe.d/disable_beep.conf
+
+configure-sound:
+	# Configure sound/audio devices
+	@$(CP) etc/modprobe.d/disable_sound.conf \
+		/etc/modprobe.d/disable_sound.conf
+	@$(CP) etc/pulse/default.pa \
+		/etc/pulse/default.pa
