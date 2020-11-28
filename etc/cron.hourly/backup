@@ -1,0 +1,46 @@
+#!/bin/sh
+
+DATE=$(date +%Y-%m-%dT%H)
+DEST_BASE="/data/backup/sys-w20/${DATE}"
+mkdir -p "${DEST_BASE}"
+
+# (1) Update and commit the workstation state (and make a synced backup)
+DEST_WS="${DEST_BASE}/workstation.tar.gz"
+TMP_WS='/dev/shm/ws-backup.tar.gz'
+
+# Run the update and system syncing
+make -C /data/workstation update commit
+
+# Create the backup archive
+tar --acls --xattrs -cpf - /data/workstation 2>&1 \
+  | pigz -p 32 > "${TMP_WS}"
+
+# Move the archive to the e5 server
+mv "${TMP_WS}" "${DEST_WS}"
+
+
+
+
+
+
+
+# (2) Create the /etc backup
+DEST_ETC="${DEST_BASE}/etc.tar.gz"
+TMP_ETC='/dev/shm/etc-backup.tar.gz'
+
+# Add a permission/ownership fixing script
+find /etc -exec stat --printf 'chmod %#a %n\nchown %U:%G %n\n' {} + \
+  > /etc/fix-permissions.sh
+chmod +x /etc/fix-permissions.sh
+
+# Create the backup archive
+tar --acls --xattrs -cpf - /etc 2>&1 \
+  | pigz -p 32 > "${TMP_ETC}"
+
+# Move the archive to the e5 server
+mv "${TMP_ETC}" "${DEST_ETC}"
+
+# (3) Create the /root backup
+
+
+# (4) Create the /home backup

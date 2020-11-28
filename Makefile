@@ -450,3 +450,10 @@ configure-sound:
 		/etc/modprobe.d/disable_sound.conf
 	@$(CP) etc/pulse/default.pa \
 		/etc/pulse/default.pa
+
+configure-backups: configure-cron
+	# Configure automated backups of the system
+	@$(MKDIR) -p /etc/cron.hourly
+	@$(CP) etc/cron.hourly/sync-data /etc/cron.hourly/sync-data
+	@$(CP) etc/cron.hourly/backup /etc/cron.hourly/backup
+	@$(CHMOD) +x /etc/cron.hourly/*

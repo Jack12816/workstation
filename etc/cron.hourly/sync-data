@@ -1,0 +1,17 @@
+#!/bin/bash
+server='10.0.0.211'
+repository='sync-workstation.lan'
+declare -A location
+
+# Config for Locations to Sync
+location['/data/projects/']="$server::$repository/Projects/"
+location['/data/docs/']="$server::$repository/Docs/"
+location['/data/pictures/']="$server::$repository/Pictures/"
+location['/data/other/']="$server::$repository/Other/"
+
+# Do the Sync
+for localPath in "${!location[@]}"; do
+  chown -R jack:jack "${localPath}"
+  rsync --delete -avh --stats --no-motd -Ep --recursive \
+    "$localPath" "${location[$localPath]}"
+done
