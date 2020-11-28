@@ -3,6 +3,8 @@
 DATE=$(date +%Y-%m-%dT%H)
 DEST_BASE="/data/backup/sys-w20/archives/${DATE}"
 TMP_BASE='/dev/shm/backup'
+CLEAR_AFTER_DAYS=3
+
 rm -rf "${TMP_BASE}"
 mkdir -p "${DEST_BASE}" "${TMP_BASE}"
 
@@ -61,14 +63,11 @@ mv "${TMP_ETC}" "${DEST_ETC}"
 mv "${TMP_ROOT}" "${DEST_ROOT}"
 mv "${TMP_CHK}" "${DEST_CHK}"
 
-
-
-
-
-
-
-
-
+# -------------------------------
+# (5) Clear old backups
+DEST=$(dirname "${DEST_BASE}")
+find "${DEST}" -type f -mtime +${CLEAR_AFTER_DAYS} -execdir rm -- '{}' \;
+find "${DEST}" -type d -empty -delete
 
 # -------------------------------
 # (6) Create the /home backup
