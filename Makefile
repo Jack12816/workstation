@@ -240,10 +240,10 @@ install-gem-packages:
 		done
 	@$(PARALLEL) -a /tmp/gems -j30 --bar --colsep '\|' \
 		--retry-failed --retries 5 \
-		'($(SUDO) -u $(UNPRIVILEGED_USER) \
-			$(GREP) -P "^{1} .*[ (]{2}[ ,)]" /tmp/gems.actual \
+		'$(GREP) -P "^{1} .*[ (]{2}[ ,)]" /tmp/gems.actual \
 				>/dev/null 2>&1 \
-			|| $(GEM) install --conservative {1} -v "= {2}")'
+			|| $(SUDO) -u $(UNPRIVILEGED_USER) \
+				$(GEM) install --conservative {1} -v "= {2}"'
 	@$(RM) -rf /tmp/gems /tmp/gems.actual
 
 install-npm-packages:
@@ -265,6 +265,14 @@ etc-commit:
 	# Commit the current state of /etc
 	@$(CD) /etc && $(GIT) add -A . \
 		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
+
+commit:
+	# Commit the current state of the workstation repository
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SHELL) -c '\
+		$(GIT) add -A . \
+		&& $(GIT) commit -am "Automated backup. ($(shell $(DATE) +%s))" \
+		&& $(GIT) pull \
+		&& $(GIT) push'
 
 configure: \
 	configure-versioned-etc \
