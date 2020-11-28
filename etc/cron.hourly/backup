@@ -2,8 +2,11 @@
 
 DATE=$(date +%Y-%m-%dT%H)
 DEST_BASE="/data/backup/sys-w20/archives/${DATE}"
+DEST_HOME='10.0.0.240::/backup/sys-w20/home'
+BACKUP_SSH_PORT=4829
 TMP_BASE='/dev/shm/backup'
-CLEAR_AFTER_DAYS=3
+CLEAR_ARCHIVES_AFTER_DAYS=3
+CLEAR_HOME_AFTER=2W
 
 rm -rf "${TMP_BASE}"
 mkdir -p "${DEST_BASE}" "${TMP_BASE}"
@@ -66,8 +69,19 @@ mv "${TMP_CHK}" "${DEST_CHK}"
 # -------------------------------
 # (5) Clear old backups
 DEST=$(dirname "${DEST_BASE}")
-find "${DEST}" -type f -mtime +${CLEAR_AFTER_DAYS} -execdir rm -- '{}' \;
+find "${DEST}" -type f \
+  -mtime +${CLEAR_ARCHIVES_AFTER_DAYS} -execdir rm -- '{}' \;
 find "${DEST}" -type d -empty -delete
 
 # -------------------------------
 # (6) Create the /home backup
+rdiff-backup \
+  --remote-schema "ssh -C -p${BACKUP_SSH_PORT} %s rdiff-backup --server" \
+  /home "${DEST_HOME}"
+
+# -------------------------------
+# (7) Clear old /home backups
+rdiff-backup \
+  --remote-schema "ssh -C -p${BACKUP_SSH_PORT} %s rdiff-backup --server" \
+  --remove-older-than ${CLEAR_HOME_AFTER} \
+  "${DEST_HOME}"

@@ -293,7 +293,8 @@ configure: \
 	configure-printer \
 	configure-cron \
 	configure-beep \
-	configure-sound
+	configure-sound \
+	configure-backups
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -454,6 +455,7 @@ configure-sound:
 
 configure-backups: configure-cron
 	# Configure automated backups of the system
+	@$(PACMAN) --needed --noconfirm -S rdiff-backup rsync
 	@$(MKDIR) -p /etc/cron.hourly
 	@$(CP) etc/cron.hourly/sync-data /etc/cron.hourly/sync-data
 	@$(CP) etc/cron.hourly/backup /etc/cron.hourly/backup

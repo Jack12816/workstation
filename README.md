@@ -761,10 +761,22 @@ TODO: Research, perform, document this.
 
 ## Backups
 
-TODO: Research, perform, document this.
+We setup automated data synchronization and system backups. Runtime data
+(projects, code, etc) is mirrored with rsync (to a remote server). System
+backups are tar-archives which are moved to a remove server via NFS (via
+autofs). And finally the `/home` directory is backuped with
+[rdiff-backup](https://rdiff-backup.net/), which combines the best features of
+a mirror and an incremental backup.
+
+```shell
+$ make configure-backups
+```
 
 **References:**
 * https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages
+* https://rdiff-backup.net/docs/examples.html
+* https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
+* http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
 
 
 

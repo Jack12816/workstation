@@ -1,0 +1,22 @@
+[Unit]
+Description=Daemon for Backups
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill backups
+ExecStartPre=-/usr/bin/docker rm backups
+ExecStartPre=/bin/bash -c 'make -C /opt/backups'
+ExecStart=/usr/bin/docker run \
+  --dns 10.0.0.240 \
+  -p 4829:22 \
+  -v /mnt/sync/workstation.lan/Backup:/backup \
+  --net bridge \
+  -m 0b \
+  --name backups \
+  backups:latest
+ExecStop=-/usr/bin/docker stop backups
+
+[Install]
+WantedBy=multi-user.target
