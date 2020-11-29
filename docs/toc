@@ -1,0 +1,46 @@
+#!/bin/bash
+
+INPUT="${1}"
+
+if [ -z "${INPUT}" ]; then
+  INPUT='README.md'
+fi
+
+if [ ! -f "${INPUT}" ]; then
+  echo "Usage: toc [FILE]"
+  echo
+  echo "No input found. (${INPUT} is not a file or does not exist)"
+  exit 1
+fi
+
+TMP_DIR=$(mktemp -d)
+trap "rm -rf $TMP_DIR" EXIT
+
+cp "${INPUT}" "${TMP_DIR}/input.md"
+doctoc "${TMP_DIR}/input.md" 2>&1 >/dev/null
+
+ruby <<END
+  toc = false
+  strip_one_level = File.read('${INPUT}').lines.first.start_with? '#'
+
+  lines = File.read('${TMP_DIR}/input.md').lines.map do |line|
+    toc = true if line.match? /START doctoc generated TOC/
+    toc = false if line.match? /END doctoc generated TOC/
+
+    next line if toc
+    nil
+  end
+  lines = lines
+    .compact
+    .reject { |line| line.start_with? '<!--' }
+    .reject { |line| line.start_with? '**Table' }
+    .reject(&:empty?)
+
+  if strip_one_level
+    lines = lines
+      .reject { |line| line.start_with? '- [' }
+      .map { |line| line.gsub(/^\s{2}/, '') }
+  end
+
+  puts lines
+END

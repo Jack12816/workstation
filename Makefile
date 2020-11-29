@@ -69,7 +69,7 @@ SYSTEMCTL ?= systemctl
 TAIL ?= tail
 TEE ?= tee
 TEST ?= test
-TOC ?= toc
+TOC ?= docs/toc
 TR ?= tr
 USERADD ?= useradd
 XARGS ?= xargs
@@ -82,6 +82,9 @@ ifneq ($(USER),root)
 endif
 
 include check-root
+
+.reown:
+	@$(CHOWN) $(UNPRIVILEGED_USER):$(UNPRIVILEGED_USER) -R .
 
 all:
 	# Workstation
@@ -141,6 +144,7 @@ update-readme-toc:
 		-e 'd' README.md > README.md.new
 	@$(MV) -f README.md.new README.md
 	@$(RM) README.md.toc
+	@$(MAKE) --no-print-directory .reown
 
 update-pacman-mirror-list:
 	# Update and rank all german pacman mirrors
@@ -266,7 +270,7 @@ etc-commit:
 	@$(CD) /etc && $(GIT) add -A . \
 		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
 
-commit:
+commit: .reown
 	# Commit the current state of the workstation repository
 	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SHELL) -c '\
 		$(GIT) add -A . \
@@ -290,6 +294,7 @@ configure: \
 	configure-irqbalance \
 	configure-amdgpu \
 	configure-ups \
+	configure-smart-monitoring \
 	configure-printer \
 	configure-cron \
 	configure-beep \
@@ -426,6 +431,26 @@ test-ups: configure-ups
 	#
 	# Now remove wall power from the UPS.
 	# Observe that the machine powers down, in short order.
+
+configure-smart-monitoring:
+	# Configure SMART disk monitoring
+	@$(PACMAN) --needed --noconfirm -S smartmontools  libnotify procps-ng
+	@$(MKDIR) -p /usr/share/smartmontools/smartd_warning.d
+	@$(CP) etc/smartd.conf /etc/smartd.conf
+	@$(CP) usr/share/smartmontools/smartd_warning.d/smartdnotify \
+		/usr/share/smartmontools/smartd_warning.d/smartdnotify
+	@$(CHMOD) +x /usr/share/smartmontools/smartd_warning.d/smartdnotify
+	@$(SYSTEMCTL) enable smartd.service
+	@$(SYSTEMCTL) restart smartd.service
+
+test-smart-monitoring: configure-smart-monitoring
+	# Test the UPS configuration
+	@$(SED) -i 's/^\(DEVICESCAN .*\)/\1 -M test/g' /etc/smartd.conf
+	@$(SYSTEMCTL) restart smartd.service
+	#
+	# Now you should have received an email and a system notification.
+	#
+	@$(MAKE) --no-print-directory configure-smart-monitoring
 
 configure-printer:
 	# Configure the printer

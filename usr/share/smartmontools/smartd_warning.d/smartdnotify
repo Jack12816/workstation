@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Send a email
+echo "$SMARTD_MESSAGE" \
+  | mail -s "WS/SMART: $SMARTD_FAILTYPE" hermann.mayer92@gmail.com
+
+# Send a system notification to every logged in user (libnotify)
+IFS=$'\n'
+for LINE in `w -hs`; do
+  USER=`echo $LINE | awk '{print $1}'`
+  USER_ID=`id -u $USER`
+  DISP_ID=`echo $LINE | awk '{print $8}'`
+  sudo -u $USER \
+    DISPLAY=$DISP_ID DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$USER_ID/bus \
+    notify-send "S.M.A.R.T Error ($SMARTD_FAILTYPE)" "$SMARTD_MESSAGE" \
+    --icon=dialog-warning
+done

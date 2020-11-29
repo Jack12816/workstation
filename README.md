@@ -33,10 +33,11 @@
     - [Automatic IRQ/CPU balancing](#automatic-irqcpu-balancing)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
+  - [SMART Configuration](#smart-configuration)
   - [Printer](#printer)
   - [PC Speaker (bell/beep)](#pc-speaker-bellbeep)
-  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
   - [Backups](#backups)
+  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
 - [Benchmarking](#benchmarking)
 - [TODO](#todo)
 <!-- TOC-END -->
@@ -693,7 +694,8 @@ $ make configure-amdgpu
 
 ## UPS Configuration
 
-Plugin the USB cable of the APC UPS and configure the watching service like this:
+Plugin the USB cable of the APC UPS and configure the watching service like
+this:
 
 ```shell
 $ make configure-amdgpu
@@ -714,6 +716,29 @@ $ make test-ups-finish
 
 **References:**
 * https://wiki.archlinux.org/index.php/APC_UPS
+
+## SMART Configuration
+
+To detect potential disk errors early (which is quite important for the system
+while using RAID0 and XFS), we want to be notified of S.M.A.R.T. issues. So
+configure the daemon like this:
+
+```shell
+$ make configure-smart-monitoring
+```
+
+Everything should be up and running. Test the daemon notifications like this:
+
+```shell
+$ make test-smart-monitoring
+```
+
+You should see a desktop system notification (2x, one per device) and you
+should have received two emails. The test configuration is directly reset
+afterwards.
+
+**References:**
+* https://wiki.archlinux.org/index.php/S.M.A.R.T.
 
 ## Printer
 
@@ -738,6 +763,26 @@ $ make configure-beep
 **References:**
 * https://wiki.archlinux.org/index.php/PC_speaker
 
+## Backups
+
+We setup automated data synchronization and system backups. Runtime data
+(projects, code, etc) is mirrored with rsync (to a remote server). System
+backups are tar-archives which are moved to a remove server via NFS (via
+autofs). And finally the `/home` directory is backuped with
+[rdiff-backup](https://rdiff-backup.net/), which combines the best features of
+a mirror and an incremental backup.
+
+```shell
+$ make configure-backups
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages
+* https://rdiff-backup.net/docs/examples.html
+* https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
+* http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
+
+
 
 
 
@@ -757,26 +802,6 @@ TODO: Research, perform, document this.
 
 
 
-
-
-## Backups
-
-We setup automated data synchronization and system backups. Runtime data
-(projects, code, etc) is mirrored with rsync (to a remote server). System
-backups are tar-archives which are moved to a remove server via NFS (via
-autofs). And finally the `/home` directory is backuped with
-[rdiff-backup](https://rdiff-backup.net/), which combines the best features of
-a mirror and an incremental backup.
-
-```shell
-$ make configure-backups
-```
-
-**References:**
-* https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages
-* https://rdiff-backup.net/docs/examples.html
-* https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
-* http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
 
 
 
@@ -810,3 +835,4 @@ TODO: Research, perform, document this.
 * https://wiki.archlinux.org/index.php/Mail_server
 * https://www.archlinux.org/packages/?name=mlocate        updatedb
 * https://wiki.archlinux.org/index.php/Clipboard#Managers
+* https://wiki.archlinux.org/index.php/Audit_framework
