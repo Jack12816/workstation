@@ -552,6 +552,26 @@ $ make configure-package-compilation
 
 --- --- --- --- --- --- ---
 
+## Performance Monitoring
+
+TODO: Research, perform, document this.
+
+pacman -S pcp cockpit-pcp
+
+sudo pacman -S cockpit
+sudo systemctl enable --now cockpit.socket
+
+systemctl enable pmcd.service
+systemctl enable pmlogger.service
+
+
+**References:**
+* https://pcp.io/index.html
+* https://cockpit-project.org/
+* https://cockpit-project.org/running.html#archlinux
+
+
+
 ## Performance Tuning
 
 ### Automatic IRQ/CPU balancing
@@ -566,18 +586,14 @@ $ make configure-irqbalance
 **References:**
 * https://wiki.archlinux.org/index.php/improving_performance#irqbalance
 
+### Kernel Settings
 
+The best performance kernel settings as persistent sysctl configurations. Just
+run everything is in place:
 
-
-
-
-
-
-
-
-yay -S pcp
-systemctl enable pmcd.service
-systemctl enable pmlogger.service
+```shell
+$ make configure-sysctl
+```
 
 -> ?
 echo always > /sys/kernel/mm/transparent_hugepage/enabled
@@ -601,57 +617,6 @@ vm.overcommit_memory = 1
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
--> ?
-kernel.sched_autogroup_enabled=1
-
-[modules]
-cpufreq_conservative=+r
-
-[cpu]
-priority=10
-governor=conservative|powersave
-energy_perf_bias=normal
-
-[audio]
-timeout=10
-
-[video]
-radeon_powersave=dpm-balanced, auto
-
-
-
-
-Highly recommended for file systems greater than 1 TB in size. The inode64
-parameter configures XFS to allocate inodes and data across the entire file
-system. This ensures that inodes are not allocated largely at the beginning of
-the file system, and data is not largely allocated at the end of the file
-system, improving performance on large file systems.
-xfs inode64
-
-https://wiki.archlinux.org/index.php/sysctl
-
-
-
-
-
-
-
-* https://stackoverflow.com/questions/40777684/create-huge-page-shared-memory-for-ipc-in-linux
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuring_transparent_huge_pages
-
-
 **References:**
 * https://wiki.archlinux.org/index.php/improving_performance
 * https://wiki.archlinux.org/index.php/improving_performance#irqbalance
@@ -661,7 +626,8 @@ https://wiki.archlinux.org/index.php/sysctl
 * https://aur.archlinux.org/packages/tuned/
 * https://documentation.suse.com/sbp/all/html/SBP-performance-tuning/index.html
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index
-
+* https://stackoverflow.com/questions/40777684/create-huge-page-shared-memory-for-ipc-in-linux
+* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuring_transparent_huge_pages
 
 
 

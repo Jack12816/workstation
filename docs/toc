@@ -1,4 +1,5 @@
 #!/bin/bash
+# Base on https://github.com/thlorenz/doctoc
 
 INPUT="${1}"
 

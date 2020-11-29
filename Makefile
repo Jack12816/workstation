@@ -65,6 +65,7 @@ SORT ?= sort
 SSH_COPY_ID ?= ssh-copy-id
 SSH ?= ssh
 SUDO ?= sudo
+SYSCTL ?= sysctl
 SYSTEMCTL ?= systemctl
 TAIL ?= tail
 TEE ?= tee
@@ -363,6 +364,9 @@ configure-sysctl:
 		/etc/sysctl.d/virtual-memory.conf
 	@$(CP) etc/sysctl.d/files.conf \
 		/etc/sysctl.d/files.conf
+	@$(CP) etc/sysctl.d/kernel.conf \
+		/etc/sysctl.d/kernel.conf
+	@$(SYSCTL) --system
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
