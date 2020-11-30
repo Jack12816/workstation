@@ -391,6 +391,7 @@ configure-sysctl:
 	@$(CP) etc/sysctl.d/kernel.conf \
 		/etc/sysctl.d/kernel.conf
 	@$(SYSCTL) --system
+	@$(SYSTEMCTL) daemon-reload
 
 configure-periodic-trim:
 	# Configure periodic TRIM for all discardable filesystems
