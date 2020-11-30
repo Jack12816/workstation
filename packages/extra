@@ -11,6 +11,7 @@ android-tools
 android-udev
 ansible
 ant
+anything-sync-daemon
 apache
 apcupsd
 apg
@@ -571,6 +572,7 @@ plasma-thunderbolt
 plasma-vault
 plasma-workspace
 plasma-workspace-wallpapers
+podman-compose
 poedit
 polkit-kde-agent
 polybar-git
@@ -581,6 +583,7 @@ powertop
 poxml
 print-manager
 prison
+profile-sync-daemon
 projectm
 pspg
 pstoedit

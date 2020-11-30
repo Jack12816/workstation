@@ -40,7 +40,8 @@
   - [Printer](#printer)
   - [PC Speaker (bell/beep)](#pc-speaker-bellbeep)
   - [Backups](#backups)
-  - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
+  - [Browser profiles in RAM disk](#browser-profiles-in-ram-disk)
+  - [Docker Repository in RAM disk](#docker-repository-in-ram-disk)
 - [Benchmarking](#benchmarking)
 - [Todos](#todos)
 <!-- TOC-END -->
@@ -720,13 +721,45 @@ $ make configure-backups
 * https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
 * http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
 
-## Docker Repository in tmpfs
+
+
+
+
+
+
+## Browser profiles in RAM disk
 
 TODO: Research, perform, document this.
+
+```shell
+$ make configure-browser-profiles
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/Anything-sync-daemon
+
+## Docker Repository in RAM disk
+
+TODO: Research, perform, document this.
+
+```shell
+$ make configure-docker
+```
 
 **References:**
 * https://wiki.archlinux.org/index.php/Anything-sync-daemon
 * https://github.com/graysky2/anything-sync-daemon
+
+
+
+
+
+
+
+
+
+
+
 
 # Benchmarking
 
@@ -744,5 +777,3 @@ TODO: Research, perform, document this.
 
 * https://wiki.archlinux.org/index.php/PulseAudio
 * https://wiki.archlinux.org/index.php/Audit_framework
-
-test

@@ -304,7 +304,9 @@ configure: \
 	configure-beep \
 	configure-sound \
 	configure-backups \
-	configure-perf-monitoring
+	configure-perf-monitoring \
+	configure-browser-profiles \
+	configure-docker
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -514,3 +516,28 @@ configure-perf-monitoring:
 	@$(SYSTEMCTL) restart tuned.service
 	@$(SYSTEMCTL) restart pmcd.service
 	@$(SYSTEMCTL) restart pmlogger.service
+
+configure-browser-profiles:
+	# Configure the user browser profiles
+	@$(PACMAN) --needed --noconfirm -S profile-sync-daemon
+
+
+
+
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SYSTEMCTL) --user enable psd.service
+
+
+
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SYSTEMCTL) --user start psd.service
+
+	@$(PSD) preview
+
+
+
+
+configure-docker:
+	# Configure the Docker service
+	@$(PACMAN) --needed --noconfirm -S docker docker-compose \
+		podman podman-compose anything-sync-daemon
+
+
