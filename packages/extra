@@ -572,6 +572,8 @@ plasma-thunderbolt
 plasma-vault
 plasma-workspace
 plasma-workspace-wallpapers
+plymouth
+plymouth-theme-connect-git
 podman-compose
 poedit
 polkit-kde-agent
