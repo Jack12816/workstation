@@ -18,6 +18,7 @@ PACMAN_MIRRORS_URL ?= https://www.archlinux.org/mirrorlist/?country=DE&protocol=
 export UNPRIVILEGED_USER
 
 # Host binaries
+ASD ?= asd
 AWK ?= awk
 BASH ?= bash
 BOOTCTL ?= bootctl
@@ -42,6 +43,7 @@ GIT ?= git
 GREP ?= grep
 GVIM ?= gvim
 I3_MSG ?= i3-msg
+ID ?= id
 JQ ?= jq
 LN ?= ln
 LS ?= ls
@@ -56,6 +58,7 @@ PARALLEL ?= parallel
 PASSWD ?= passwd
 PKGFILE ?= pkgfile
 PRINTF ?= printf
+PSD ?= psd
 RANKMIRRORS ?= rankmirrors
 READ ?= read
 RM ?= rm
@@ -269,8 +272,10 @@ install-npm-packages:
 
 etc-commit:
 	# Commit the current state of /etc
-	@$(CD) /etc && $(GIT) add -A . \
-		&& $(GIT) commit -am 'version-$(shell $(DATE) +%s)'
+	@$(CD) /etc && $(GIT) add -A . && ( \
+		$(GIT) diff-index --quiet HEAD \
+		|| $(GIT) commit -am 'version-$(shell $(DATE) +%s)' \
+	)
 
 commit: .reown
 	# Commit the current state of the workstation repository
@@ -316,7 +321,7 @@ configure-versioned-etc:
 		$(GIT) config user.email 'etc@localhost'; \
 		$(GIT) config user.name 'Workstation'; \
 	)
-	$(MAKE) --no-print-directory etc-commit
+	@$(MAKE) --no-print-directory etc-commit
 
 configure-bootloader: \
 	update-bootloader \
@@ -369,6 +374,8 @@ configure-sysctl:
 	@$(MKDIR) -p /etc/modules-load.d
 	@$(MKDIR) -p /etc/udev/rules.d
 	@$(MKDIR) -p /etc/sysctl.d/
+	@$(CP) etc/systemd/logind.conf \
+		/etc/systemd/logind.conf
 	@$(CP) etc/modules-load.d/network.conf \
 		/etc/modules-load.d/network.conf
 	@$(CP) etc/udev/rules.d/60-ioschedulers.rules \
@@ -519,25 +526,24 @@ configure-perf-monitoring:
 
 configure-browser-profiles:
 	# Configure the user browser profiles
+	@$(eval RTDIR=/run/user/$(shell $(ID) -u $(UNPRIVILEGED_USER)))
 	@$(PACMAN) --needed --noconfirm -S profile-sync-daemon
-
-
-
-
-	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SYSTEMCTL) --user enable psd.service
-
-
-
-	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SYSTEMCTL) --user start psd.service
-
-	@$(PSD) preview
-
-
-
+	@$(CP) home/.config/psd/psd.conf \
+		/home/$(UNPRIVILEGED_USER)/.config/psd/psd.conf
+	@$(SUDO) -u $(UNPRIVILEGED_USER) XDG_RUNTIME_DIR=$(RTDIR) \
+		$(SYSTEMCTL) --user enable psd.service
+	@$(SUDO) -u $(UNPRIVILEGED_USER) XDG_RUNTIME_DIR=$(RTDIR) \
+		$(SYSTEMCTL) --user start psd.service
+	@$(SUDO) -u $(UNPRIVILEGED_USER) XDG_RUNTIME_DIR=$(RTDIR) \
+		$(PSD) preview
 
 configure-docker:
 	# Configure the Docker service
 	@$(PACMAN) --needed --noconfirm -S docker docker-compose \
 		podman podman-compose anything-sync-daemon
-
-
+	@$(CP) etc/asd.conf /etc/asd.conf
+	@$(SYSTEMCTL) enable asd.service
+	@$(SYSTEMCTL) enable docker.service
+	@$(SYSTEMCTL) stop docker.service
+	@$(SYSTEMCTL) restart asd.service
+	@$(SYSTEMCTL) start docker.service
