@@ -548,6 +548,8 @@ configure-docker:
 	@$(CP) etc/asd.conf /etc/asd.conf
 	@$(CP) etc/systemd/system/asd-resync.timer.d/frequency.conf \
 		/etc/systemd/system/asd-resync.timer.d/frequency.conf
+	@$(CP) etc/systemd/system/docker.service.d/override.conf \
+		/etc/systemd/system/docker.service.d/override.conf
 	@$(SYSTEMCTL) enable asd.service
 	@$(SYSTEMCTL) enable docker.service
 	@$(SYSTEMCTL) stop docker.service
