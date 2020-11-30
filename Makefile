@@ -57,6 +57,7 @@ PACMAN ?= pacman
 PARALLEL ?= parallel
 PASSWD ?= passwd
 PKGFILE ?= pkgfile
+PLYMOUTH_SET_DEFAULT_THEME ?= plymouth-set-default-theme
 PRINTF ?= printf
 PSD ?= psd
 RANKMIRRORS ?= rankmirrors
@@ -311,7 +312,8 @@ configure: \
 	configure-backups \
 	configure-perf-monitoring \
 	configure-browser-profiles \
-	configure-docker
+	configure-docker \
+	configure-boot-splash
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -561,3 +563,23 @@ configure-docker:
 	@$(SYSTEMCTL) stop docker.service
 	@$(SYSTEMCTL) restart asd.service
 	@$(SYSTEMCTL) start docker.service
+
+configure-boot-splash:
+	# Configure a boot splash animation
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) --needed --noconfirm -S \
+		plymouth plymouth-theme-connect-git
+	@$(CP) etc/mkinitcpio.conf \
+		/etc/mkinitcpio.conf
+	@$(CP) etc/plymouth/plymouthd.conf \
+		/etc/plymouth/plymouthd.conf
+	@$(CP) etc/systemd/system/sddm-plymouth.service.d/override.conf \
+		/etc/systemd/system/sddm-plymouth.service.d/override.conf
+	@$(CP) etc/systemd/system/plymouth-quit.service.d/override.conf \
+		/etc/systemd/system/plymouth-quit.service.d/override.conf
+	@$(CP) etc/systemd/system/plymouth-quit-wait.service.d/override.conf \
+		/etc/systemd/system/plymouth-quit-wait.service.d/override.conf
+	@$(CP) etc/systemd/system/plymouth-deactivate.service.d/override.conf \
+		/etc/systemd/system/plymouth-deactivate.service.d/override.conf
+	@$(SYSTEMCTL) disable sddm.service
+	@$(SYSTEMCTL) enable sddm-plymouth.service
+	@$(PLYMOUTH_SET_DEFAULT_THEME) -R connect

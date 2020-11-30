@@ -42,6 +42,7 @@
   - [Printer](#printer)
   - [PC Speaker (bell/beep)](#pc-speaker-bellbeep)
   - [Backups](#backups)
+  - [Boot Splash](#boot-splash)
 - [Benchmarking](#benchmarking)
 - [Todos](#todos)
 <!-- TOC-END -->
@@ -747,6 +748,19 @@ $ make configure-backups
 * https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
 * http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
 
+## Boot Splash
+
+As the bootup may takes some time (synching up to 64gb of data into RAM), we
+can show a nice animation. Just run:
+
+```shell
+$ make configure-boot-splash
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/plymouth
+* https://github.com/adi1090x/plymouth-themes
+
 # Benchmarking
 
 TODO: Research, perform, document this.
@@ -763,3 +777,4 @@ TODO: Research, perform, document this.
 
 * https://wiki.archlinux.org/index.php/PulseAudio
 * https://wiki.archlinux.org/index.php/Audit_framework
+* https://wiki.archlinux.org/index.php/Pdnsd
