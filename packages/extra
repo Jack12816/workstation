@@ -77,6 +77,11 @@ chemical-mime-data
 chromium
 clipit
 cloc
+cockpit
+cockpit-dashboard
+cockpit-machines
+cockpit-pcp
+cockpit-podman
 collectd
 colorpicker
 cpuburn
@@ -514,6 +519,7 @@ oxygen-gtk2
 oxygen-icons
 p7zip
 package-query
+packagekit
 packer
 pacman-contrib
 pacserve
@@ -756,6 +762,7 @@ ttf-droid
 ttf-font-awesome
 ttf-liberation
 ttf-ms-fonts
+tuned
 turbostat
 umbrello
 unclutter-xfixes-git

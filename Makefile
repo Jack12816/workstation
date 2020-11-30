@@ -70,6 +70,7 @@ SYSTEMCTL ?= systemctl
 TAIL ?= tail
 TEE ?= tee
 TEST ?= test
+TIMEDATECTL ?= timedatectl
 TOC ?= docs/toc
 TR ?= tr
 USERADD ?= useradd
@@ -275,14 +276,16 @@ commit: .reown
 	# Commit the current state of the workstation repository
 	@$(SUDO) -u $(UNPRIVILEGED_USER) $(SHELL) -c '\
 		$(GIT) add -A . \
-		&& ($(GIT) diff-index --quiet HEAD || $(GIT) commit --quiet \
-			-am "Automated backup. ($(shell $(DATE) +%s))") \
+		&& ($(GIT) diff-index --quiet HEAD || \
+			$(GIT) -c "commit.gpgsign=false" commit --quiet \
+				-am "Automated backup. ($(shell $(DATE) +%s))") \
 		&& $(GIT) pull --quiet \
 		&& $(GIT) push --quiet'
 
 configure: \
 	configure-versioned-etc \
 	configure-bootloader \
+	configure-time-sync \
 	configure-pacman \
 	configure-gpg \
 	configure-directories \
@@ -300,7 +303,8 @@ configure: \
 	configure-cron \
 	configure-beep \
 	configure-sound \
-	configure-backups
+	configure-backups \
+	configure-perf-monitoring
 
 configure-versioned-etc:
 	# Configure a versioned /etc via git
@@ -324,6 +328,15 @@ install-bootloader-config:
 	# Update the bootloader settings
 	@$(CP) boot/loader/loader.conf /boot/loader/loader.conf
 	@$(CP) boot/loader/entries/arch.conf /boot/loader/entries/arch.conf
+
+configure-time-sync:
+	# Configure network-based time synchronization
+	@$(CP) etc/systemd/timesyncd.conf /etc/systemd/timesyncd.conf
+	@$(SYSTEMCTL) enable systemd-timesyncd.service
+	@$(SYSTEMCTL) restart systemd-timesyncd.service
+	@$(TIMEDATECTL) set-ntp true
+	@$(TIMEDATECTL) status
+	@$(TIMEDATECTL) timesync-status
 
 configure-pacman:
 	# Configure pacman
@@ -489,3 +502,15 @@ configure-backups: configure-cron
 	@$(CP) etc/cron.hourly/sync-data /etc/cron.hourly/sync-data
 	@$(CP) etc/cron.hourly/backup /etc/cron.hourly/backup
 	@$(CHMOD) +x /etc/cron.hourly/*
+
+configure-perf-monitoring:
+	# Configure performance monitoring
+	@$(PACMAN) --needed --noconfirm -S pcp cockpit packagekit \
+		cockpit-pcp cockpit-dashboard cockpit-machines cockpit-podman
+	@$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) --needed --noconfirm -S tuned
+	@$(SYSTEMCTL) enable tuned.service
+	@$(SYSTEMCTL) enable pmcd.service
+	@$(SYSTEMCTL) enable pmlogger.service
+	@$(SYSTEMCTL) restart tuned.service
+	@$(SYSTEMCTL) restart pmcd.service
+	@$(SYSTEMCTL) restart pmlogger.service

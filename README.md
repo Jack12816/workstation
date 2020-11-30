@@ -29,8 +29,11 @@
     - [Disable Watchdogs](#disable-watchdogs)
   - [Periodic TRIM](#periodic-trim)
   - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
+  - [Time synchronization](#time-synchronization)
+  - [Performance Monitoring](#performance-monitoring)
   - [Performance Tuning](#performance-tuning)
     - [Automatic IRQ/CPU balancing](#automatic-irqcpu-balancing)
+    - [Kernel Settings](#kernel-settings)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
   - [SMART Configuration](#smart-configuration)
@@ -39,7 +42,7 @@
   - [Backups](#backups)
   - [Docker Repository in tmpfs](#docker-repository-in-tmpfs)
 - [Benchmarking](#benchmarking)
-- [TODO](#todo)
+- [Todos](#todos)
 <!-- TOC-END -->
 
 # Hardware Setup
@@ -546,31 +549,34 @@ $ make configure-package-compilation
 * https://wiki.archlinux.org/index.php/Makepkg#Improving_compile_times
 * https://wiki.archlinux.org/index.php/Makepkg#Utilizing_multiple_cores_on_compression
 
+## Time synchronization
 
+Synchronizing the system clock across the network, as easy as:
 
+```shell
+$ make configure-time-sync
+```
 
-
---- --- --- --- --- --- ---
+**References:**
+* https://wiki.archlinux.org/index.php/Systemd-timesyncd
+* https://wiki.archlinux.org/index.php/System_time#Time_synchronization
 
 ## Performance Monitoring
 
-TODO: Research, perform, document this.
+To monitor the performance of the machine we use PCP and cockpit. For
+installation and setup just type:
 
-pacman -S pcp cockpit-pcp
+```shell
+$ make configure-perf-monitoring
+```
 
-sudo pacman -S cockpit
-sudo systemctl enable --now cockpit.socket
-
-systemctl enable pmcd.service
-systemctl enable pmlogger.service
-
+To start a cockpit browser just run `$ /usr/lib/cockpit/cockpit-desktop /` as
+an unprivileged user.
 
 **References:**
 * https://pcp.io/index.html
 * https://cockpit-project.org/
 * https://cockpit-project.org/running.html#archlinux
-
-
 
 ## Performance Tuning
 
@@ -595,28 +601,6 @@ run everything is in place:
 $ make configure-sysctl
 ```
 
--> ?
-echo always > /sys/kernel/mm/transparent_hugepage/enabled
-echo madvise > /sys/kernel/mm/transparent_hugepage/defrag
-https://github.com/torvalds/linux/blob/master/Documentation/vm/transhuge.rst
-
--> ?
-vm.overcommit_memory=1
-
-vm.dirty_ratio
-vm.dirty_background_ratio
-vm.overcommit_memory
-
-
-By default, the kernel performs heuristic memory overcommit handling by
-estimating the amount of memory available and failing requests that are too
-large. However, since memory is allocated using a heuristic rather than a
-precise algorithm, overloading memory is possible with this setting.
-vm.overcommit_memory = 1
-
-
-
-
 **References:**
 * https://wiki.archlinux.org/index.php/improving_performance
 * https://wiki.archlinux.org/index.php/improving_performance#irqbalance
@@ -628,19 +612,7 @@ vm.overcommit_memory = 1
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index
 * https://stackoverflow.com/questions/40777684/create-huge-page-shared-memory-for-ipc-in-linux
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuring_transparent_huge_pages
-
-
-
-
-
-
-
-
-
---- --- --- --- --- --- ---
-
-
-
+* https://wiki.archlinux.org/index.php/Improving_performance#Input/output_schedulers
 
 ## GPU Configuration
 
@@ -748,16 +720,6 @@ $ make configure-backups
 * https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
 * http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
 
-
-
-
-
---- --- --- --- --- --- ---
-
-
-
-
-
 ## Docker Repository in tmpfs
 
 TODO: Research, perform, document this.
@@ -765,18 +727,6 @@ TODO: Research, perform, document this.
 **References:**
 * https://wiki.archlinux.org/index.php/Anything-sync-daemon
 * https://github.com/graysky2/anything-sync-daemon
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Benchmarking
 
@@ -790,15 +740,7 @@ TODO: Research, perform, document this.
 * https://wiki.archlinux.org/index.php/benchmarking#S
 * http://www.phoronix-test-suite.com/?k=features
 
-# TODO
+# Todos
 
 * https://wiki.archlinux.org/index.php/PulseAudio
-* https://wiki.archlinux.org/index.php/Power_management
-* https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate
-* https://wiki.archlinux.org/index.php/General_recommendations#Networking
-* https://wiki.archlinux.org/index.php/System_time#Time_synchronization
-* https://wiki.archlinux.org/index.php/Improving_performance#Input/output_schedulers
-* https://wiki.archlinux.org/index.php/Mail_server
-* https://www.archlinux.org/packages/?name=mlocate        updatedb
-* https://wiki.archlinux.org/index.php/Clipboard#Managers
 * https://wiki.archlinux.org/index.php/Audit_framework
