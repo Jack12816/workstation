@@ -530,9 +530,15 @@ configure-perf-monitoring:
 configure-browser-profiles:
 	# Configure the user browser profiles
 	@$(eval RTDIR=/run/user/$(shell $(ID) -u $(UNPRIVILEGED_USER)))
+	@$(eval CNFDIR=/home/$(UNPRIVILEGED_USER)/.config)
 	@$(PACMAN) --needed --noconfirm -S profile-sync-daemon
-	@$(CP) home/.config/psd/psd.conf \
-		/home/$(UNPRIVILEGED_USER)/.config/psd/psd.conf
+	@$(MKDIR) -p $(CNFDIR)/psd/
+	@$(MKDIR) -p $(CNFDIR)/systemd/user/psd-resync.timer.d/
+	@$(CP) home/.config/psd/psd.conf $(CNFDIR)/psd/psd.conf
+	@$(CP) home/.config/systemd/user/psd-resync.timer.d/frequency.conf \
+		$(CNFDIR)/systemd/user/psd-resync.timer.d/frequency.conf
+	@$(CHOWN) $(UNPRIVILEGED_USER):$(UNPRIVILEGED_USER) -R \
+		/home/$(UNPRIVILEGED_USER)
 	@$(SUDO) -u $(UNPRIVILEGED_USER) XDG_RUNTIME_DIR=$(RTDIR) \
 		$(SYSTEMCTL) --user enable psd.service
 	@$(SUDO) -u $(UNPRIVILEGED_USER) XDG_RUNTIME_DIR=$(RTDIR) \
