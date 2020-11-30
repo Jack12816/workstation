@@ -420,9 +420,12 @@ configure-directories:
 	@$(MKDIR) -p /data/docs
 	@$(MKDIR) -p /data/other
 	@$(MKDIR) -p /mnt/network/e5.lan
-	@$(LN) -sf /mnt/network/e5.lan/media /data/media
-	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Music /data/music
-	@$(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Backup /data/backup
+	@$(TEST) -L /data/media \
+		|| $(LN) -sf /mnt/network/e5.lan/media /data/media
+	@$(TEST) -L /data/music \
+		|| $(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Music /data/music
+	@$(TEST) -L /data/backup \
+		|| $(LN) -sf /mnt/network/e5.lan/sync/workstation.lan/Backup /data/backup
 	@$(CHOWN) $(UNPRIVILEGED_USER):$(UNPRIVILEGED_USER) -R /data
 
 configure-irqbalance:
