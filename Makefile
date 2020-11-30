@@ -541,7 +541,10 @@ configure-docker:
 	# Configure the Docker service
 	@$(PACMAN) --needed --noconfirm -S docker docker-compose \
 		podman podman-compose anything-sync-daemon
+	@$(MKDIR) -p /etc/systemd/system/asd-resync.timer.d
 	@$(CP) etc/asd.conf /etc/asd.conf
+	@$(CP) etc/systemd/system/asd-resync.timer.d/frequency.conf \
+		/etc/systemd/system/asd-resync.timer.d/frequency.conf
 	@$(SYSTEMCTL) enable asd.service
 	@$(SYSTEMCTL) enable docker.service
 	@$(SYSTEMCTL) stop docker.service

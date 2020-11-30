@@ -24,24 +24,24 @@
   - [Bootloader](#bootloader)
   - [First Reboot](#first-reboot)
 - [Configuration](#configuration)
-  - [Tune Kernel Parameters](#tune-kernel-parameters)
-    - [Disable CPU exploit mitigations](#disable-cpu-exploit-mitigations)
-    - [Disable Watchdogs](#disable-watchdogs)
   - [Periodic TRIM](#periodic-trim)
-  - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
   - [Time synchronization](#time-synchronization)
   - [Performance Monitoring](#performance-monitoring)
   - [Performance Tuning](#performance-tuning)
+    - [Kernel Parameters](#kernel-parameters)
+      - [Disable CPU exploit mitigations](#disable-cpu-exploit-mitigations)
+      - [Disable Watchdogs](#disable-watchdogs)
     - [Automatic IRQ/CPU balancing](#automatic-irqcpu-balancing)
     - [Kernel Settings](#kernel-settings)
+    - [Package Compilation in tmpfs](#package-compilation-in-tmpfs)
+    - [Browser profiles in RAM disk](#browser-profiles-in-ram-disk)
+    - [Docker Repository in RAM disk](#docker-repository-in-ram-disk)
   - [GPU Configuration](#gpu-configuration)
   - [UPS Configuration](#ups-configuration)
   - [SMART Configuration](#smart-configuration)
   - [Printer](#printer)
   - [PC Speaker (bell/beep)](#pc-speaker-bellbeep)
   - [Backups](#backups)
-  - [Browser profiles in RAM disk](#browser-profiles-in-ram-disk)
-  - [Docker Repository in RAM disk](#docker-repository-in-ram-disk)
 - [Benchmarking](#benchmarking)
 - [Todos](#todos)
 <!-- TOC-END -->
@@ -501,28 +501,6 @@ and reboot the machine with `$ reboot`.
 
 # Configuration
 
-## Tune Kernel Parameters
-
-### Disable CPU exploit mitigations
-
-Add `mitigations=off` to the kernel options. This will disable all CPU exploit
-mitigations, to maximize performance.
-
-**References:**
-* https://wiki.archlinux.org/index.php/improving_performance#Turn_off_CPU_exploit_mitigations
-
-### Disable Watchdogs
-
-Add `nowatchdog` and `nmi_watchdog=0` to the kernel options. Additionaly
-blacklist the watchdog kernel modules like this:
-
-```shell
-$ make configure-watchdogs
-```
-
-**References:**
-* https://wiki.archlinux.org/index.php/improving_performance#Watchdogs
-
 ## Periodic TRIM
 
 The service executes fstrim(8) on all mounted filesystems on devices that
@@ -534,21 +512,6 @@ $ make configure-periodic-trim
 
 **References:**
 * https://wiki.archlinux.org/index.php/Solid_state_drive#Periodic_TRIM
-
-## Package Compilation in tmpfs
-
-The default parallel jobs where set to **24**, the build directory was
-relocated to shared memory, the compression tool settings now feature parallel
-optimizations and the default package extension disables compression
-completely. This should speed up AUR builds a lot.
-
-```
-$ make configure-package-compilation
-```
-
-**References:**
-* https://wiki.archlinux.org/index.php/Makepkg#Improving_compile_times
-* https://wiki.archlinux.org/index.php/Makepkg#Utilizing_multiple_cores_on_compression
 
 ## Time synchronization
 
@@ -580,6 +543,28 @@ an unprivileged user.
 * https://cockpit-project.org/running.html#archlinux
 
 ## Performance Tuning
+
+### Kernel Parameters
+
+#### Disable CPU exploit mitigations
+
+Add `mitigations=off` to the kernel options. This will disable all CPU exploit
+mitigations, to maximize performance.
+
+**References:**
+* https://wiki.archlinux.org/index.php/improving_performance#Turn_off_CPU_exploit_mitigations
+
+#### Disable Watchdogs
+
+Add `nowatchdog` and `nmi_watchdog=0` to the kernel options. Additionaly
+blacklist the watchdog kernel modules like this:
+
+```shell
+$ make configure-watchdogs
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/improving_performance#Watchdogs
 
 ### Automatic IRQ/CPU balancing
 
@@ -614,6 +599,47 @@ $ make configure-sysctl
 * https://stackoverflow.com/questions/40777684/create-huge-page-shared-memory-for-ipc-in-linux
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/performance_tuning_guide/index#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuring_transparent_huge_pages
 * https://wiki.archlinux.org/index.php/Improving_performance#Input/output_schedulers
+
+### Package Compilation in tmpfs
+
+The default parallel jobs where set to **24**, the build directory was
+relocated to shared memory, the compression tool settings now feature parallel
+optimizations and the default package extension disables compression
+completely. This should speed up AUR builds a lot.
+
+```
+$ make configure-package-compilation
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/Makepkg#Improving_compile_times
+* https://wiki.archlinux.org/index.php/Makepkg#Utilizing_multiple_cores_on_compression
+
+### Browser profiles in RAM disk
+
+Speed up the browsers by putting their profiles fully into memory.
+
+```shell
+$ make configure-browser-profiles
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/Anything-sync-daemon
+* https://wiki.archlinux.org/index.php/Firefox/Tweaks#Move_disk_cache_to_RAM
+* https://wiki.archlinux.org/index.php/Chromium#Cache_in_tmpfs
+
+### Docker Repository in RAM disk
+
+We put the whole Docker repository (all images plus runtime data) fully into
+memory to increase application speeds as much as possible.
+
+```shell
+$ make configure-docker
+```
+
+**References:**
+* https://wiki.archlinux.org/index.php/Anything-sync-daemon
+* https://github.com/graysky2/anything-sync-daemon
 
 ## GPU Configuration
 
@@ -720,46 +746,6 @@ $ make configure-backups
 * https://rdiff-backup.net/docs/examples.html
 * https://www.thomas-krenn.com/de/wiki/Backup_unter_Linux_mit_rdiff-backup
 * http://jorgenmodin.net/index_html/archive/2010/02/09/make-rdiff-backup-use-a-different-port-for-ssh
-
-
-
-
-
-
-
-## Browser profiles in RAM disk
-
-TODO: Research, perform, document this.
-
-```shell
-$ make configure-browser-profiles
-```
-
-**References:**
-* https://wiki.archlinux.org/index.php/Anything-sync-daemon
-
-## Docker Repository in RAM disk
-
-TODO: Research, perform, document this.
-
-```shell
-$ make configure-docker
-```
-
-**References:**
-* https://wiki.archlinux.org/index.php/Anything-sync-daemon
-* https://github.com/graysky2/anything-sync-daemon
-
-
-
-
-
-
-
-
-
-
-
 
 # Benchmarking
 
