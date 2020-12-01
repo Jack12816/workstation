@@ -44,7 +44,6 @@
   - [Backups](#backups)
   - [Boot Splash](#boot-splash)
 - [Benchmarking](#benchmarking)
-- [Todos](#todos)
 <!-- TOC-END -->
 
 # Hardware Setup
@@ -772,9 +771,3 @@ TODO: Research, perform, document this.
 * https://aur.archlinux.org/packages/phoronix-test-suite/
 * https://wiki.archlinux.org/index.php/benchmarking#S
 * http://www.phoronix-test-suite.com/?k=features
-
-# Todos
-
-* https://wiki.archlinux.org/index.php/PulseAudio
-* https://wiki.archlinux.org/index.php/Audit_framework
-* https://wiki.archlinux.org/index.php/Pdnsd
