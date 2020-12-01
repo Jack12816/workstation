@@ -596,6 +596,7 @@ pulseaudio-zeroconf
 pup-bin
 puppet
 purpose
+pv
 pwgen
 pyside2
 python-docutils
