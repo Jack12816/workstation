@@ -576,8 +576,12 @@ configure-docker:
 
 configure-boot-splash:
 	# Configure a boot splash animation
-	@$(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) --needed --noconfirm -S \
-		plymouth plymouth-theme-connect-git
+	@$(PACMAN) -Qq | $(GREP) '^plymouth$$' >/dev/null 2>&1 \
+		|| $(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) --needed --noconfirm -S \
+			plymouth
+	@$(PACMAN) -Qq | $(GREP) '^plymouth-theme-connect-git$$' >/dev/null 2>&1 \
+		|| $(SUDO) -u $(UNPRIVILEGED_USER) $(YAY) --needed --noconfirm -S \
+			plymouth-theme-connect-git
 	@$(CP) etc/mkinitcpio.conf \
 		/etc/mkinitcpio.conf
 	@$(CP) etc/plymouth/plymouthd.conf \
