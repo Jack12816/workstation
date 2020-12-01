@@ -12,7 +12,7 @@
 ## Features
 
 - [ ] i3 Session restore
-- [ ]
+- [ ] Rework terminal colors
 - [ ]
 - [ ]
 - [ ]
