@@ -1,0 +1,12 @@
+[Unit]
+Description=Send a notification to all logged in users when the Docker sync is done
+After=docker.service
+
+[Service]
+type=oneshot
+ExecStart=/etc/systemd/system/docker-sync-notify.service.d/notify.sh
+RemainAfterExit=yes
+TimeoutSec=0
+
+[Install]
+WantedBy=multi-user.target

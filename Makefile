@@ -554,16 +554,25 @@ configure-docker:
 	@$(PACMAN) --needed --noconfirm -S docker docker-compose \
 		podman podman-compose anything-sync-daemon
 	@$(MKDIR) -p /etc/systemd/system/asd-resync.timer.d
+	@$(MKDIR) -p /etc/systemd/system/docker-sync-notify.service.d
 	@$(CP) etc/asd.conf /etc/asd.conf
 	@$(CP) etc/systemd/system/asd-resync.timer.d/frequency.conf \
 		/etc/systemd/system/asd-resync.timer.d/frequency.conf
 	@$(CP) etc/systemd/system/docker.service.d/override.conf \
 		/etc/systemd/system/docker.service.d/override.conf
+	@$(CP) etc/systemd/system/docker-sync-notify.service.d/notify.sh \
+		/etc/systemd/system/docker-sync-notify.service.d/notify.sh
+	@$(CP) etc/systemd/system/docker-sync-notify.service \
+		/etc/systemd/system/docker-sync-notify.service
+	@$(CHMOD) +x /etc/systemd/system/docker-sync-notify.service.d/notify.sh
+	@$(SYSTEMCTL) daemon-reload
 	@$(SYSTEMCTL) enable asd.service
 	@$(SYSTEMCTL) enable docker.service
+	@$(SYSTEMCTL) enable docker-sync-notify.service
 	@$(SYSTEMCTL) stop docker.service
 	@$(SYSTEMCTL) restart asd.service
 	@$(SYSTEMCTL) start docker.service
+	@$(SYSTEMCTL) restart docker-sync-notify.service
 
 configure-boot-splash:
 	# Configure a boot splash animation
