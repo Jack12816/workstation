@@ -6,6 +6,7 @@ SUNIT=$(echo "${SIZE}B" | rev | cut -c1-2 | rev)
 SIZE=$(echo "$(echo "${SIZE}" | grep -oP '[0-9]+') ${SUNIT}")
 
 # Fetch the needed time to sync
+sleep 5 # it takes some time for systemd-analyze to has the results
 TIME=$(systemd-analyze blame | grep 'asd.service' \
   | sed 's/asd.service//g' | xargs)
 
