@@ -64,6 +64,7 @@ bomber
 bonnie++
 bovo
 bpf
+bpytop
 breeze
 breeze-gtk
 breeze-icons
@@ -452,6 +453,7 @@ linux-headers
 live-media
 logrotate
 lokalize
+lostfiles
 lsdvd
 lshw
 lskat
@@ -528,6 +530,7 @@ package-query
 packagekit
 packer
 pacman-contrib
+pacmatic
 pacserve
 pacutils
 palapeli

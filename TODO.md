@@ -36,6 +36,9 @@
 * https://en.wikipedia.org/wiki/W3m
 * https://github.com/SoptikHa2/desed
 * https://wiki.gnome.org/Apps/DFeet
+* https://github.com/aristocratos/bpytop
+* https://github.com/graysky2/lostfiles
+* http://kmkeen.com/pacmatic/
 *
 *
 *
@@ -48,3 +51,9 @@
 * https://raw.githubusercontent.com/adi1090x/files/master/plymouth-themes/previews/71.gif
 * https://raw.githubusercontent.com/adi1090x/files/master/plymouth-themes/previews/14.gif
 * https://raw.githubusercontent.com/adi1090x/files/master/plymouth-themes/previews/17.gif
+
+## Wayland
+
+* sway instead of i3
+* waybar instead of polybar
+* https://www.archlinux.org/packages/community/x86_64/gammastep/ instead of redshift
