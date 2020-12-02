@@ -31,11 +31,11 @@
 * https://github.com/paulirish/git-open
 * https://github.com/mookid/diffr
 * https://wiki.archlinux.org/index.php/Alacritty
-*
-*
-*
-*
-*
+* https://wiki.archlinux.org/index.php/Nnn
+* https://wiki.archlinux.org/index.php/Vifm
+* https://en.wikipedia.org/wiki/W3m
+* https://github.com/SoptikHa2/desed
+* https://wiki.gnome.org/Apps/DFeet
 *
 *
 *

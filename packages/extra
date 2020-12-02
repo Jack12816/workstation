@@ -92,11 +92,13 @@ croc
 ctags
 cups
 cups-pdf
+d-feet
 datamash
 dfu-programmer
 dfu-util
 dhcpcd
 discover
+dmidecode
 docker
 docker-compose
 dolphin
@@ -184,6 +186,7 @@ hiera
 htop
 hunspell-de
 hunspell-en_US
+hwdetect
 hwinfo
 hyperv
 i3-wm
@@ -804,6 +807,7 @@ vulkan-html-docs
 vulkan-radeon
 vulkan-tools
 vulkan-validation-layers
+w3m
 wget
 which
 whois
