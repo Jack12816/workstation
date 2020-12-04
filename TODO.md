@@ -45,6 +45,12 @@
 - [ ] https://www.metasploit.com/
 - [x] https://www.passwordstore.org/ / pass
 - [ ] http://typespeed.sourceforge.net/ / typespeed
+- [ ] https://julialang.org/
+- [ ] https://www.gnu.org/software/octave/
+- [ ] https://wiki.archlinux.org/index.php/R
+- [ ] https://timewarrior.net/
+- [ ] https://taskwarrior.org/
+- [x] https://www.archlinux.org/packages/community/x86_64/typespeed/
 
 ## Bootsplashes
 
