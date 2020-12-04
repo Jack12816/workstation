@@ -23,23 +23,23 @@
 
 ## Tools
 
-* https://github.com/vimwiki/vimwiki
-* https://github.com/jceb/vim-orgmode
-* https://github.com/paulirish/git-open
-* https://github.com/mookid/diffr
-* https://wiki.archlinux.org/index.php/Alacritty
-* https://wiki.archlinux.org/index.php/Nnn
-* https://wiki.archlinux.org/index.php/Vifm
-* https://en.wikipedia.org/wiki/W3m / https://www.brow.sh/
-* https://github.com/SoptikHa2/desed
-* https://wiki.gnome.org/Apps/DFeet
-* https://github.com/aristocratos/bpytop
-* https://github.com/graysky2/lostfiles
-* http://kmkeen.com/pacmatic/
-* https://github.com/tsenart/vegeta
-* https://github.com/odeke-em/drive / drive-bin
-* https://neomutt.org/
-* https://notmuchmail.org/
+- [ ] https://github.com/vimwiki/vimwiki
+- [ ] https://github.com/jceb/vim-orgmode
+- [ ] https://github.com/paulirish/git-open
+- [ ] https://github.com/mookid/diffr
+- [ ] https://wiki.archlinux.org/index.php/Alacritty
+- [ ] https://wiki.archlinux.org/index.php/Nnn
+- [ ] https://wiki.archlinux.org/index.php/Vifm
+- [ ] https://en.wikipedia.org/wiki/W3m / https://www.brow.sh/
+- [ ] https://github.com/SoptikHa2/desed
+- [ ] https://wiki.gnome.org/Apps/DFeet
+- [ ] https://github.com/aristocratos/bpytop
+- [ ] https://github.com/graysky2/lostfiles
+- [ ] http://kmkeen.com/pacmatic/
+- [ ] https://github.com/tsenart/vegeta
+- [ ] https://github.com/odeke-em/drive / drive-bin
+- [ ] https://neomutt.org/
+- [ ] https://notmuchmail.org/
 
 ## Bootsplashes
 
