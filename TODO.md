@@ -4,10 +4,8 @@
 
 - [ ] Thunderbird Calendar is empty -> https://github.com/kewisch/gdata-provider/issues/140
 - [x] Faster asd initial sync -> rsync is the best option tested (parallel cp/dd/rsync)
-- [ ] Network issues (bond0) on random boots
-- [ ]
-- [ ]
-- [ ]
+- [x] Network issues (bond0) on random boots -> moved to teamd
+- [ ] The pasystray tray icon is black (should be white)
 
 ## Features
 
@@ -15,10 +13,7 @@
 - [ ] Rework terminal colors
 - [ ] Improved color schema on all apps (qt/gtk/i3)
 - [x] Docker sync notification
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+- [ ] Disable suspend-to-ram shortcut/keybinding
 
 ## Research
 
@@ -45,11 +40,6 @@
 * https://github.com/odeke-em/drive / drive-bin
 * https://neomutt.org/
 * https://notmuchmail.org/
-*
-*
-*
-*
-*
 
 ## Bootsplashes
 

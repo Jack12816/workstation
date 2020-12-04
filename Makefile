@@ -342,7 +342,7 @@ install-bootloader-config:
 
 configure-network:
 	# Configure the network interfaces
-	@$(PACMAN) --needed --noconfirm -S networkmanager
+	@$(PACMAN) --needed --noconfirm -S networkmanager libteam
 	@$(MKDIR) -p /etc/udev/rules.d/
 	@$(CP) etc/udev/rules.d/10-network.rules \
 		/etc/udev/rules.d/10-network.rules

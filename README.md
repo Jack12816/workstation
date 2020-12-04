@@ -24,6 +24,7 @@
   - [Bootloader](#bootloader)
   - [First Reboot](#first-reboot)
 - [Configuration](#configuration)
+  - [Network Teaming](#network-teaming)
   - [Periodic TRIM](#periodic-trim)
   - [Time synchronization](#time-synchronization)
   - [Performance Monitoring](#performance-monitoring)
@@ -500,6 +501,29 @@ The installation of the basic ArchLinux system is done. Just exit the chroot
 and reboot the machine with `$ reboot`.
 
 # Configuration
+
+## Network Teaming
+
+The workstation has a 1GbE and a 10GbE port. We set up a network team
+(NM/teamd) with round-robin. MTU:9000/Jumbo-Frames are enabled. For some reason
+the LAG/LACP/802.3ad bonding mode does not work with this port/driver
+combination, while it's been supported by the switch. To configure the
+settings, run:
+
+```shell
+$ make configure-network
+```
+
+**References:**
+
+* https://www.redhat.com/en/blog/if-you-bonding-you-will-love-teaming
+* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/ch-configure_network_teaming#sec-Understanding_Network_Teaming
+* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/ch-configure_network_teaming
+* https://backdrift.org/lacp-configure-network-bonding-linux
+* https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk169759
+* https://docs.rackspace.com/blog/lacp-bonding-and-linux-configuration/
+* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-using_channel_bonding
+* https://www.netgear.com/support/product/GS110TP
 
 ## Periodic TRIM
 
