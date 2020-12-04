@@ -23,7 +23,7 @@
 
 ## Tools
 
-- [ ] https://github.com/vimwiki/vimwiki
+- [ ] https://vimwiki.github.io/
 - [ ] https://github.com/jceb/vim-orgmode
 - [ ] https://github.com/paulirish/git-open
 - [ ] https://github.com/mookid/diffr
@@ -40,6 +40,11 @@
 - [ ] https://github.com/odeke-em/drive / drive-bin
 - [ ] https://neomutt.org/
 - [ ] https://notmuchmail.org/
+- [x] http://nullwise.com/volumeicon.html
+- [x] https://www.thregr.org/~wavexx/software/screenkey/
+- [ ] https://www.metasploit.com/
+- [x] https://www.passwordstore.org/ / pass
+- [ ] http://typespeed.sourceforge.net/ / typespeed
 
 ## Bootsplashes
 
