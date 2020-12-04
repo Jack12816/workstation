@@ -49,6 +49,7 @@ LN ?= ln
 LS ?= ls
 MAKEPKG ?= makepkg
 MKDIR ?= mkdir
+MKINITCPIO ?= mkinitcpio
 MV ?= mv
 NODE ?= node
 NPM ?= npm
@@ -291,6 +292,7 @@ commit: .reown
 configure: \
 	configure-versioned-etc \
 	configure-bootloader \
+	configure-network \
 	configure-time-sync \
 	configure-pacman \
 	configure-gpg \
@@ -337,6 +339,23 @@ install-bootloader-config:
 	# Update the bootloader settings
 	@$(CP) boot/loader/loader.conf /boot/loader/loader.conf
 	@$(CP) boot/loader/entries/arch.conf /boot/loader/entries/arch.conf
+
+configure-network:
+	# Configure the network interfaces
+	@$(PACMAN) --needed --noconfirm -S networkmanager
+	@$(MKDIR) -p /etc/udev/rules.d/
+	@$(CP) etc/udev/rules.d/10-network.rules \
+		/etc/udev/rules.d/10-network.rules
+	@$(CP) etc/NetworkManager/system-connections/bond0 \
+		/etc/NetworkManager/system-connections/bond0
+	@$(CP) etc/NetworkManager/system-connections/net0 \
+		/etc/NetworkManager/system-connections/net0
+	@$(CP) etc/NetworkManager/system-connections/net1 \
+		/etc/NetworkManager/system-connections/net1
+	@$(CHMOD) 600 /etc/NetworkManager/system-connections/*
+	@$(SYSTEMCTL) enable NetworkManager.service
+	@$(SYSTEMCTL) restart NetworkManager.service
+	@$(MKINITCPIO) -p linux
 
 configure-time-sync:
 	# Configure network-based time synchronization

@@ -1,0 +1,13 @@
+[connection]
+id=net0
+uuid=0b9231e5-35bd-4431-a5a1-91025f25b122
+type=ethernet
+interface-name=net0
+master=a71d57c0-8961-4193-8483-b704ade2bf7d
+permissions=
+slave-type=bond
+
+[ethernet]
+auto-negotiate=true
+mac-address=3C:EC:EF:6A:AB:F2
+mac-address-blacklist=

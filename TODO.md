@@ -2,9 +2,9 @@
 
 ## Bugs
 
-- [ ] Thunderbird Calendar is empty
-- [ ] Faster asd initial sync
-- [ ]
+- [ ] Thunderbird Calendar is empty -> https://github.com/kewisch/gdata-provider/issues/140
+- [x] Faster asd initial sync -> rsync is the best option tested (parallel cp/dd/rsync)
+- [ ] Network issues (bond0) on random boots
 - [ ]
 - [ ]
 - [ ]
@@ -14,6 +14,8 @@
 - [ ] i3 Session restore
 - [ ] Rework terminal colors
 - [ ] Improved color schema on all apps (qt/gtk/i3)
+- [x] Docker sync notification
+- [ ]
 - [ ]
 - [ ]
 - [ ]
@@ -33,12 +35,16 @@
 * https://wiki.archlinux.org/index.php/Alacritty
 * https://wiki.archlinux.org/index.php/Nnn
 * https://wiki.archlinux.org/index.php/Vifm
-* https://en.wikipedia.org/wiki/W3m
+* https://en.wikipedia.org/wiki/W3m / https://www.brow.sh/
 * https://github.com/SoptikHa2/desed
 * https://wiki.gnome.org/Apps/DFeet
 * https://github.com/aristocratos/bpytop
 * https://github.com/graysky2/lostfiles
 * http://kmkeen.com/pacmatic/
+* https://github.com/tsenart/vegeta
+* https://github.com/odeke-em/drive / drive-bin
+* https://neomutt.org/
+* https://notmuchmail.org/
 *
 *
 *

@@ -1,0 +1,14 @@
+[connection]
+id=net1
+uuid=ca40310e-f11c-4022-8d2a-e98134c8f708
+type=ethernet
+interface-name=net1
+master=a71d57c0-8961-4193-8483-b704ade2bf7d
+permissions=
+slave-type=bond
+timestamp=1607075896
+
+[ethernet]
+auto-negotiate=true
+mac-address=3C:EC:EF:6A:AC:BA
+mac-address-blacklist=
