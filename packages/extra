@@ -52,6 +52,7 @@ bfg
 bind
 binutils
 bison
+blender
 blinken
 bluedevil
 bluez-firmware
@@ -802,6 +803,7 @@ vi
 vim-systemd
 virtualbox
 virtualbox-host-modules-arch
+volumeicon
 vsftpd
 vulkan-extra-layers
 vulkan-extra-tools
