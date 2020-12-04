@@ -1,14 +1,13 @@
 #!/bin/bash
 
 # Fetch the size of the docker repository
-SIZE=$(du -hs /var/lib/docker/ | awk '{print $1}')
-SUNIT=$(echo "${SIZE}B" | rev | cut -c1-2 | rev)
-SIZE=$(echo "$(echo "${SIZE}" | grep -oP '[0-9]+') ${SUNIT}")
+SIZE=$(du -hs /var/lib/docker/ \
+  | awk '{print $1}' | sed 's/\([a-z]\+\)$/ \1B/gi')
 
-# Fetch the needed time to sync
-sleep 5 # it takes some time for systemd-analyze to has the results
-TIME=$(systemd-analyze blame | grep 'asd.service' \
-  | sed 's/asd.service//g' | xargs)
+# Fetch the needed time to sync (for some reason systemd-analyze is not yet
+# ready to query, so we use the system uptime for time tracking)
+TIME=$(awk '{print int(($1%3600)/60)"min "int($1%60)"."($1%1 * 100)"s"}' \
+  /proc/uptime)
 
 # Send a system notification to every logged in user (libnotify)
 IFS=$'\n'

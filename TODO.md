@@ -5,7 +5,7 @@
 - [ ] Thunderbird Calendar is empty -> https://github.com/kewisch/gdata-provider/issues/140
 - [x] Faster asd initial sync -> rsync is the best option tested (parallel cp/dd/rsync)
 - [x] Network issues (bond0) on random boots -> moved to teamd
-- [ ] The pasystray tray icon is black (should be white)
+- [x] The pasystray tray icon is black (should be white) -> use volumeicon now
 
 ## Features
 
