@@ -346,12 +346,12 @@ configure-network:
 	@$(MKDIR) -p /etc/udev/rules.d/
 	@$(CP) etc/udev/rules.d/10-network.rules \
 		/etc/udev/rules.d/10-network.rules
-	@$(CP) etc/NetworkManager/system-connections/bond0 \
-		/etc/NetworkManager/system-connections/bond0
-	@$(CP) etc/NetworkManager/system-connections/net0 \
-		/etc/NetworkManager/system-connections/net0
-	@$(CP) etc/NetworkManager/system-connections/net1 \
-		/etc/NetworkManager/system-connections/net1
+	@$(CP) etc/NetworkManager/system-connections/team0.nmconnection \
+		/etc/NetworkManager/system-connections/team0.nmconnection
+	@$(CP) 'etc/NetworkManager/system-connections/team0 slave 1.nmconnection' \
+		'/etc/NetworkManager/system-connections/team0 slave 1.nmconnection'
+	@$(CP) 'etc/NetworkManager/system-connections/team0 slave 2.nmconnection' \
+		'/etc/NetworkManager/system-connections/team0 slave 2.nmconnection'
 	@$(CHMOD) 600 /etc/NetworkManager/system-connections/*
 	@$(SYSTEMCTL) enable NetworkManager.service
 	@$(SYSTEMCTL) restart NetworkManager.service

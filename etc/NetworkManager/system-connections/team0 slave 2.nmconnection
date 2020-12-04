@@ -1,0 +1,15 @@
+[connection]
+id=team0 slave 2
+uuid=46c228ab-fc29-4b70-af1a-b025698191d5
+type=ethernet
+interface-name=net1
+master=team0
+permissions=
+slave-type=team
+
+[ethernet]
+mac-address=3C:EC:EF:6A:AC:BA
+mac-address-blacklist=
+mtu=9000
+
+[team-port]
