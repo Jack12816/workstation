@@ -11,12 +11,14 @@
 ## Features
 
 - [ ] i3 Session restore
-- [ ] Rework terminal colors
+- [x] Rework terminal colors
   - Old: https://s3-eu-west-1.amazonaws.com/jack12816/public/images/img-2020-12-05-152604.png
-  - New:
-- [ ] Improved color schema on all apps (qt/gtk/i3)
+  - New: https://s3-eu-west-1.amazonaws.com/jack12816/public/images/img-2020-12-05-173939.png
+- [x] Improved color schema on all apps (qt/gtk/i3)
 - [x] Docker sync notification
 - [x] Disable suspend-to-ram shortcut/keybinding -> shutdown/reboot dialog
+- [x] Transparent vim (urxvt) backgroud with same color for non-text (end of buffer)
+- [x] Native urxvt background -> compton/picom while disabling all other klickibunti
 
 ## Research
 

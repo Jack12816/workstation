@@ -819,6 +819,8 @@ wget
 which
 whois
 wine
+wine-gecko
+wine-mono
 winetricks
 wol
 words
