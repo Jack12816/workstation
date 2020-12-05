@@ -6,14 +6,17 @@
 - [x] Faster asd initial sync -> rsync is the best option tested (parallel cp/dd/rsync)
 - [x] Network issues (bond0) on random boots -> moved to teamd
 - [x] The pasystray tray icon is black (should be white) -> use volumeicon now
+- [ ] Command&Conquerer Generals does not start anymore :\(
 
 ## Features
 
 - [ ] i3 Session restore
 - [ ] Rework terminal colors
+  - Old: https://s3-eu-west-1.amazonaws.com/jack12816/public/images/img-2020-12-05-152604.png
+  - New:
 - [ ] Improved color schema on all apps (qt/gtk/i3)
 - [x] Docker sync notification
-- [ ] Disable suspend-to-ram shortcut/keybinding
+- [x] Disable suspend-to-ram shortcut/keybinding -> shutdown/reboot dialog
 
 ## Research
 

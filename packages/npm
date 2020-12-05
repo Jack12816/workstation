@@ -2,6 +2,7 @@ bower 1.8.0
 brunch 1.7.20
 check-dependencies 1.1.0
 clean-css 2.0.6
+colortest 3.0.4
 doctoc 1.4.0
 electron-packager 14.2.1
 emojipacks 0.2.1
