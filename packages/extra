@@ -99,6 +99,7 @@ datamash
 dfu-programmer
 dfu-util
 dhcpcd
+diffr
 discover
 dmidecode
 docker
@@ -147,6 +148,7 @@ ghex
 gimp
 git
 git-lfs-bin
+git-open-git
 github-cli
 gitlab-runner
 gnome-alsamixer
@@ -821,6 +823,7 @@ whois
 wine
 wine-gecko
 wine-mono
+wine-nine
 winetricks
 wol
 words

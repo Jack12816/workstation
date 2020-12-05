@@ -40,7 +40,7 @@
 - [ ] https://wiki.gnome.org/Apps/DFeet
 - [ ] https://github.com/aristocratos/bpytop
 - [ ] https://github.com/graysky2/lostfiles
-- [ ] http://kmkeen.com/pacmatic/
+- [x] http://kmkeen.com/pacmatic/
 - [ ] https://github.com/tsenart/vegeta
 - [ ] https://github.com/odeke-em/drive / drive-bin
 - [ ] https://neomutt.org/
