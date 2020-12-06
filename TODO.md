@@ -38,19 +38,19 @@
 - [ ] https://wiki.archlinux.org/index.php/Vifm
 - [ ] https://en.wikipedia.org/wiki/W3m / https://www.brow.sh/
 - [ ] https://github.com/SoptikHa2/desed
-- [ ] https://wiki.gnome.org/Apps/DFeet
-- [ ] https://github.com/aristocratos/bpytop
-- [ ] https://github.com/graysky2/lostfiles
+- [x] https://wiki.gnome.org/Apps/DFeet
+- [x] https://github.com/aristocratos/bpytop
+- [x] https://github.com/graysky2/lostfiles
 - [x] http://kmkeen.com/pacmatic/
 - [ ] https://github.com/tsenart/vegeta
-- [ ] https://github.com/odeke-em/drive / drive-bin
+- [x] https://github.com/odeke-em/drive / drive-bin
 - [ ] https://neomutt.org/
 - [ ] https://notmuchmail.org/
 - [x] http://nullwise.com/volumeicon.html
 - [x] https://www.thregr.org/~wavexx/software/screenkey/
 - [ ] https://www.metasploit.com/
 - [x] https://www.passwordstore.org/ / pass
-- [ ] http://typespeed.sourceforge.net/ / typespeed
+- [x] http://typespeed.sourceforge.net/ / typespeed
 - [ ] https://julialang.org/
 - [ ] https://www.gnu.org/software/octave/
 - [ ] https://wiki.archlinux.org/index.php/R

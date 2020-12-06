@@ -17,7 +17,7 @@ for LINE in `w -hs`; do
   DISP_ID=`echo $LINE | awk '{print $8}'`
   sudo -u $USER \
     DISPLAY=$DISP_ID DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$USER_ID/bus \
-    notify-send -t 5000 \
+    notify-send -t 15000 \
         'Docker service started' \
         "The RAM disk sync is done. $SIZE in $TIME." \
         --icon=yast-docker

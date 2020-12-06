@@ -110,6 +110,7 @@ dosfstools
 dotnet-host
 dotnet-runtime
 dragon
+drive-bin
 drkonqi
 dunst
 duplicity
