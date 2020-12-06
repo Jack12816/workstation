@@ -28,13 +28,16 @@
 
 ## Tools
 
+-Ungo
+
 - [ ] https://vimwiki.github.io/
 - [ ] https://github.com/jceb/vim-orgmode
 - [x] https://github.com/paulirish/git-open
 - [x] https://github.com/mookid/diffr
   - https://s3-eu-west-1.amazonaws.com/jack12816/public/images/img-2020-12-05-192214.png
 - [ ] https://wiki.archlinux.org/index.php/Alacritty
-- [ ] https://wiki.archlinux.org/index.php/Nnn
+- [x] https://wiki.archlinux.org/index.php/Nnn
+  - https://github.com/jarun/nnn/wiki/concepts#filters
 - [ ] https://wiki.archlinux.org/index.php/Vifm
 - [ ] https://en.wikipedia.org/wiki/W3m / https://www.brow.sh/
 - [ ] https://github.com/SoptikHa2/desed
