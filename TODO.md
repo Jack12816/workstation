@@ -19,6 +19,7 @@
 - [X] Disable suspend-to-ram shortcut/keybinding -> shutdown/reboot dialog
 - [X] Transparent vim (urxvt) backgroud with same color for non-text (end of buffer)
 - [X] Native urxvt background -> compton/picom while disabling all other klickibunti
+- [ ] Setup the local knowl
 
 ## Research
 
