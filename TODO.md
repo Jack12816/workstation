@@ -30,8 +30,9 @@
 
 - [ ] https://vimwiki.github.io/
 - [ ] https://github.com/jceb/vim-orgmode
-- [ ] https://github.com/paulirish/git-open
-- [ ] https://github.com/mookid/diffr
+- [x] https://github.com/paulirish/git-open
+- [x] https://github.com/mookid/diffr
+  - https://s3-eu-west-1.amazonaws.com/jack12816/public/images/img-2020-12-05-192214.png
 - [ ] https://wiki.archlinux.org/index.php/Alacritty
 - [ ] https://wiki.archlinux.org/index.php/Nnn
 - [ ] https://wiki.archlinux.org/index.php/Vifm
