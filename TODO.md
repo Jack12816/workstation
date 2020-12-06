@@ -28,8 +28,6 @@
 
 ## Tools
 
--Ungo
-
 - [ ] https://vimwiki.github.io/
 - [ ] https://github.com/jceb/vim-orgmode
 - [x] https://github.com/paulirish/git-open
