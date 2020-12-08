@@ -302,7 +302,7 @@ braintree 2.102.0 2.100.0
 brakeman 4.9.1 4.8.2 4.8.1 4.7.1
 builder 3.2.4 3.2.3
 bullet 5.9.0 4.14.10
-bundler 2.1.4 2.0.1
+bundler 2.1.4 2.0.1 1.17.3
 bundler-audit 0.7.0.1 0.6.1
 byebug 11.1.3 11.1.2 11.1.1
 capistrano 3.14.1 3.14.0 3.11.0
@@ -417,6 +417,7 @@ facter 3.14.14
 factory_bot 6.1.0 5.2.0 5.1.2 5.1.1 5.0.2 4.11.1
 factory_bot_instrumentation 0.6.0 0.5.1 0.5.0 0.3.0
 factory_bot_rails 5.2.0 5.1.1 5.0.2 4.11.1
+fake-data 1.2.0
 faraday 1.1.0 1.0.1 0.17.3 0.17.1 0.15.4
 faraday-http-cache 2.2.0 2.0.0 1.3.1
 faraday_middleware 1.0.0 0.14.0 0.13.1
@@ -464,7 +465,7 @@ fog-xenserver 1.0.0
 fog-xml 0.1.3
 formatador 0.2.5
 forwardable-extended 2.6.0
-fugit 1.4.0 1.3.9 1.3.8 1.3.6 1.3.5 1.3.3 1.1.8
+fugit 1.4.1 1.4.0 1.3.9 1.3.8 1.3.6 1.3.5 1.3.3 1.1.8
 funk_hands 1.4.0 1.3.0
 fuubar 2.5.0 2.0.0
 geocoder 1.6.3 1.2.14
@@ -497,6 +498,7 @@ hana 1.3.6
 hashdiff 1.0.1 1.0.0 0.4.0 0.3.9
 hashery 2.1.2
 hashie 4.1.0 3.6.0 3.5.7
+hausgold-sdk 1.5.0
 hiera 3.6.0
 hike 1.2.3
 hirb 0.7.3
@@ -562,7 +564,7 @@ liquid 4.0.3 4.0.0 3.0.6
 liquid-tag-parser 1.9.0
 listen 3.3.1 3.2.1 3.1.5
 locale 2.1.3
-loofah 2.7.0 2.6.0 2.5.0 2.4.0 2.2.3
+loofah 2.8.0 2.7.0 2.6.0 2.5.0 2.4.0 2.2.3
 lumberjack 1.2.8 1.2.7 1.2.6 1.2.5 1.2.4 1.2.1 1.2.0 1.0.13
 mail 2.7.1
 mail_interceptor 0.0.7
@@ -612,6 +614,7 @@ open4 1.3.4
 optimist 3.0.1
 os 1.1.1 1.1.0 1.0.1
 ovirt-engine-sdk 4.4.0
+painless 2.4.1
 paper_trail 10.3.1
 parallel 1.20.1 1.19.2 1.19.1 1.17.0 1.13.0 1.12.1
 parallel_tests 2.32.0 2.28.0
@@ -739,6 +742,7 @@ sdoc 1.1.0
 seed-fu 2.3.9
 selectize-rails 0.12.6
 selenium-webdriver 3.142.7 3.142.6 3.142.3
+selfless 2.2.0
 semantic_puppet 1.0.2
 semantic_range 2.3.0
 sendgrid-ruby 6.3.4 6.2.1
@@ -763,6 +767,7 @@ sixarm_ruby_unaccent 1.2.0
 slop 3.6.0
 sparsify 1.1.0
 specinfra 2.82.22 2.76.2
+speechless 1.0.0
 spinach 0.11.0 0.10.1
 spinach-rails 0.2.1
 spinach-rerun-reporter 1.0.1
