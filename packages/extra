@@ -89,6 +89,7 @@ cockpit-podman
 collectd
 colorpicker
 cpuburn
+cpuid2cpuflags
 cpupower
 croc
 ctags
