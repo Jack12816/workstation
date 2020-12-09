@@ -1,4 +1,5 @@
 <!-- TOC-START -->
+- [System Specs](#system-specs)
 - [Hardware Setup](#hardware-setup)
   - [BIOS / EFI](#bios--efi)
     - [CPU](#cpu)
@@ -46,6 +47,33 @@
   - [Boot Splash](#boot-splash)
 - [Benchmarking](#benchmarking)
 <!-- TOC-END -->
+
+# System Specs
+
+| Components       | April 2012                          | November 2020
+|------------------|------------------------------------------------------------
+| **CPU**              | [Intel i7-3770K](https://ark.intel.com/content/www/de/de/ark/products/65523/intel-core-i7-3770k-processor-8m-cache-up-to-3-90-ghz.html)                      | [Intel Xeon W-3235](https://ark.intel.com/content/www/de/de/ark/products/193749/intel-xeon-w-3235-processor-19-25m-cache-3-30-ghz.html)
+| Cores / Threads  | 4 / 8                               | 12 / 24
+| Clock (Base/Max) | 3.5 GHz / 3.9 GHz                   | 3.3 GHz / 4.4 GHz
+| L3 Cache         | 8 MB                                | 19.25 MB
+| Bus Speed        | 5 GT/s                              | 8 GT/s
+| x86 Extensions   | SSE4.1, SSE4.2, AVX                 | AVX-512, VNNI
+| TDP              | 77 W                                | 180 W
+| Lithography      | 22 nm                               | 14 nn
+| **Board**            | [AsRock Fatal1ty Z77 Professional](https://www.asrock.com/mb/Intel/Fatal1ty%20Z77%20Professional/index.de.asp)    | [SuperMicro X11SPA-T](https://www.supermicro.com/en/products/motherboard/X11SPA-T)
+| **RAM**              | DDR3-1600 (32GB, 4x8GB, 2 Channels) | ECC DDR4-2933 (96GB, 12x8GB, 6 Channels)
+| **Disk**             | [Intel 400 GB SSD 750 PCIe](https://ark.intel.com/content/www/de/de/ark/products/86742/intel-ssd-750-series-400gb-2-5in-pcie-3-0-20nm-mlc.html)           | 2x [Samsung 1.6 TB PM1725b PCIe](http://image-us.samsung.com/SamsungUS/PIM/Samsung_1725b_Product.pdf) (RAID0)
+| Seq Read         | 2200 MB/s                           | 5400 MB/s (x2 due to RAID0)
+| Seq Write        | 900 MB/s                            | 2000 MB/s (x2 due to RAID0)
+| Rnd Read         | 430k IOPS                           | 750k IOPS (x2 due to RAID0)
+| Rnd Write        | 230k IOPS                           | 135k IOPS (x2 due to RAID0)
+| PCIe Lanes       | x4                                  | x8
+| **GPU**              | Intel® HD-Grafik 4000               | [AMD Radeon RX 5700 XT 8G](https://www.amd.com/en/products/graphics/amd-radeon-rx-5700-xt#product-specs)
+| Clock (Base/Max) | 650 MHz / 1.15 GHz                  | 1670 MHz / 1925 MHz
+| GRAM             | Shared Memory - 512 MB              | Dedicated - 8 GB
+| TDP              | Included in the 77 W from the CPU   | 241 W
+| **PSU**              | Be-Quiet! Straight Power E9 580W    | Be-Quiet! Dark Power Pro 11 650W
+| **UPS**              | -                                   | [APC BR1500G-GR 1500VA / 865W](https://www.apc.com/shop/de/de/products/APC-Power-Saving-Back-UPS-Pro-1500-230-V-Schuko/P-BR1500G-GR)
 
 # Hardware Setup
 
