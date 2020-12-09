@@ -37,6 +37,7 @@
 - [X] https://github.com/paulirish/git-open
 - [X] https://github.com/mookid/diffr
   - https://s3-eu-west-1.amazonaws.com/jack12816/public/images/img-2020-12-05-192214.png
+- [ ] https://github.com/dandavison/delta / git-delta
 - [ ] https://wiki.archlinux.org/index.php/Alacritty
 - [X] https://wiki.archlinux.org/index.php/Nnn
   - https://github.com/jarun/nnn/wiki/concepts#filters
