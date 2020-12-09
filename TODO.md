@@ -26,6 +26,7 @@
 * https://wiki.archlinux.org/index.php/PulseAudio
 * https://wiki.archlinux.org/index.php/Audit_framework
 * https://wiki.archlinux.org/index.php/Pdnsd
+* https://wiki.archlinux.org/index.php/AMDGPU_PRO
 
 ## Tools
 
@@ -71,7 +72,8 @@
 
 ## Wayland
 
-* sway instead of i3
-* waybar instead of polybar
+* https://wiki.archlinux.org/index.php/Wayland
+* [Sway](https://swaywm.org/) instead of [i3](https://i3wm.org/)
+* [Waybar](https://github.com/Alexays/Waybar) instead of [Polybar](https://github.com/polybar/polybar)
 * https://www.archlinux.org/packages/community/x86_64/gammastep/ instead of redshift
 * https://github.com/emersion/mako instead of dunst
