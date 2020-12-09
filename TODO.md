@@ -28,6 +28,18 @@
 * https://wiki.archlinux.org/index.php/Pdnsd
 * https://wiki.archlinux.org/index.php/AMDGPU_PRO
 
+### FIDO
+
+* https://wiki.archlinux.org/index.php/YubiKey
+* https://wiki.archlinux.org/index.php/Universal_2nd_Factor
+* https://blog.jamesthebard.net/archlinux-and-u2f-login/
+
+### Hardware
+
+* https://m.alternate.de/SilverStone/SST-ES02-PCIe-Fernbedienung/html/product/1410582?fbclid=IwAR3JtKeLyU52LMFd_hSbZyu57mRcTSAMUd1VgCfZQnz5reaJP2ffLo_MlL4&utm_campaign=RET-DE&utm_source=facebook&utm_medium=social
+* https://m.alternate.de/SilverStone/SST-ES02-USB-Fernbedienung/html/product/1410583?fbclid=IwAR2vC8pXU6ouOAs9Tndb_aug5VOTs6LUyVgTa91jaSh3RkvnZT4Wfy4u6qw&utm_campaign=RET-DE&utm_source=facebook&utm_medium=social
+* https://www.alternate.de/NZXT/Hue-2-Ambient-RGB-Lighting-Kit-LED-Streifen/html/product/1516646?utm_source=facebook&utm_medium=social&utm_campaign=RET-DE&fbclid=IwAR0OV1QLJvWuyWPnqeYbtKYlAhf6UsamB0nmBoUM0EdrTgwdot51kOJ9ypc
+
 ## Tools
 
 - [X] https://vimwiki.github.io/
