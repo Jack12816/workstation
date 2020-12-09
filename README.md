@@ -51,7 +51,7 @@
 # System Specs
 
 | Components       | April 2012                          | November 2020
-|------------------|------------------------------------------------------------
+|------------------|------------------------------------------|-----------------
 | **CPU**              | [Intel i7-3770K](https://ark.intel.com/content/www/de/de/ark/products/65523/intel-core-i7-3770k-processor-8m-cache-up-to-3-90-ghz.html)                      | [Intel Xeon W-3235](https://ark.intel.com/content/www/de/de/ark/products/193749/intel-xeon-w-3235-processor-19-25m-cache-3-30-ghz.html)
 | Cores / Threads  | 4 / 8                               | 12 / 24
 | Clock (Base/Max) | 3.5 GHz / 3.9 GHz                   | 3.3 GHz / 4.4 GHz
