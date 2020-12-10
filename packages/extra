@@ -18,6 +18,7 @@ apcupsd
 apg
 ardour
 arduino
+argbash
 aria2
 ark
 arm-none-eabi-binutils
@@ -44,6 +45,7 @@ awslogs
 baloo
 barcode
 base
+basemark
 bash-completion
 bbe
 bchunk

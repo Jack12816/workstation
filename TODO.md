@@ -75,6 +75,7 @@
 - [ ] https://timewarrior.net/
 - [ ] https://taskwarrior.org/
 - [X] https://www.archlinux.org/packages/community/x86_64/typespeed/
+- [ ] https://argbash.io/
 
 ## Bootsplashes
 
