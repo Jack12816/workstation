@@ -495,6 +495,7 @@ guard-rubocop 1.3.0
 haml 5.2.0 5.1.2 5.1.1 5.0.4
 haml-rails 1.0.0
 hana 1.3.6
+hash_diff 1.0.0
 hashdiff 1.0.1 1.0.0 0.4.0 0.3.9
 hashery 2.1.2
 hashie 4.1.0 3.6.0 3.5.7
@@ -614,7 +615,7 @@ open4 1.3.4
 optimist 3.0.1
 os 1.1.1 1.1.0 1.0.1
 ovirt-engine-sdk 4.4.0
-painless 2.4.1
+painless 2.4.1 2.4.0
 paper_trail 10.3.1
 parallel 1.20.1 1.19.2 1.19.1 1.17.0 1.13.0 1.12.1
 parallel_tests 2.32.0 2.28.0
