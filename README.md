@@ -133,7 +133,7 @@ filesystem times, etc.
 
 ### Sector Size
 
-The Samsung PM1725b is capable of 4 kB sectors. So we the best LBA (Logical
+The Samsung PM1725b is capable of 4 kB sectors. So the best LBA (Logical
 block addressing) format is **#3** (lbaf: 2). See the description:
 
 ```

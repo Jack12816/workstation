@@ -389,11 +389,11 @@ dry-types 1.4.0 1.2.1
 dry-validation 1.5.6 1.5.3 1.5.1 1.5.0 1.4.2 1.3.1
 e2e-test-suite 1.1.0
 ecma-re-validator 0.2.1
-elasticsearch 5.0.5
-elasticsearch-api 5.0.5
-elasticsearch-model 5.1.0 5.0.2
-elasticsearch-rails 5.1.0 5.0.2
-elasticsearch-transport 5.0.5
+elasticsearch 7.10.0 5.0.5
+elasticsearch-api 7.10.0 5.0.5
+elasticsearch-model 7.1.1 5.1.0 5.0.2
+elasticsearch-rails 7.1.1 5.1.0 5.0.2
+elasticsearch-transport 7.10.0 5.0.5
 em-http-request 1.1.7 1.1.6 1.1.5
 em-socksify 0.3.2
 em-synchrony 1.0.6
