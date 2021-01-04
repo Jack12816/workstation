@@ -84,4 +84,5 @@ rdiff-backup \
 rdiff-backup \
   --remote-schema "ssh -C -p${BACKUP_SSH_PORT} %s rdiff-backup --server" \
   --remove-older-than ${CLEAR_HOME_AFTER} \
+  --force \
   "${DEST_HOME}"
