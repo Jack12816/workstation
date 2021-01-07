@@ -80,6 +80,7 @@ cervisia
 cgroup_event_listener
 chemical-mime-data
 chromium
+clinfo
 clipit
 cloc
 cockpit
@@ -227,6 +228,7 @@ jpegoptim
 jq
 jre7-openjdk
 jre7-openjdk-headless
+jruby
 jsawk-git
 juk
 k3b
@@ -523,6 +525,8 @@ nvme-cli
 ocl-icd
 okular
 onboard
+opencl-headers
+opencl-mesa
 opencv
 openshot
 openssh
@@ -875,7 +879,6 @@ xorg-server-devel
 xorg-server-xephyr
 xorg-server-xnest
 xorg-server-xvfb
-xorg-server-xwayland
 xorg-sessreg
 xorg-setxkbmap
 xorg-smproxy
@@ -904,6 +907,7 @@ xorg-xrdb
 xorg-xrefresh
 xorg-xsetroot
 xorg-xvinfo
+xorg-xwayland
 xorg-xwd
 xorg-xwininfo
 xorg-xwud

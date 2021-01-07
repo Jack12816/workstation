@@ -302,7 +302,7 @@ braintree 2.102.0 2.100.0
 brakeman 4.10.0 4.9.1 4.8.2 4.8.1 4.7.1
 builder 3.2.4 3.2.3
 bullet 5.9.0 4.14.10
-bundler 2.1.4 2.0.1 1.17.3
+bundler 2.2.4 2.0.1 1.17.3
 bundler-audit 0.7.0.1 0.6.1
 byebug 11.1.3 11.1.2 11.1.1
 capistrano 3.14.1 3.14.0 3.11.0
@@ -421,7 +421,7 @@ factory_bot 6.1.0 5.2.0 5.1.2 5.1.1 5.0.2 4.11.1
 factory_bot_instrumentation 0.6.0 0.5.1 0.5.0 0.3.0
 factory_bot_rails 5.2.0 5.1.1 5.0.2 4.11.1
 fake-data 1.2.0 1.1.9
-faraday 1.1.0 1.0.1 0.17.3 0.17.1 0.15.4
+faraday 1.3.0 1.1.0 1.0.1 0.17.3 0.17.1 0.15.4
 faraday-http-cache 2.2.0 2.0.0 1.3.1
 faraday_middleware 1.0.0 0.14.0 0.13.1
 fast_gettext 1.8.0
@@ -537,7 +537,7 @@ image_processing 1.11.0 1.10.3
 immoscout 1.3.0
 io-like 0.3.1 0.3.0
 ipaddress 0.8.3
-irb 1.2.7 1.2.6 1.2.3 1.2.0
+irb 1.3.0 1.2.7 1.2.6 1.2.3 1.2.0
 jabber_admin 1.0.1 0.2.0
 jaro_winkler 1.5.4 1.5.3 1.5.2 1.5.1
 jbuilder 2.10.0 2.3.2
@@ -696,7 +696,7 @@ reek 6.0.2 6.0.1 6.0.0 5.4.0 5.3.1
 ref 2.0.0
 regexp-examples 1.5.1
 regexp_parser 2.0.0 1.8.2 1.7.1 1.7.0 1.6.0 1.5.1
-reline 0.1.8 0.1.7 0.1.6 0.1.5 0.1.3 0.1.2
+reline 0.2.0 0.1.8 0.1.7 0.1.6 0.1.5 0.1.3 0.1.2
 representable 3.0.4
 request_store 1.5.0 1.4.1
 responders 3.0.1 2.4.1
