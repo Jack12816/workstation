@@ -525,6 +525,7 @@ nvme-cli
 ocl-icd
 okular
 onboard
+opencl-amd
 opencl-headers
 opencl-mesa
 opencv
