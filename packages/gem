@@ -39,7 +39,7 @@ array_enum 1.2.0
 Ascii85 1.0.3
 ast 2.4.1 2.4.0
 attr_encrypted 3.1.0
-autoprefixer-rails 10.0.3.0 9.7.6 9.7.4 6.7.7.2
+autoprefixer-rails 10.2.0.0 10.0.3.0 9.7.6 9.7.4 6.7.7.2
 avro 1.9.2 1.9.1
 avro_turf 0.11.0
 awesome_print 1.8.0
@@ -296,10 +296,11 @@ billomat 0.1.6
 bindex 0.8.1 0.7.0
 blazer 2.2.5 2.2.2
 bootsnap 1.5.1 1.5.0 1.4.8 1.4.6 1.4.5
+bootstrap 4.5.3
 bootstrap-sass 3.4.1
 bower-rails 0.10.0 0.9.2
 braintree 2.102.0 2.100.0
-brakeman 4.10.0 4.9.1 4.8.2 4.8.1 4.7.1
+brakeman 4.10.1 4.10.0 4.9.1 4.8.2 4.8.1 4.7.1
 builder 3.2.4 3.2.3
 bullet 5.9.0 4.14.10
 bundler 2.2.4 2.0.1 1.17.3
@@ -309,7 +310,7 @@ capistrano 3.14.1 3.14.0 3.11.0
 capistrano-bundler 1.6.0 1.5.0
 capistrano-rails 1.5.0 1.4.0
 capistrano-rake 0.2.0
-capybara 3.33.0 3.32.2 3.32.1 3.31.0 3.30.0 3.29.0 3.25.0 2.18.0
+capybara 3.34.0 3.33.0 3.32.2 3.32.1 3.31.0 3.30.0 3.29.0 3.25.0 2.18.0
 capybara-screenshot 1.0.25 1.0.24
 capybara-selenium 0.0.6
 carrierwave 0.10.0
@@ -347,7 +348,7 @@ cork 0.3.0
 countries 3.0.1 0.11.5
 coveralls_reborn 0.18.0 0.16.0
 coverband 4.2.5
-crack 0.4.4 0.4.3
+crack 0.4.5 0.4.4 0.4.3
 crass 1.0.6 1.0.5 1.0.4
 currencies 0.4.2
 daemons 1.3.1
@@ -367,7 +368,7 @@ deploy_mate 0.26.3
 descendants_tracker 0.0.4
 diff-lcs 1.4.4 1.3
 digest-crc 0.6.1 0.5.1 0.4.1
-docile 1.3.2 1.3.1 1.1.5
+docile 1.3.4 1.3.2 1.3.1 1.1.5
 docker-api 1.34.2
 domain_name 0.5.20190701
 dotenv 2.7.6 2.7.5 2.7.4 2.6.0 2.0.2
@@ -375,14 +376,14 @@ dotenv-rails 2.7.6 2.7.5 2.7.4 2.6.0 2.0.2
 dotiw 4.0.1
 down 4.8.1
 draper 3.1.0 2.1.0
-dry-configurable 0.11.6 0.11.5 0.11.3 0.9.0
+dry-configurable 0.12.0 0.11.6 0.11.5 0.11.3 0.9.0
 dry-container 0.7.2
 dry-core 0.5.0 0.4.10 0.4.9
 dry-equalizer 0.3.0
 dry-events 0.2.0
 dry-inflector 0.2.0
 dry-initializer 3.0.4 3.0.3 3.0.2
-dry-logic 1.0.8 1.0.7 1.0.6 1.0.5
+dry-logic 1.1.0 1.0.8 1.0.7 1.0.6 1.0.5
 dry-monitor 0.3.2 0.3.1
 dry-schema 1.5.6 1.5.5 1.5.4 1.5.2 1.5.1 1.5.0 1.4.3 1.4.1
 dry-types 1.4.0 1.2.1
@@ -423,13 +424,14 @@ factory_bot_rails 5.2.0 5.1.1 5.0.2 4.11.1
 fake-data 1.2.0 1.1.9
 faraday 1.3.0 1.1.0 1.0.1 0.17.3 0.17.1 0.15.4
 faraday-http-cache 2.2.0 2.0.0 1.3.1
+faraday-net_http 1.0.0
 faraday_middleware 1.0.0 0.14.0 0.13.1
 fast_gettext 1.8.0
-fastimage 2.1.3
+fastimage 2.2.1 2.1.3
 faye-websocket 0.10.9
 fcm 1.0.1
 ffaker 2.17.0 2.16.0 2.15.0 2.14.0 2.13.0 2.11.0
-ffi 1.13.1 1.13.0 1.12.2 1.12.1 1.11.3 1.11.1 1.9.25
+ffi 1.14.2 1.13.1 1.13.0 1.12.2 1.12.1 1.11.3 1.11.1 1.9.25
 ffi-compiler 1.0.1
 filelock 1.1.1
 filesize 0.2.0
@@ -471,7 +473,7 @@ fog-xenserver 1.0.0
 fog-xml 0.1.3
 formatador 0.2.5
 forwardable-extended 2.6.0
-fugit 1.4.1 1.4.0 1.3.9 1.3.8 1.3.6 1.3.5 1.3.3 1.1.8
+fugit 1.4.2 1.4.1 1.4.0 1.3.9 1.3.8 1.3.6 1.3.5 1.3.3 1.1.8
 funk_hands 1.4.0 1.3.0
 fuubar 2.5.0 2.0.0
 geocoder 1.6.3 1.2.14
@@ -529,7 +531,7 @@ http_parser.rb 0.6.0
 httparty 0.18.1 0.18.0 0.16.4 0.15.7
 httpclient 2.8.3
 httpx 0.8.1
-i18n 1.8.5 1.8.4 1.8.3 1.8.2 1.7.0 1.6.0 1.1.1 1.1.0 0.9.5
+i18n 1.8.7 1.8.5 1.8.4 1.8.3 1.8.2 1.7.0 1.6.0 1.1.1 1.1.0 0.9.5
 i18n-js 3.5.0 3.0.0.rc11
 i18n_data 0.10.0 0.7.0
 ice_nine 0.11.2
@@ -537,20 +539,23 @@ image_processing 1.11.0 1.10.3
 immoscout 1.3.0
 io-like 0.3.1 0.3.0
 ipaddress 0.8.3
-irb 1.3.0 1.2.7 1.2.6 1.2.3 1.2.0
+irb 1.3.1 1.3.0 1.2.7 1.2.6 1.2.3 1.2.0
 jabber_admin 1.0.1 0.2.0
 jaro_winkler 1.5.4 1.5.3 1.5.2 1.5.1
 jbuilder 2.10.0 2.3.2
-jekyll 3.9.0 3.7.3
-jekyll-assets 3.0.11
+jekyll 3.9.0 3.7.4 3.7.3
+jekyll-assets 3.0.12 3.0.11
+jekyll-feed 0.9.3
+jekyll-redirect-from 0.13.0
 jekyll-reload 1.0.1
 jekyll-sanity 1.6.0 1.2.0
 jekyll-sass-converter 1.5.2
-jekyll-sitemap 1.2.0
+jekyll-sitemap 1.4.0 1.2.0
+jekyll-toc 0.5.2
 jekyll-watch 2.2.1 2.0.0
 jmespath 1.4.0
 jquery-rails 4.4.0 4.3.5
-json 2.4.1 2.3.1 2.3.0 2.2.0 1.8.6
+json 2.5.1 2.4.1 2.3.1 2.3.0 2.2.0 1.8.6
 json-schema 2.8.1
 json_pure 2.3.1
 json_schemer 0.2.11
@@ -572,7 +577,7 @@ launchy 2.5.0 2.4.3
 libv8 3.16.14.19 x86_64-linux
 liquid 4.0.3 4.0.0 3.0.6
 liquid-tag-parser 1.9.0
-listen 3.3.3 3.3.1 3.2.1 3.1.5
+listen 3.4.0 3.3.3 3.3.1 3.2.1 3.1.5
 locale 2.1.3
 loofah 2.8.0 2.7.0 2.6.0 2.5.0 2.4.0 2.2.3
 lumberjack 1.2.8 1.2.7 1.2.6 1.2.5 1.2.4 1.2.1 1.2.0 1.0.13
@@ -592,7 +597,7 @@ mimemagic 0.3.5 0.3.4
 mini_magick 4.11.0 4.10.1 4.9.3
 mini_mime 1.0.2
 mini_portile2 2.5.0 2.4.0 2.3.0
-minitest 5.14.2 5.14.1 5.14.0 5.13.0 5.11.3
+minitest 5.14.3 5.14.2 5.14.1 5.14.0 5.13.0 5.11.3
 momentjs-rails 2.20.1
 msgpack 1.3.3 1.3.1
 multi_json 1.15.0 1.14.1 1.13.1
@@ -615,7 +620,7 @@ net-telnet 0.1.1
 netrc 0.11.0
 newrelic_rpm 6.0.0.351 5.7.0.350
 nio4r 2.5.4 2.5.3 2.5.2
-nokogiri 1.11.0 x86_64-linux 1.10.10 1.10.9 1.10.8 1.10.7 1.10.4 1.8.4
+nokogiri 1.11.1 x86_64-linux 1.11.0 x86_64-linux 1.10.10 1.10.9 1.10.8 1.10.7 1.10.4 1.8.4
 nokogumbo 2.0.2
 notiffany 0.1.3 0.1.1
 ntlm-http 0.1.1
@@ -629,7 +634,7 @@ painless 2.4.1 2.4.0 2.1.1 1.2.0
 paper_trail 10.3.1
 parallel 1.20.1 1.19.2 1.19.1 1.17.0 1.13.0 1.12.1
 parallel_tests 2.32.0 2.28.0
-parser 2.7.2.0 2.7.1.5 2.7.1.4 2.7.1.3 2.7.1.2 2.7.1.1 2.7.0.4 2.7.0.2 2.6.5.0 2.6.3.0 2.6.0.0 2.5.1.2
+parser 3.0.0.0 2.7.2.0 2.7.1.5 2.7.1.4 2.7.1.3 2.7.1.2 2.7.1.1 2.7.0.4 2.7.0.2 2.6.5.0 2.6.3.0 2.6.0.0 2.5.1.2
 pastel 0.7.3
 pathutil 0.16.2 0.16.1
 pdf-core 0.8.1 0.6.1
@@ -639,6 +644,7 @@ pg_array_parser 0.0.9
 pg_backup 0.4.0
 phonelib 0.6.43 0.6.36
 poltergeist 1.18.1 1.8.1
+popper_js 1.16.0
 postgres_ext 2.4.1
 power_assert 1.2.0
 powerpack 0.1.2
@@ -650,10 +656,10 @@ pry-byebug 3.9.0 3.8.0 3.7.0
 pry-doc 1.1.0 1.0.0
 pry-rails 0.3.9
 pry-remote-reloaded 1.0.0
-psych 3.2.1 default: 3.1.0
+psych 3.3.0 3.2.1 default: 3.1.0
 public_activity 1.6.4 1.4.3
 public_suffix 4.0.6 4.0.5 4.0.4 4.0.3 4.0.1 3.1.1 3.0.3
-puffing-billy 2.4.0 2.3.1 2.3.0 2.2.0
+puffing-billy 2.4.1 2.4.0 2.3.1 2.3.0 2.2.0
 puma 5.0.4 4.3.7 4.3.6 4.3.5 4.3.4 4.3.3 3.12.6 3.12.4 3.12.1
 puppet 6.19.1
 puppet-resource_api 1.8.13
@@ -680,7 +686,7 @@ rails-i18n 5.1.3 4.0.9
 rails-ujs 0.1.0
 railties 6.0.3.4 6.0.2.2 5.2.4.4 5.2.4.3 5.2.4.2 5.2.4.1 5.2.4 5.2.3 4.2.11.3
 rainbow 3.0.0
-rake 13.0.1 12.3.3 12.3.1 10.5.0
+rake 13.0.3 13.0.1 12.3.3 12.3.1 10.5.0
 rapporteur 3.7.0 3.6.3
 rb-fsevent 0.10.4 0.10.3 0.9.8
 rb-inotify 0.10.1 0.10.0 0.9.10
@@ -692,11 +698,11 @@ recursive-open-struct 1.1.3 1.1.2 1.1.1 1.1.0
 redcarpet 3.5.0
 redis 4.2.5 4.2.2 4.2.1 4.2.0 4.1.4 4.1.3
 redis-prescription 1.0.0
-reek 6.0.2 6.0.1 6.0.0 5.4.0 5.3.1
+reek 6.0.3 6.0.2 6.0.1 6.0.0 5.4.0 5.3.1
 ref 2.0.0
 regexp-examples 1.5.1
-regexp_parser 2.0.0 1.8.2 1.7.1 1.7.0 1.6.0 1.5.1
-reline 0.2.0 0.1.8 0.1.7 0.1.6 0.1.5 0.1.3 0.1.2
+regexp_parser 2.0.3 2.0.0 1.8.2 1.7.1 1.7.0 1.6.0 1.5.1
+reline 0.2.1 0.2.0 0.1.8 0.1.7 0.1.6 0.1.5 0.1.3 0.1.2
 representable 3.0.4
 request_store 1.5.0 1.4.1
 responders 3.0.1 2.4.1
@@ -710,29 +716,29 @@ rgeo 2.2.0 2.1.1 0.6.0
 rgeo-activerecord 6.2.1 4.0.5
 rimless 1.1.0 1.0.4 1.0.3 1.0.2 0.3.0
 rmagick 4.1.2
-rouge 3.25.0 3.2.1
+rouge 3.26.0 3.25.0 3.2.1
 rspec 3.10.0 3.9.0 3.8.0
-rspec-core 3.10.0 3.9.3 3.9.2 3.9.1 3.9.0 3.8.2 3.8.0
-rspec-expectations 3.10.0 3.9.4 3.9.3 3.9.2 3.9.1 3.9.0 3.8.6 3.8.4 3.8.1
+rspec-core 3.10.1 3.10.0 3.9.3 3.9.2 3.9.1 3.9.0 3.8.2 3.8.0
+rspec-expectations 3.10.1 3.10.0 3.9.4 3.9.3 3.9.2 3.9.1 3.9.0 3.8.6 3.8.4 3.8.1
 rspec-its 1.2.0
 rspec-json_expectations 2.2.0 2.1.0
-rspec-mocks 3.10.0 3.9.1 3.9.0 3.8.2 3.8.1 3.8.0
-rspec-rails 4.0.1 4.0.0 3.9.1 3.9.0 3.8.2
+rspec-mocks 3.10.1 3.10.0 3.9.1 3.9.0 3.8.2 3.8.1 3.8.0
+rspec-rails 4.0.2 4.0.1 4.0.0 3.9.1 3.9.0 3.8.2
 rspec-retry 0.6.2 0.6.1 0.5.7
-rspec-support 3.10.0 3.9.4 3.9.3 3.9.2 3.9.0 3.8.3 3.8.2 3.8.0
+rspec-support 3.10.1 3.10.0 3.9.4 3.9.3 3.9.2 3.9.0 3.8.3 3.8.2 3.8.0
 rtags 0.97
 rtagstask 0.0.4
-rubocop 1.6.1 0.93.1 0.90.0 0.89.1 0.89.0 0.88.0 0.85.1 0.84.0 0.83.0 0.82.0 0.80.1 0.79.0 0.77.0 0.74.0 0.72.0 0.64.0 0.59.2
-rubocop-ast 1.3.0 1.2.0 0.8.0 0.6.0 0.4.0 0.3.0 0.2.0 0.0.3
+rubocop 1.8.1 1.6.1 0.93.1 0.90.0 0.89.1 0.89.0 0.88.0 0.85.1 0.84.0 0.83.0 0.82.0 0.80.1 0.79.0 0.77.0 0.74.0 0.72.0 0.64.0 0.59.2
+rubocop-ast 1.4.0 1.3.0 1.2.0 0.8.0 0.6.0 0.4.0 0.3.0 0.2.0 0.0.3
 rubocop-performance 1.7.1 1.5.2
 rubocop-rails 2.8.0 2.6.0 2.5.2
-rubocop-rspec 2.0.1 1.43.2 1.42.0 1.40.0 1.39.0 1.38.1 1.37.1 1.37.0 1.35.0 1.33.0 1.32.0 1.29.1
+rubocop-rspec 2.1.0 2.0.1 1.43.2 1.42.0 1.40.0 1.39.0 1.38.1 1.37.1 1.37.0 1.35.0 1.33.0 1.32.0 1.29.1
 ruby-augeas 0.5.0
 ruby-enum 0.8.0
 ruby-grape-danger 0.1.1
 ruby-graphviz 1.2.5 1.2.4
 ruby-kafka 1.3.0 1.2.0 1.1.0 1.0.0 0.7.10
-ruby-progressbar 1.10.1 1.10.0
+ruby-progressbar 1.11.0 1.10.1 1.10.0
 ruby-rc4 0.1.5
 ruby-terminfo 0.1.1
 ruby-vips 2.0.17
@@ -740,7 +746,7 @@ ruby2_keywords 0.0.2
 ruby2ruby 2.4.4
 ruby_dep 1.5.0
 ruby_http_client 3.5.1 3.5.0
-ruby_parser 3.15.0 3.14.2 3.13.1
+ruby_parser 3.15.1 3.15.0 3.14.2 3.13.1
 ruby_regex 0.2.1 0.1.3
 rubytree 1.0.0
 rubyzip 2.3.0 2.2.0 2.0.0 1.2.3
@@ -765,7 +771,7 @@ semantic_range 2.3.0
 sendgrid-ruby 6.3.4 6.2.1
 sequel 5.39.0
 serverspec 2.41.3
-sexp_processor 4.15.1 4.15.0 4.14.1 4.12.1
+sexp_processor 4.15.2 4.15.1 4.15.0 4.14.1 4.12.1
 sfl 2.3
 shellany 0.0.1
 shoulda-matchers 4.3.0 3.0.1
@@ -777,8 +783,9 @@ sidekiq-throttled 0.13.0 0.11.0
 sidekiq-unique-jobs 6.0.25 6.0.24 6.0.23 6.0.22 6.0.21
 signet 0.14.0 0.13.2
 simple_oauth 0.3.1
-simplecov 0.19.1 0.19.0 0.18.5 0.18.1 0.17.1 0.17.0 0.16.1 0.11.2
+simplecov 0.21.2 0.19.1 0.19.0 0.18.5 0.18.1 0.17.1 0.17.0 0.16.1 0.11.2
 simplecov-html 0.12.3 0.12.2 0.11.0 0.10.2
+simplecov_json_formatter 0.1.2
 sinatra 2.1.0 2.0.8.1 2.0.7 1.4.8
 sinatra-contrib 2.1.0
 sixarm_ruby_unaccent 1.2.0
@@ -811,10 +818,10 @@ thread_safe 0.3.6
 tilt 2.0.10 2.0.9 1.4.1
 timecop 0.9.2 0.9.1
 timers 4.3.2 4.3.0
-tins 1.26.0 1.25.0 1.24.1 1.24.0 1.22.2
+tins 1.28.0 1.26.0 1.25.0 1.24.1 1.24.0 1.22.2
 travis 1.10.0 1.9.0
 trustpilot-business-links 1.1.0
-ttfunk 1.6.2.1 1.6.1 1.5.1 1.4.0
+ttfunk 1.7.0 1.6.2.1 1.6.1 1.5.1 1.4.0
 tty-color 0.6.0 0.5.1
 tty-screen 0.7.1
 tty-table 0.11.0
@@ -826,7 +833,7 @@ uber 0.1.0
 uglifier 4.2.0 4.1.20 4.1.18
 unf 0.1.4
 unf_ext 0.0.7.7 0.0.7.6
-unicode-display_width 1.7.0 1.6.1 1.6.0 1.4.1 1.4.0
+unicode-display_width 2.0.0 1.7.0 1.6.1 1.6.0 1.4.1 1.4.0
 unicode_utils 1.4.0
 uniform_notifier 1.13.0 1.12.1 1.9.0
 uri_template 0.7.0
@@ -837,7 +844,7 @@ vimwiki_markdown 0.6.0
 virtus 1.0.5
 waterdrop 1.4.0 1.3.4 1.3.1
 web-console 3.7.0
-webmock 3.10.0 3.9.4 3.9.3 3.9.2 3.8.3 3.7.6 3.6.0 3.5.1
+webmock 3.11.0 3.10.0 3.9.4 3.9.3 3.9.2 3.8.3 3.7.6 3.6.0 3.5.1
 webpacker 5.1.1
 webrobots 0.1.2
 websocket 1.2.8
@@ -848,5 +855,5 @@ with_advisory_lock 4.6.0 4.0.0
 xml-simple 1.1.5
 xmlrpc 0.3.1 0.3.0
 xpath 3.2.0
-yard 0.9.25 0.9.24 0.9.20
+yard 0.9.26 0.9.25 0.9.24 0.9.20
 zeitwerk 2.4.1 2.4.0 2.3.0 2.2.2 2.1.10
