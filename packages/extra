@@ -836,6 +836,8 @@ wine-gecko
 wine-mono
 wine-nine
 winetricks
+wireshark-cli
+wireshark-qt
 woeusb
 wol
 words
