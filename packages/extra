@@ -120,6 +120,7 @@ drkonqi
 dstat
 dunst
 duplicity
+dxvk-bin
 efibootmgr
 elisa
 entr
@@ -834,7 +835,6 @@ whois
 wine
 wine-gecko
 wine-mono
-wine-nine
 winetricks
 wireshark-cli
 wireshark-qt

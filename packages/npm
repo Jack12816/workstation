@@ -13,9 +13,10 @@ less 1.6.0
 markdown-toc 1.2.0
 marked 0.3.2
 node-gyp 7.1.2
-npm 6.14.11
 npm-check-updates 1.2.0
+npm 7.6.1
 plato 1.0.1
+semver 7.3.4
 serve 6.4.1
 st 0.5.5
 svgo 0.7.1
