@@ -444,6 +444,7 @@ lib32-vulkan-radeon
 libcdaudio
 libconfig
 libdvdcss
+libfido2
 libgnome-sharp
 libgoom2
 libkscreen
@@ -532,6 +533,7 @@ opencl-amd
 opencl-headers
 opencl-mesa
 opencv
+opensc
 openshot
 openssh
 opera
@@ -548,6 +550,7 @@ pacmatic
 pacserve
 pacutils
 palapeli
+pam-u2f
 pandoc
 parallel
 parley
@@ -561,6 +564,7 @@ pavucontrol
 pavumeter
 pbzip2
 pcp
+pcsc-tools
 pdftk
 perf
 perl-anyevent-i3
@@ -925,5 +929,6 @@ yakuake
 yasm
 yay
 yed
+yubikey-manager
 zeroconf-ioslave
 zip
