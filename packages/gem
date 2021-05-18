@@ -1,4 +1,4 @@
-bundler 2.2.16
+bundler 2.2.17
 concurrent-ruby 1.1.8
 deep_merge 1.2.1
 facter 3.14.16
