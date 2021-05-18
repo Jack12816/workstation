@@ -496,6 +496,9 @@ mixxx
 mlocate
 modemmanager-qt
 molecule
+molecule-docker
+molecule-podman
+molecule-vagrant
 moreutils
 mousetweaks
 mp3splt-gtk
