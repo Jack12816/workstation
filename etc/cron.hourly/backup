@@ -77,12 +77,14 @@ find "${DEST}" -type d -empty -delete
 # (6) Create the /home backup
 rdiff-backup \
   --remote-schema "ssh -C -p${BACKUP_SSH_PORT} %s rdiff-backup --server" \
+  --exclude '/home/jack/.vagrant.d' --exclude '/home/jack/VirtualBox VMs' \
   /home "${DEST_HOME}"
 
 # -------------------------------
 # (7) Clear old /home backups
 rdiff-backup \
   --remote-schema "ssh -C -p${BACKUP_SSH_PORT} %s rdiff-backup --server" \
+  --exclude '/home/jack/.vagrant.d' --exclude '/home/jack/VirtualBox VMs' \
   --remove-older-than ${CLEAR_HOME_AFTER} \
   --force \
   "${DEST_HOME}"
