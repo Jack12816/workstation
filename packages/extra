@@ -490,6 +490,7 @@ memtest86+
 mesa-demos
 mesa-vdpau
 milou
+minipro
 minuet
 mitmproxy
 mixxx
@@ -732,6 +733,7 @@ spirv-tools
 spotify
 sqlfmt-bin
 sqliteman
+srecord
 sshfs
 sshpass
 stalonetray
