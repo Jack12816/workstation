@@ -161,8 +161,6 @@ git-open-git
 github-cli
 gitlab-runner
 gnome-alsamixer
-gnome-python
-gnome-python-desktop
 gnome-sharp
 gnome-software
 gnome-vfs
@@ -452,6 +450,7 @@ libgoom2
 libkscreen
 libksysguard
 libnetfilter_acct
+liboping
 libpurple
 libreoffice-fresh
 libreoffice-fresh-de
@@ -708,6 +707,7 @@ ruby-faraday
 ruby-httpclient
 ruby-multi_json
 ruby-multipart-post
+ruby-rack
 ruby-semantic_puppet
 rust
 rxvt-unicode-better-wheel-scrolling-unicode3

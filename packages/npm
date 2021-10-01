@@ -13,9 +13,10 @@ jsdoc 3.6.7
 less 1.6.0
 markdown-toc 1.2.0
 marked 0.3.2
-node-gyp 8.0.0
+node-gyp 8.2.0
+nopt 5.0.0
 npm-check-updates 1.2.0
-npm 7.13.0
+npm 7.24.1
 plato 1.0.1
 semver 7.3.5
 serve 6.4.1
