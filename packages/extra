@@ -722,6 +722,7 @@ screenkey
 scrot
 sddm-kcm
 setserial
+shellcheck
 signon-kwallet-extension
 silc-client
 simple-mtpfs
