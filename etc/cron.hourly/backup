@@ -88,6 +88,7 @@ time (
     --exclude '/home/jack/.vagrant.d' \
     --exclude '/home/jack/VirtualBox VMs' \
     --exclude '/home/jack/.local/share/Steam' \
+    --exclude '/home/jack/go' \
     --exclude '/home/jack/.rvm' \
     --exclude '/home/jack/.npm' \
     --exclude '/home/jack/.node-gyp' \
