@@ -1,0 +1,62 @@
+#!/bin/sh
+
+lockfile='/tmp/.activities-cron.lock'
+sudo touch "${lockfile}"
+sudo chmod ugo+rw "${lockfile}"
+
+(
+  flock -e 200
+
+  dest="/data/projects/Coding/Statistics/activities/data"
+  last_run_file="${dest}/last_run"
+  src_keys="/tmp/activity/keys.log"
+  src_clicks="/tmp/activity/clicks.log"
+  cur_date=$(date +'%Y-%m-%d')
+  dest_keys="${dest}/${cur_date}-keys.log"
+  dest_clicks="${dest}/${cur_date}-clicks.log"
+
+  if [ ! -d /tmp/activity ]; then
+    # restore
+    cp -R /var/tmp/activity /tmp/activity
+    chown -R jack:jack /tmp/activity
+  else
+    # store
+    mkdir -p /var/tmp/activity
+    cp -R /tmp/activity/* /var/tmp/activity/
+    chown -R jack:jack /var/tmp/activity
+  fi
+
+  # Skip the job, when the destination path does not exists
+  if [ ! -d "${dest}" ]; then
+    exit
+  fi
+
+  # Fetch the last run
+  if [ -f "${last_run_file}" ]; then
+    last_run=$(cat "${last_run_file}")
+  else
+    last_run=""
+  fi
+
+  # Compare the last run with the current run
+  if [ "${last_run}" = "${cur_date}" ]; then
+    # We are done for today
+    exit
+  fi
+
+  # Copy the logs for yesterday
+  cp "${src_keys}" "${dest_keys}"
+  cp "${src_clicks}" "${dest_clicks}"
+  xz -9 "${dest_keys}"
+  xz -9 "${dest_clicks}"
+
+  # Truncate the current logs
+  echo > "${src_keys}"
+  echo > "${src_clicks}"
+
+  # Persist the last run, so we wont run again today
+  echo "${cur_date}" > "${last_run_file}"
+
+  # Clear the lock
+  flock -u 200
+) 200>"${lockfile}"

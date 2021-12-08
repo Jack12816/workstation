@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd /data/projects/Coding/Hausgold
+
+find . -name '.git' \
+  | grep -vF '/node_modules/' \
+  | grep -vF '/vendor/' \
+  | grep -vF '/assets/' \
+  | grep -vF '/build/' \
+  | grep -vF '/env/shared/' \
+  | sed -e 's#/.git$##g' -e 's#^./##g' \
+  | sort -u >/dev/shm/projects.new
+mv -f /dev/shm/projects.new /dev/shm/projects

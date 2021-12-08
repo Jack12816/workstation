@@ -13,5 +13,6 @@ location['/data/other/']="$server::$repository/Other/"
 for localPath in "${!location[@]}"; do
   chown -R jack:jack "${localPath}"
   rsync --delete -avh --stats --no-motd -Ep --recursive \
+    --exclude '*.box' \
     "$localPath" "${location[$localPath]}"
 done

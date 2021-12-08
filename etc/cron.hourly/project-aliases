@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# cd /data/projects/Coding/Hausgold
+#
+# find . -name '.git' \
+#   | grep -vF '/node_modules/' \
+#   | grep -vF '/vendor/' \
+#   | grep -vF '/assets/' \
+#   | grep -vF '/build/' \
+#   | grep -vF '/env/shared/' \
+#   | sed -e 's#/.git$##g' -e 's#^./##g' \
+#   | sort -u >/dev/shm/projects.new
+# mv -f /dev/shm/projects.new /dev/shm/projects
+
+DEST='/dev/shm/project-aliases'
+HAUSGOLD='/data/projects/Coding/Hausgold'
+
+function save_aliases()
+{
+  SEARCH_DEPTH=2 \
+    /home/jack/.linux-environment/vendors/project-aliases "${1}" \
+    >> "${DEST}"
+}
+
+rm -rf "${DEST}"
+save_aliases "${HAUSGOLD}/Ruby"
+save_aliases "${HAUSGOLD}/Ruby/gems"
+save_aliases "${HAUSGOLD}/Ruby/env/projects"
+save_aliases "${HAUSGOLD}/OSS/Ruby/gems"
+save_aliases "${HAUSGOLD}/OSS/Docker"
+save_aliases "${HAUSGOLD}/Docs"
+save_aliases "${HAUSGOLD}/Config"
+save_aliases "${HAUSGOLD}/Static Sites"
+save_aliases "${HAUSGOLD}/Objective-C"
+save_aliases "${HAUSGOLD}/Nodejs/packages"
+save_aliases "${HAUSGOLD}/OSS/Erlang/modules"
+save_aliases "${HAUSGOLD}/OSS/Nodejs/packages"
+save_aliases "${HAUSGOLD}/OSS/C"
