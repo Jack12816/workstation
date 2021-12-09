@@ -82,7 +82,7 @@ find "${DEST}" -type d -empty -delete
 # -------------------------------
 echo '(6) Create the /home backup'
 time (
-  RDIFF_BACKUP_VERBOSITY=8 \
+  # RDIFF_BACKUP_VERBOSITY=8 \
   rdiff-backup \
     --remote-schema "ssh -C -p${BACKUP_SSH_PORT} %s rdiff-backup --server" \
     --exclude '/home/jack/.vagrant.d' \
