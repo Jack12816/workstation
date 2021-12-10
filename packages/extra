@@ -181,6 +181,7 @@ gron
 gst-libav
 gst-plugins-ugly
 gstreamer-vaapi
+gtk3-demos
 gucharmap
 gutenprint
 gvim
