@@ -104,6 +104,7 @@ datamash
 dfu-programmer
 dfu-util
 dhcpcd
+dhex
 diffr
 discover
 dmg2img
