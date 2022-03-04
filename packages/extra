@@ -465,6 +465,13 @@ libvdpau-va-gl
 linux
 linux-docs
 linux-firmware
+linux-firmware-bnx2x
+linux-firmware-liquidio
+linux-firmware-marvell
+linux-firmware-mellanox
+linux-firmware-nfp
+linux-firmware-qcom
+linux-firmware-qlogic
 linux-headers
 live-media
 logrotate
@@ -646,7 +653,6 @@ python2-boto-git
 python2-dateutil
 python2-gnomekeyring
 python2-lxml
-python2-pip
 qjackctl
 qqc2-desktop-style
 qt5-3d
