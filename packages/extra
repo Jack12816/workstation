@@ -733,6 +733,7 @@ scrot
 sddm-kcm
 setserial
 shellcheck
+signal-desktop
 signon-kwallet-extension
 silc-client
 simple-mtpfs
