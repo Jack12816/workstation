@@ -43,7 +43,6 @@ avr-libc
 avrdude
 aws-cli
 aws-iam-authenticator-bin
-awslogs
 baloo
 barcode
 base
