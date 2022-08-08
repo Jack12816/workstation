@@ -3,7 +3,7 @@ brunch 1.7.20
 check-dependencies 1.1.0
 clean-css 2.0.6
 colortest 3.0.4
-corepack 0.10.0
+corepack 0.12.1
 doctoc 1.4.0
 electron-packager 14.2.1
 emojipacks 0.2.1
@@ -15,10 +15,10 @@ less 1.6.0
 lighthouse 9.2.0
 markdown-toc 1.2.0
 marked 0.3.2
-node-gyp 9.0.0
+node-gyp 9.1.0
 nopt 5.0.0
 npm-check-updates 1.2.0
-npm 8.5.5
+npm 8.16.0
 plato 1.0.1
 semver 7.3.7
 serve 6.4.1

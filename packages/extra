@@ -418,7 +418,6 @@ kwalletmanager
 kwave
 kwayland
 kwayland-integration
-kwayland-server
 kwidgetsaddons
 kwin
 kwindowsystem
@@ -716,12 +715,17 @@ ruby-bundler
 ruby-concurrent
 ruby-faraday
 ruby-httpclient
+ruby-minitest
 ruby-multi_json
 ruby-multipart-post
 ruby-rack
+ruby-rake
+ruby-rdoc
+ruby-rexml
 ruby-semantic_puppet
 rust
-rxvt-unicode-better-wheel-scrolling-unicode3
+rxvt-unicode
+rxvt-unicode-terminfo
 s-nail
 s3cmd-git
 samba
