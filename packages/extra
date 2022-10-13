@@ -298,7 +298,7 @@ kdenetwork-filesharing
 kdenlive
 kdepim-addons
 kdeplasma-addons
-kdesdk-kioslaves
+kdesdk-kio
 kdesdk-thumbnailers
 kdesu
 kdf
@@ -336,6 +336,7 @@ kinit
 kio
 kio-extras
 kio-gdrive
+kio-zeroconf
 kirigami-gallery
 kirigami2
 kiriki
@@ -423,7 +424,6 @@ kwidgetsaddons
 kwin
 kwindowsystem
 kwordquiz
-kwrite
 kwrited
 kxmlgui
 lftp
@@ -1087,5 +1087,4 @@ yasm
 yay
 yed
 yubikey-manager
-zeroconf-ioslave
 zip
