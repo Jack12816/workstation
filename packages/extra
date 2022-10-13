@@ -78,7 +78,6 @@ calf
 cantor
 caps
 ccze
-ceph
 cervisia
 cgroup_event_listener
 chemical-mime-data
@@ -653,10 +652,6 @@ python-lxml
 python-pip
 python-pyalsa
 python-rsa
-python2-boto-git
-python2-dateutil
-python2-gnomekeyring
-python2-lxml
 qjackctl
 qqc2-desktop-style
 qt5-3d
@@ -731,7 +726,7 @@ rust
 rxvt-unicode
 rxvt-unicode-terminfo
 s-nail
-s3cmd-git
+s3cmd
 samba
 scc
 scour
