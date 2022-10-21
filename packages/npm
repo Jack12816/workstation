@@ -20,7 +20,7 @@ node-gyp 9.2.0
 nopt 6.0.0
 npm-check-updates 1.2.0
 npm 8.19.2
-pdfgen 1.4.1
+pdfgen 1.5.0
 plato 1.0.1
 puppeteer 10.1.0
 semver 7.3.8
