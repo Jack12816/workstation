@@ -21,6 +21,7 @@ nopt 6.0.0
 npm-check-updates 1.2.0
 npm 8.19.2
 plato 1.0.1
+puppeteer 10.1.0
 semver 7.3.8
 serve 6.4.1
 st 0.5.5
