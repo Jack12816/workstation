@@ -4,7 +4,7 @@ check-dependencies 1.1.0
 clean-css 2.0.6
 coffeescript 2.7.0
 colortest 3.0.4
-corepack 0.14.1
+corepack 0.14.2
 doctoc 1.4.0
 electron-packager 14.2.1
 emojipacks 0.2.1
@@ -16,8 +16,8 @@ less 1.6.0
 lighthouse 9.2.0
 markdown-toc 1.2.0
 marked 0.3.2
-node-gyp 9.2.0
-nopt 6.0.0
+node-gyp 9.3.0
+nopt 7.0.0
 npm-check-updates 1.2.0
 npm 8.19.2
 pdfgen 1.5.0

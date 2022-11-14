@@ -772,7 +772,6 @@ synergy
 syntax-highlighting
 sysstat
 systemsettings
-systemtap
 tcpdump
 teamviewer
 teiler-git
@@ -976,6 +975,8 @@ vdpauinfo
 vi
 vim-systemd
 virtualbox
+virtualbox-ext-vnc
+virtualbox-guest-utils
 virtualbox-host-modules-arch
 visual-studio-code-bin
 volumeicon
