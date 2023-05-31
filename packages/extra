@@ -669,6 +669,7 @@ python-docutils
 python-dotenv
 python-jmespath
 python-lxml
+python-packaging
 python-pip
 python-progress
 python-pyalsa
