@@ -82,13 +82,13 @@ USERADD ?= useradd
 XARGS ?= xargs
 YAY ?= yay
 
-check-root:
+# check-root:
 ifneq ($(USER),root)
 	# The workstation suite MUST be run as root. (not as $(USER))
 	@$(EXIT) 1
 endif
 
-include check-root
+# include check-root
 
 .reown:
 	@$(CHOWN) $(UNPRIVILEGED_USER):$(UNPRIVILEGED_USER) -R .
