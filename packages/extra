@@ -712,6 +712,7 @@ qt5-wayland
 qt5-webchannel
 qt5-webengine
 qt5-webglplugin
+qt5-webkit
 qt5-websockets
 qt5-webview
 qt5-xmlpatterns
