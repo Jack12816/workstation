@@ -181,6 +181,7 @@ gnome-sharp
 gnome-software
 gnome-vfs
 gnome-vfs-sharp
+gnvim
 go-md2man
 gocr
 goneovim-bin
@@ -1033,7 +1034,6 @@ xautomation
 xbindkeys
 xclip
 xcolor
-xdg-desktop-portal-gnome
 xdg-desktop-portal-kde
 xdotool
 xf86-input-evdev
