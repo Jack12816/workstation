@@ -688,6 +688,7 @@ python-tinycss2
 python-xlsx2csv
 qalculate-qt
 qemu-desktop
+qemu-full
 qjackctl
 qqc2-desktop-style5
 qt5-3d
@@ -801,6 +802,7 @@ svgpart
 sweeper
 sweethome3d
 swig
+swtpm
 sxiv
 syndication5
 syntax-highlighting5
@@ -1010,6 +1012,7 @@ vdpauinfo
 vhs
 vim-systemd
 vinyl-cache
+virt-install
 virtualbox
 virtualbox-ext-vnc
 virtualbox-guest-iso
