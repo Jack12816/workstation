@@ -22,7 +22,7 @@ httpclient 2.8.3
 locale 2.1.5
 matrix 0.4.3
 minitest 5.27.0
-msgpack 1.8.3
+msgpack 1.8.4
 multi_json 1.19.1
 multipart-post 2.4.1
 mutex_m 0.3.0
