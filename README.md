@@ -58,6 +58,7 @@
 | L3 Cache         | 8 MB                                | 19.25 MB
 | Bus Speed        | 5 GT/s                              | 8 GT/s
 | x86 Extensions   | SSE4.1, SSE4.2, AVX                 | AVX-512, VNNI
+| glibc-hwcaps     | v2                                  | v4
 | TDP              | 77 W                                | 180 W
 | Lithography      | 22 nm                               | 14 nn
 | **Board**            | [AsRock Fatal1ty Z77 Professional](https://www.asrock.com/mb/Intel/Fatal1ty%20Z77%20Professional/index.de.asp)    | [SuperMicro X11SPA-T](https://www.supermicro.com/en/products/motherboard/X11SPA-T)
