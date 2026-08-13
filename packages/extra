@@ -1013,6 +1013,7 @@ vhs
 vim-systemd
 vinyl-cache
 virt-install
+virt-viewer
 virtualbox
 virtualbox-ext-vnc
 virtualbox-guest-iso
