@@ -96,6 +96,7 @@ clblast
 clinfo
 clipit-git
 cloc
+cloud-guest-utils
 cloudflare-speed-cli
 cockpit
 cockpit-machines
@@ -480,6 +481,7 @@ libreoffice-fresh
 libreoffice-fresh-de
 libtraceevent
 libva-intel-driver
+libva-utils
 libva-vdpau-driver
 libvdpau-va-gl
 libwrap
