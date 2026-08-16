@@ -141,6 +141,7 @@ dool
 dosfstools
 dotnet-host
 dotnet-runtime
+dotnet-runtime-8.0
 dotnet-sdk
 dragon
 drive-bin
