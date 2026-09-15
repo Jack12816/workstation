@@ -585,6 +585,7 @@ opensc
 openssh
 optipng
 otf-droid-nerd
+otf-intel-one-mono
 oxygen-gtk2
 oxygen-icons
 oxygen5
@@ -982,6 +983,7 @@ ttf-dejavu
 ttf-dejavu-nerd
 ttf-droid
 ttf-hack-nerd
+ttf-intel-one-mono
 ttf-liberation
 ttf-liberation-mono-nerd
 ttf-ms-fonts
@@ -1047,7 +1049,9 @@ winetricks
 wireshark-cli
 wireshark-qt
 woeusb
+woff-intel-one-mono
 woff2-font-awesome
+woff2-intel-one-mono
 wol
 words
 x86_energy_perf_policy
